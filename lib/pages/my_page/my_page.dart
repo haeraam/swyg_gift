@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:swyg/pages/page.dart';
 
 class MyPage extends StatelessWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -15,9 +16,11 @@ class MyPage extends StatelessWidget {
           icon: Icon(Icons.arrow_left),
         ),
       ),
-      body: Container(
-        child: Center(
-          child: Text('마이 페이지'),
+      body: PageWrap(
+        child: Container(
+          child: Center(
+            child: Text('마이 페이지'),
+          ),
         ),
       ),
     );

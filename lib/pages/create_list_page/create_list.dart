@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:swyg/pages/page.dart';
 
 class CreateListPage extends StatelessWidget {
   const CreateListPage({Key? key}) : super(key: key);
@@ -15,8 +16,10 @@ class CreateListPage extends StatelessWidget {
           icon: Icon(Icons.arrow_left),
         ),
       ),
-      body: Center(
-        child: Text('리스트 생성'),
+      body: PageWrap(
+        child: Center(
+          child: Text('리스트 생성'),
+        ),
       ),
     );
   }
