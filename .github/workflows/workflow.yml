@@ -18,9 +18,9 @@ jobs:
       - run: flutter config --enable-web
       - run: flutter pub get
       - run: flutter build web --release
-        working-directory: ./swyg_gift
+        working-directory: ./a
       - run: |
-          cd swyg_gift/build/web
+          cd b/build/web
           git init
           git config --global user.email nooroongy@dyphi.com
           git config --global user.name haeraam
