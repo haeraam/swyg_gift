@@ -23,6 +23,7 @@ jobs:
           git init
           git config --global user.email nooroongy@dyphi.com
           git config --global user.name haeraam
+          git config --global user.Password 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
           git status
           git remote add origin https://github.com/haeraam/swyg_gift.git
           git checkout -b gh-pages
