@@ -1,3 +1,5 @@
+import 'package:carousel_slider/carousel_controller.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -20,19 +22,24 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
 
-  final List<Widget> _pageList = const [
+  final List<Widget> _pageList = [
     HomeContent(),
-    CategoryPage(),
-    MyPick(),
-    MyPage(),
+    const CategoryPage(),
+    const MyPick(),
+    const MyPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('test'),
-        backgroundColor: Colors.black,
+        title: const Text(
+          'My pick',
+          style: TextStyle(fontSize: 17, color: Color(0xFFFF630B), fontWeight: FontWeight.w900),
+        ),
+        centerTitle: false,
+        backgroundColor: Color(0xFF212121),
+        elevation: 0,
       ),
       body: PageView(
         controller: _pageController,
@@ -80,7 +87,8 @@ class _HomePageState extends State<HomePage> {
 }
 
 class HomeContent extends StatelessWidget {
-  const HomeContent({super.key});
+  HomeContent({super.key});
+  CarouselController buttonCarouselController = CarouselController();
 
   @override
   Widget build(BuildContext context) {
@@ -88,11 +96,44 @@ class HomeContent extends StatelessWidget {
     return BlocListener<ItemListCubit, ItemListState>(
         listener: (context, state) {},
         child: Container(
-          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 50),
+              CarouselSlider(
+                items: [
+                  Container(
+                    color: Color(0xFF212121),
+                    child: Center(
+                      child: Text('테스트1',
+                          style: TextStyle(
+                              fontSize: 30, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w900)),
+                    ),
+                  ),
+                  Container(
+                    color: Color(0xFF212121),
+                    child: Center(
+                      child: Text('테스트2',
+                          style: TextStyle(
+                              fontSize: 30, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w900)),
+                    ),
+                  ),
+                  Container(
+                    color: Color(0xFF212121),
+                    child: Center(
+                      child: Text('테스트3',
+                          style: TextStyle(
+                              fontSize: 30, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w900)),
+                    ),
+                  ),
+                ],
+                carouselController: buttonCarouselController,
+                options: CarouselOptions(
+                  height: 120,
+                  autoPlay: true,
+                  viewportFraction: 1,
+                  enlargeCenterPage: false,
+                ),
+              ),
               const Text(
                 'qweqwe',
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
