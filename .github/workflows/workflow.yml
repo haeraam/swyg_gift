@@ -12,21 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: subosito/flutter-action@v1
+      - uses: bluefireteam/flutter-gh-pages@v7
         with:
-          channel: 'dev'
-      - run: flutter upgrade
-      - run: flutter config --enable-web
-      - run: flutter pub get
-      - run: flutter build web --release
-        working-directory: ./a
-      - run: |
-          cd b/build/web
-          git init
-          git config --global user.email nooroongy@dyphi.com
-          git config --global user.name haeraam
-          git status
-          git remote add origin https://github.com/haeraam/swyg_gift.git
-          git checkout -b gh-pages
-          git add --all
-          git commit -m "update"
-          git push origin gh-pages -f
+          baseHref: /swyg_gift/
