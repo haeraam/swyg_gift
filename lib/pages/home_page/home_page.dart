@@ -223,7 +223,7 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
             ],
             carouselController: carouselController,
             options: CarouselOptions(
-              // autoPlay: true,
+              autoPlay: true,
               height: 122,
               viewportFraction: 1,
               enlargeCenterPage: false,
