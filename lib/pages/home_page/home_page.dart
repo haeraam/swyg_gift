@@ -11,6 +11,7 @@ import 'package:swyg/pages/home_page/components/home_go_to_category_banner.dart'
 import 'package:swyg/pages/my_page/my_page.dart';
 import 'package:swyg/pages/my_pick_page/my_pick.dart';
 import 'package:swyg/theme/color.dart';
+import 'package:swyg/widgets/item_list_widget.dart';
 import 'package:swyg/widgets/item_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -105,59 +106,71 @@ class _HomeContentState extends State<HomeContent> {
         children: [
           const HomeCarouselSlider(),
           const HomeGoToCategoryBanner(),
-          const Text(
-            'qweqwe',
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
-            textAlign: TextAlign.left,
-          ),
-          SizedBox(
-            height: 150,
-            child: NotificationListener<OverscrollIndicatorNotification>(
-              onNotification: (overScroll) {
-                overScroll.disallowIndicator();
-                return true;
-              },
-              child: ListView.builder(
-                primary: false,
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: items.length,
-                itemBuilder: (context, index) => Row(
-                  children: [
-                    ItemWidget(name: items[index].productNm, isFocused: index == 0),
-                    const SizedBox(width: 10),
-                  ],
+          const SizedBox(height: 40),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  '인기 키워드',
+                  style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
                 ),
-              ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  height: 31,
+                  child: ListView.builder(
+                    primary: false,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 10,
+                    itemBuilder: (context, index) => Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: index == 0 ? blackB1C : blackB5C),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          child: Text('남자친구',
+                              style: TextStyle(
+                                  color: index == 0 ? blackB1C : blackB5C,
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w600)),
+                        ),
+                        const SizedBox(width: 6),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                SizedBox(
+                  height: 212,
+                  child: NotificationListener<OverscrollIndicatorNotification>(
+                    onNotification: (overScroll) {
+                      overScroll.disallowIndicator();
+                      return true;
+                    },
+                    child: ListView.builder(
+                      primary: false,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 10,
+                      itemBuilder: (context, index) => Row(
+                        children: const [
+                          ItemListWidget(
+                            title: '리스트명',
+                            owner: '제작자',
+                          ),
+                          SizedBox(width: 10),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 20),
-          const Text(
-            'asdasd',
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
-            textAlign: TextAlign.left,
-          ),
-          SizedBox(
-            height: 150,
-            child: NotificationListener<OverscrollIndicatorNotification>(
-              onNotification: (overScroll) {
-                overScroll.disallowIndicator();
-                return true;
-              },
-              child: ListView.builder(
-                primary: false,
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: items.length,
-                itemBuilder: (context, index) => Row(
-                  children: [
-                    ItemWidget(name: 'data$index'),
-                    const SizedBox(width: 10),
-                  ],
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );
