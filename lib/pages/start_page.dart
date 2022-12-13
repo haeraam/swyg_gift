@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:swyg/cubits/cubit/item_list_cubit.dart';
+import 'package:swyg/dummy/testData.dart';
 import 'package:swyg/models/item_model.dart';
 import 'package:swyg/pages/create_item_page/create_item.dart';
 import 'package:swyg/pages/create_list_page/create_list.dart';
@@ -16,13 +17,7 @@ class StartPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ItemListCubit(initialList: [
-            Item(name: '테스트'),
-            Item(name: '테스트'),
-            Item(name: '테스트'),
-            Item(name: '테스트'),
-            Item(name: '테스트'),
-          ]),
+          create: (context) => ItemListCubit(initialList: getTestItemList(5)),
         )
       ],
       child: MaterialApp.router(
