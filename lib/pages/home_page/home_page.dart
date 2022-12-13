@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:swyg/constant/constant.dart';
 import 'package:swyg/cubits/cubit/item_list_cubit.dart';
 import 'package:swyg/models/item_model.dart';
@@ -12,7 +11,6 @@ import 'package:swyg/pages/my_page/my_page.dart';
 import 'package:swyg/pages/my_pick_page/my_pick.dart';
 import 'package:swyg/theme/color.dart';
 import 'package:swyg/widgets/item_list_widget.dart';
-import 'package:swyg/widgets/item_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -30,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     _pageList = [
       const HomeContent(),
-      const CategoryPage(),
+      CategoryPage(),
       const MyPick(),
       const MyPage(),
     ];
@@ -47,7 +45,8 @@ class _HomePageState extends State<HomePage> {
           setState(() => _selectedIndex = index);
         },
       ),
-      floatingActionButton: const CustomActionButton(),
+      floatingActionButton:
+          _selectedIndex == 0 ? const CustomActionButton() : null,
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -128,10 +127,12 @@ class _HomeContentState extends State<HomeContent> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                            border: Border.all(color: index == 0 ? blackB1C : blackB5C),
+                            border: Border.all(
+                                color: index == 0 ? blackB1C : blackB5C),
                             borderRadius: BorderRadius.circular(5),
                           ),
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 8),
                           child: Text('남자친구',
                               style: TextStyle(
                                   color: index == 0 ? blackB1C : blackB5C,

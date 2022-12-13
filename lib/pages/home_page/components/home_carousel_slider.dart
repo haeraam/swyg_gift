@@ -1,5 +1,3 @@
-
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:swyg/theme/color.dart';
@@ -29,7 +27,10 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
               children: [
                 const Text(
                   'My pick',
-                  style: TextStyle(fontSize: 17, color: primaryC, fontWeight: FontWeight.w900),
+                  style: TextStyle(
+                      fontSize: 17,
+                      color: primaryC,
+                      fontWeight: FontWeight.w900),
                 ),
                 Text(
                   '$curruntCarouslIndex / 5',
@@ -48,27 +49,32 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
               HomeCrouselCard(
                 title: 'pick1',
                 coment: '노스 페이스 눕시\n이번 겨울은 노스페이스와!',
-                imgUrl: 'https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_320.jpg',
+                imgUrl:
+                    'https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_320.jpg',
               ),
               HomeCrouselCard(
                 title: 'pick2',
                 coment: '신혼집 필수템\n인테리어의 시작과 끝!',
-                imgUrl: 'https://image.msscdn.net/images/goods_img/20220727/2684105/2684105_2_320.jpg',
+                imgUrl:
+                    'https://image.msscdn.net/images/goods_img/20220727/2684105/2684105_2_320.jpg',
               ),
               HomeCrouselCard(
                 title: 'pick3',
                 coment: '명품도 귀엽게!\n미우미우 페니 로퍼',
-                imgUrl: 'https://image.msscdn.net/images/goods_img/20220729/2688346/2688346_1_320.jpg',
+                imgUrl:
+                    'https://image.msscdn.net/images/goods_img/20220729/2688346/2688346_1_320.jpg',
               ),
               HomeCrouselCard(
                 title: 'pick4',
                 coment: '겨울 패션의 마침표.\n기본 니트머플러',
-                imgUrl: 'https://image.msscdn.net/images/goods_img/20210906/2110699/2110699_7_320.jpg',
+                imgUrl:
+                    'https://image.msscdn.net/images/goods_img/20210906/2110699/2110699_7_320.jpg',
               ),
               HomeCrouselCard(
                 title: 'pick5',
                 coment: '대세는 살로몬 꾸안꾸 스타일의 완성',
-                imgUrl: 'https://image.msscdn.net/images/goods_img/20221123/2958053/2958053_1_320.jpg',
+                imgUrl:
+                    'https://image.msscdn.net/images/goods_img/20221123/2958053/2958053_1_320.jpg',
               ),
             ],
             carouselController: carouselController,
@@ -77,7 +83,8 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
               height: 122,
               viewportFraction: 1,
               enlargeCenterPage: false,
-              onPageChanged: (index, reason) => setState(() => curruntCarouslIndex = index + 1),
+              onPageChanged: (index, reason) =>
+                  setState(() => curruntCarouslIndex = index + 1),
             ),
           ),
         ],
@@ -87,7 +94,11 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
 }
 
 class HomeCrouselCard extends StatelessWidget {
-  const HomeCrouselCard({super.key, required this.title, required this.coment, required this.imgUrl});
+  const HomeCrouselCard(
+      {super.key,
+      required this.title,
+      required this.coment,
+      required this.imgUrl});
   final String title;
   final String coment;
   final String imgUrl;
@@ -104,8 +115,10 @@ class HomeCrouselCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                  decoration: BoxDecoration(color: primaryC, borderRadius: BorderRadius.circular(20)),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                  decoration: BoxDecoration(
+                      color: primaryC, borderRadius: BorderRadius.circular(20)),
                   child: Text(
                     title,
                     style: const TextStyle(
