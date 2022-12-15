@@ -12,7 +12,7 @@ class HomeGoToCategoryBanner extends StatelessWidget {
       sliver: SliverAppBar(
         pinned: true,
         elevation: 0,
-        toolbarHeight: 0,
+        toolbarHeight: 48,
         titleSpacing: 0,
         flexibleSpace: FlexibleSpaceBar(
           titlePadding: EdgeInsetsDirectional.zero,
