@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swyg/constant/constant.dart';
@@ -7,10 +9,13 @@ import 'package:swyg/pages/category_page/category_page.dart';
 import 'package:swyg/pages/home_page/components/custom_action_button.dart';
 import 'package:swyg/pages/home_page/components/home_carousel_slider.dart';
 import 'package:swyg/pages/home_page/components/home_go_to_category_banner.dart';
+import 'package:swyg/pages/home_page/components/home_hot_keyword_area.dart';
+import 'package:swyg/pages/home_page/components/home_weekly_rank_area.dart';
 import 'package:swyg/pages/my_page/my_page.dart';
 import 'package:swyg/pages/my_pick_page/my_pick.dart';
 import 'package:swyg/theme/color.dart';
 import 'package:swyg/widgets/item_list_widget.dart';
+import 'package:swyg/widgets/item_rank_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -97,102 +102,27 @@ class _HomeContentState extends State<HomeContent> {
   @override
   Widget build(BuildContext context) {
     List<Item> items = context.watch<ItemListCubit>().state.itemList;
+    List<Widget> homeSliverList = [
+      const HomeHotKeywordArea(),
+      const SizedBox(height: 50),
+      Container(height: 1, width: double.infinity, color: blackB5C),
+      const HomeWeeklyItemRankArea(),
+      const SizedBox(height: 50),
+      Container(height: 1, width: double.infinity, color: blackB5C),
+    ];
     return BlocListener<ItemListCubit, ItemListState>(
       listener: (context, state) {},
-      child: const CustomScrollView(
+      child: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            pinned: false,
-            backgroundColor: blackB1C,
-            elevation: 0,
-            toolbarHeight: 30,
-          ),
-          HomeCarouselSlider(),
-          HomeGoToCategoryBanner(),
-          // const SizedBox(height: 40),,
-          HomeKeywordArea(),
-          HomeKeywordArea(),
-          HomeKeywordArea(),
-          HomeKeywordArea(),
-          HomeKeywordArea(),
+          const HomeCarouselSlider(),
+          const HomeGoToCategoryBanner(),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              childCount: homeSliverList.length,
+              (context, index) => homeSliverList[index],
+            ),
+          )
         ],
-      ),
-    );
-  }
-}
-
-class HomeKeywordArea extends StatelessWidget {
-  const HomeKeywordArea({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        childCount: 1,
-        (context, index) => Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                '인기 키워드',
-                style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(height: 12),
-              SizedBox(
-                height: 31,
-                child: ListView.builder(
-                  primary: false,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 10,
-                  itemBuilder: (context, index) => Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: index == 0 ? blackB1C : blackB5C),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                        child: Text('남자친구',
-                            style: TextStyle(
-                                color: index == 0 ? blackB1C : blackB5C,
-                                fontSize: 13,
-                                fontWeight: FontWeight.w600)),
-                      ),
-                      const SizedBox(width: 6),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                height: 212,
-                child: NotificationListener<OverscrollIndicatorNotification>(
-                  onNotification: (overScroll) {
-                    overScroll.disallowIndicator();
-                    return true;
-                  },
-                  child: ListView.builder(
-                    primary: false,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 10,
-                    itemBuilder: (context, index) => Row(
-                      children: const [
-                        ItemListWidget(
-                          title: '리스트명',
-                          owner: '제작자',
-                        ),
-                        SizedBox(width: 10),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

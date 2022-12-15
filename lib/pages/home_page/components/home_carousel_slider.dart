@@ -18,10 +18,11 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
         delegate: SliverChildBuilderDelegate(
       childCount: 1,
       (context, index) => Container(
-        height: 210,
+        height: 262,
         color: blackB1C,
         child: Column(
           children: [
+            const SizedBox(height: 59),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(

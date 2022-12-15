@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:swyg/models/item_model.dart';
 import 'package:swyg/theme/color.dart';
 
 class ItemListWidget extends StatelessWidget {
-  const ItemListWidget({super.key, required this.title, required this.owner});
-  final String title;
-  final String owner;
+  const ItemListWidget({super.key, required this.item});
+  final Item item;
 
   @override
   Widget build(BuildContext context) {
@@ -61,12 +61,12 @@ class ItemListWidget extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Text(
-          title,
+          item.productNm,
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
         ),
         const SizedBox(height: 4),
         Text(
-          owner,
+          item.memberName,
           style: const TextStyle(
             color: blackB3C,
             fontSize: 14,
@@ -75,16 +75,16 @@ class ItemListWidget extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Row(
-          children: const [
-            Icon(
+          children: [
+            const Icon(
               Icons.favorite,
               size: 12,
               color: blackB5C,
             ),
-            SizedBox(width: 3),
+            const SizedBox(width: 3),
             Text(
-              '25',
-              style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600),
+              '${item.productCnt}',
+              style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600),
             )
           ],
         )
