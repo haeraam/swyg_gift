@@ -11,6 +11,7 @@ import 'package:swyg/pages/home_page/components/home_carousel_slider.dart';
 import 'package:swyg/pages/home_page/components/home_go_to_category_banner.dart';
 import 'package:swyg/pages/home_page/components/home_hot_keyword_area.dart';
 import 'package:swyg/pages/home_page/components/home_member_rank_area.dart';
+import 'package:swyg/pages/home_page/components/home_new_item_area.dart';
 import 'package:swyg/pages/home_page/components/home_title.dart';
 import 'package:swyg/pages/home_page/components/home_weekly_rank_area.dart';
 import 'package:swyg/pages/my_page/my_page.dart';
@@ -139,56 +140,3 @@ class _HomeContentState extends State<HomeContent> {
   }
 }
 
-class HomeNewItemArea extends StatelessWidget {
-  const HomeNewItemArea({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const HomeTitle(title: 'NEW 선물 아이템'),
-          const SizedBox(height: 16),
-          SizedBox(
-            height: 262,
-            child: NotificationListener<OverscrollIndicatorNotification>(
-              onNotification: (overScroll) {
-                overScroll.disallowIndicator();
-                return true;
-              },
-              child: ListView.builder(
-                primary: false,
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: 10,
-                itemBuilder: (context, index) => Row(
-                  children: [
-                    ItemWidget(
-                      item: Item(
-                          productId: 'productId',
-                          productNm: '아이템명',
-                          productCm: 'productCm',
-                          productPrice: 0,
-                          productUrl: 'productUrl',
-                          productImg: 'productImg',
-                          categoryNm: ['애견인','3만원이내','남자친구','직장인','학생'],
-                          productCnt: Random().nextInt(100),
-                          productWcnt: 0,
-                          memberName: '제작자',
-                          productCreateDt: DateTime.now(),
-                          productUpdateDt: DateTime.now(),
-                          productBestcmt: 'productBestcmt'),
-                    ),
-                    const SizedBox(width: 10),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
