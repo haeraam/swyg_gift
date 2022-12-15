@@ -104,6 +104,8 @@ class _HomeContentState extends State<HomeContent> {
           SliverAppBar(
             pinned: false,
             backgroundColor: blackB1C,
+            elevation: 0,
+            toolbarHeight: 30,
           ),
           HomeCarouselSlider(),
           HomeGoToCategoryBanner(),

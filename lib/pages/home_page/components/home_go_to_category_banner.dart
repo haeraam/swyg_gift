@@ -7,10 +7,14 @@ class HomeGoToCategoryBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        childCount: 1,
-        (context, index) => GestureDetector(
+    return SliverAppBar(
+      pinned: true,
+      elevation: 0,
+      toolbarHeight: 48,
+      flexibleSpace: FlexibleSpaceBar(
+        titlePadding: EdgeInsetsDirectional.zero,
+        centerTitle: false,
+        title: GestureDetector(
           onTap: () {
             homePageController.animateToPage(
               1,
@@ -27,7 +31,11 @@ class HomeGoToCategoryBanner extends StatelessWidget {
               children: const [
                 Text(
                   '어떤 선물을 찾으세요?',
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
+                    color: Colors.black
+                  ),
                 ),
                 Icon(Icons.chevron_right),
               ],
