@@ -19,7 +19,6 @@ class HomeWeeklyItemRankArea extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 28),
             const Text(
               '주간 아이템 랭킹',
               style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
