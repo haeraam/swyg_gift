@@ -1,8 +1,8 @@
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:swyg/models/item_model.dart';
+import 'package:swyg/pages/home_page/components/home_title.dart';
 import 'package:swyg/widgets/member_rank_widget.dart';
 
 class HomeMemberRankArea extends StatelessWidget {
@@ -15,10 +15,7 @@ class HomeMemberRankArea extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            '센스만점 제작자',
-            style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
-          ),
+          const HomeTitle(title: '센스만점 제작자'),
           const SizedBox(height: 12),
           SizedBox(
             height: 104,

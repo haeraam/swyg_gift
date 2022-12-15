@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:swyg/models/item_model.dart';
+import 'package:swyg/pages/home_page/components/home_title.dart';
 import 'package:swyg/widgets/item_rank_widget.dart';
 
 class HomeWeeklyItemRankArea extends StatelessWidget {
@@ -19,10 +20,7 @@ class HomeWeeklyItemRankArea extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              '주간 아이템 랭킹',
-              style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
-            ),
+            const HomeTitle(title: '주간 아이템 랭킹'),
             const SizedBox(height: 12),
             ...List.generate(
               5,
@@ -32,7 +30,7 @@ class HomeWeeklyItemRankArea extends StatelessWidget {
                     rank: index + 1,
                     item: Item(
                         productId: 'productId',
-                        productNm: '리스트명',
+                        productNm: '아이템명',
                         productCm: 'productCm',
                         productPrice: 0,
                         productUrl: 'productUrl',

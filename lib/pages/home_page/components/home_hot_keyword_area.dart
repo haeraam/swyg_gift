@@ -1,7 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:swyg/models/item_list_model.dart';
 import 'package:swyg/models/item_model.dart';
+import 'package:swyg/pages/home_page/components/home_title.dart';
 import 'package:swyg/theme/color.dart';
 import 'package:swyg/widgets/item_list_widget.dart';
 
@@ -14,10 +16,7 @@ class HomeHotKeywordArea extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            '인기 키워드',
-            style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
-          ),
+          const HomeTitle(title: '인기 키워드'),
           const SizedBox(height: 12),
           SizedBox(
             height: 31,
@@ -61,20 +60,16 @@ class HomeHotKeywordArea extends StatelessWidget {
                 itemBuilder: (context, index) => Row(
                   children: [
                     ItemListWidget(
-                      item: Item(
-                          productId: 'productId',
-                          productNm: '리스트명',
-                          productCm: 'productCm',
-                          productPrice: 0,
-                          productUrl: 'productUrl',
+                      itemList: ItemList(
+                          productListId: 'productListId',
+                          productListNm: '리스트명',
+                          productListCm: 'productListCm',
                           productImg: 'productImg',
-                          categoryNm: [],
-                          productCnt: Random().nextInt(100),
-                          productWcnt: 0,
-                          memberName: '제작자',
                           productCreateDt: DateTime.now(),
                           productUpdateDt: DateTime.now(),
-                          productBestcmt: 'productBestcmt'),
+                          mnmberName: '제작자',
+                          productId: [],
+                          prodictListCnt: '${Random().nextInt(50)}'),
                     ),
                     const SizedBox(width: 10),
                   ],

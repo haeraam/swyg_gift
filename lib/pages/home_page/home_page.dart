@@ -11,12 +11,14 @@ import 'package:swyg/pages/home_page/components/home_carousel_slider.dart';
 import 'package:swyg/pages/home_page/components/home_go_to_category_banner.dart';
 import 'package:swyg/pages/home_page/components/home_hot_keyword_area.dart';
 import 'package:swyg/pages/home_page/components/home_member_rank_area.dart';
+import 'package:swyg/pages/home_page/components/home_title.dart';
 import 'package:swyg/pages/home_page/components/home_weekly_rank_area.dart';
 import 'package:swyg/pages/my_page/my_page.dart';
 import 'package:swyg/pages/my_pick_page/my_pick.dart';
 import 'package:swyg/theme/color.dart';
 import 'package:swyg/widgets/item_list_widget.dart';
 import 'package:swyg/widgets/item_rank_widget.dart';
+import 'package:swyg/widgets/item_widget.dart';
 import 'package:swyg/widgets/member_rank_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -147,13 +149,10 @@ class HomeNewItemArea extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'NEW 선물 아이템',
-            style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
-          ),
+          const HomeTitle(title: 'NEW 선물 아이템'),
           const SizedBox(height: 16),
           SizedBox(
-            height: 212,
+            height: 262,
             child: NotificationListener<OverscrollIndicatorNotification>(
               onNotification: (overScroll) {
                 overScroll.disallowIndicator();
@@ -166,15 +165,15 @@ class HomeNewItemArea extends StatelessWidget {
                 itemCount: 10,
                 itemBuilder: (context, index) => Row(
                   children: [
-                    ItemListWidget(
+                    ItemWidget(
                       item: Item(
                           productId: 'productId',
-                          productNm: '리스트명',
+                          productNm: '아이템명',
                           productCm: 'productCm',
                           productPrice: 0,
                           productUrl: 'productUrl',
                           productImg: 'productImg',
-                          categoryNm: [],
+                          categoryNm: ['애견인','3만원이내','남자친구','직장인','학생'],
                           productCnt: Random().nextInt(100),
                           productWcnt: 0,
                           memberName: '제작자',

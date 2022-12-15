@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'item_list_model.freezed.dart';
 part 'item_list_model.g.dart';
