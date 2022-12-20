@@ -18,7 +18,7 @@ class CategoryPage extends StatelessWidget {
         if (categorys.length == index) {
           rowTmp = [
             ...rowTmp,
-            const SizedBox(width: 4),
+            const SizedBox(width: 14),
             Expanded(child: Container()),
           ];
           res = [
@@ -32,7 +32,7 @@ class CategoryPage extends StatelessWidget {
       } else {
         rowTmp = [
           ...rowTmp,
-          const SizedBox(width: 4),
+          const SizedBox(width: 14),
           CategoryCard(title: category),
         ];
         res = [
@@ -49,57 +49,57 @@ class CategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: const Color(0xFFF4F4F4),
-      padding: const EdgeInsets.only(top: 64, left: 16, right: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
-                '카테고리',
-                style: TextStyle(
-                  fontSize: 19,
-                  fontWeight: FontWeight.w700,
+    return SingleChildScrollView(
+      child: Container(
+        color: const Color(0xFFF4F4F4),
+        padding: const EdgeInsets.only(top: 64, left: 16, right: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  '카테고리',
+                  style: TextStyle(
+                    fontSize: 19,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
-              Text(
-                '전체보기',
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                  color: blackB5C,
+                Text(
+                  '전체보기',
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                    color: blackB5C,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 28),
-          const Text(
-            '누구에게 주는 선물인가요?',
-            style: TextStyle(
-                fontSize: 16, fontWeight: FontWeight.w500, color: blackB3C),
-          ),
-          const SizedBox(height: 12),
-          Column(children: getCategorys(test1)),
-          const SizedBox(height: 28),
-          const Text(
-            '어떤 선물은 찾으시나요?',
-            style: TextStyle(
-                fontSize: 16, fontWeight: FontWeight.w500, color: blackB3C),
-          ),
-          const SizedBox(height: 12),
-          Column(children: getCategorys(test2)),
-          const SizedBox(height: 28),
-          const Text(
-            '어떤 가격대를 찾으시나요?',
-            style: TextStyle(
-                fontSize: 16, fontWeight: FontWeight.w500, color: blackB3C),
-          ),
-          const SizedBox(height: 12),
-          Column(children: getCategorys(test3)),
-        ],
+              ],
+            ),
+            const SizedBox(height: 28),
+            const Text(
+              '누구에게 주는 선물인가요?',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: blackB3C),
+            ),
+            const SizedBox(height: 12),
+            Column(children: getCategorys(test1)),
+            const SizedBox(height: 28),
+            const Text(
+              '어떤 선물은 찾으시나요?',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: blackB3C),
+            ),
+            const SizedBox(height: 12),
+            Column(children: getCategorys(test2)),
+            const SizedBox(height: 28),
+            const Text(
+              '어떤 가격대를 찾으시나요?',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: blackB3C),
+            ),
+            const SizedBox(height: 12),
+            Column(children: getCategorys(test3)),
+            const SizedBox(height: 12),
+          ],
+        ),
       ),
     );
   }
@@ -115,17 +115,21 @@ class CategoryCard extends StatelessWidget {
       child: Container(
         height: 40,
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(10)),
+        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
         child: Row(
           children: [
             const Icon(
               Icons.star,
               size: 16,
+              color: blackB2C,
             ),
             Text(
               title,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                color: blackB2C,
+              ),
             ),
           ],
         ),

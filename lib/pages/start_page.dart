@@ -5,6 +5,10 @@ import 'package:swyg/cubits/cubit/item_list_cubit.dart';
 import 'package:swyg/dummy/testData.dart';
 import 'package:swyg/models/item_model.dart';
 import 'package:swyg/pages/create_item_page/create_item.dart';
+import 'package:swyg/pages/create_item_page/create_item_image.dart';
+import 'package:swyg/pages/create_item_page/create_item_keyword.dart';
+import 'package:swyg/pages/create_item_page/create_item_name.dart';
+import 'package:swyg/pages/create_item_page/create_item_price.dart';
 import 'package:swyg/pages/create_list_page/create_list.dart';
 import 'package:swyg/pages/home_page/home_page.dart';
 import 'package:swyg/pages/my_page/my_page.dart';
@@ -21,6 +25,7 @@ class StartPage extends StatelessWidget {
         )
       ],
       child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         routerConfig: _router,
         theme: ThemeData(fontFamily: 'Pretendard'),
       ),
@@ -52,10 +57,78 @@ final _router = GoRouter(
       builder: (context, state) => const MyPage(),
     ),
     GoRoute(
-      path: '/createItem',
+      path: '/createItemKeyWord',
       pageBuilder: (context, state) => CustomTransitionPage<void>(
         key: state.pageKey,
-        child: const CreateItemPage(),
+        child: CreateItemKeyWord(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
+            position: animation.drive(
+              Tween(
+                begin: state.extra == 'back' ? const Offset(-1.0, 0.0) : const Offset(1.0, 0.0),
+                end: Offset.zero,
+              ).chain(
+                CurveTween(curve: Curves.ease),
+              ),
+            ),
+            child: child),
+      ),
+    ),
+    GoRoute(
+      path: '/createItemImage',
+      pageBuilder: (context, state) => CustomTransitionPage<void>(
+        key: state.pageKey,
+        child: CreateItemImage(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
+            position: animation.drive(
+              Tween(
+                begin: state.extra == 'back' ? const Offset(-1.0, 0.0) : const Offset(1.0, 0.0),
+                end: Offset.zero,
+              ).chain(
+                CurveTween(curve: Curves.ease),
+              ),
+            ),
+            child: child),
+      ),
+    ),
+    GoRoute(
+      path: '/createItemName',
+      pageBuilder: (context, state) => CustomTransitionPage<void>(
+        key: state.pageKey,
+        child: CreateItemName(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
+            position: animation.drive(
+              Tween(
+                begin: state.extra == 'back' ? const Offset(-1.0, 0.0) : const Offset(1.0, 0.0),
+                end: Offset.zero,
+              ).chain(
+                CurveTween(curve: Curves.ease),
+              ),
+            ),
+            child: child),
+      ),
+    ),
+    GoRoute(
+      path: '/createItemPrice',
+      pageBuilder: (context, state) => CustomTransitionPage<void>(
+        key: state.pageKey,
+        child: CreateItemPrice(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
+            position: animation.drive(
+              Tween(
+                begin: state.extra == 'back' ? const Offset(-1.0, 0.0) : const Offset(1.0, 0.0),
+                end: Offset.zero,
+              ).chain(
+                CurveTween(curve: Curves.ease),
+              ),
+            ),
+            child: child),
+      ),
+    ),
+    GoRoute(
+      path: '/createList',
+      pageBuilder: (context, state) => CustomTransitionPage<void>(
+        key: state.pageKey,
+        child: const CreateListPage(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
           opacity: animation,
           child: child,
