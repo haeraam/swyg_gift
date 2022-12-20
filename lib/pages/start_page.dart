@@ -42,7 +42,7 @@ final _router = GoRouter(
         transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
             position: animation.drive(
               Tween(
-                begin: const Offset(-1.0, 0.0),
+                begin: state.extra == 'back' ? const Offset(-1.0, 0.0) : const Offset(1.0, 0.0),
                 end: Offset.zero,
               ).chain(
                 CurveTween(curve: Curves.ease),

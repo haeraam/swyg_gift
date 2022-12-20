@@ -123,7 +123,7 @@ class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
           padding: const EdgeInsets.only(top: 50),
           child: IconButton(
             onPressed: () {
-              context.go('/');
+              context.go('/',extra: 'back');
             },
             icon: const Icon(Icons.close),
           ),

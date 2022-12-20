@@ -33,7 +33,9 @@ class CreateItemPrice extends StatelessWidget {
           Container(
             padding: const EdgeInsets.only(top: 50),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                context.go('/');
+              },
               child: const Text(
                 '완료',
                 style: TextStyle(
