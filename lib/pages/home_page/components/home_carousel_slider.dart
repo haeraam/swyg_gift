@@ -12,6 +12,7 @@ class HomeCarouselSlider extends StatefulWidget {
 class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
   CarouselController carouselController = CarouselController();
   int curruntCarouslIndex = 1;
+  
   @override
   Widget build(BuildContext context) {
     return SliverList(
