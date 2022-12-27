@@ -1,12 +1,10 @@
 import 'dart:convert';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:swyg/models/category_model.dart';
 import 'package:swyg/models/item_model.dart';
 
 class Api {
-  var host = dotenv.env['BASE_URL'];
 
   getbestSelect() async {
     // var res = await http.get(Uri.parse('$host/product/bestSelect'));
