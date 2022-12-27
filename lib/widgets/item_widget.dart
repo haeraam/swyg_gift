@@ -22,13 +22,17 @@ class ItemWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
                 border: Border.all(color: blackB5C),
               ),
+              child: Image.network(item.productImg),
             ),
             Container(
               padding: const EdgeInsets.all(8),
               width: 124,
               height: 124,
               alignment: Alignment.topRight,
-              child: const Icon(Icons.favorite_border,color: blackB5C,),
+              child: const Icon(
+                Icons.favorite_border,
+                color: blackB5C,
+              ),
             )
           ],
         ),
@@ -39,7 +43,7 @@ class ItemWidget extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          item.memberName!,
+          item.memberName ?? '',
           style: const TextStyle(
             color: blackB3C,
             fontSize: 14,
@@ -52,22 +56,20 @@ class ItemWidget extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(4),
               height: 20,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(3), color: const Color(0xFFF4F4F4)),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), color: const Color(0xFFF4F4F4)),
               child: Text(
-                item.categoryNm[Random().nextInt(5)],
-                style: TextStyle(color: blackB2C, fontWeight: FontWeight.w500, fontSize: 10),
+                item.categoryNm[Random().nextInt(item.categoryNm.length)],
+                style: const TextStyle(color: blackB2C, fontWeight: FontWeight.w500, fontSize: 10),
               ),
             ),
             const SizedBox(width: 4),
             Container(
               padding: const EdgeInsets.all(4),
               height: 20,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(3), color: const Color(0xFFF4F4F4)),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), color: const Color(0xFFF4F4F4)),
               child: Text(
-                item.categoryNm[Random().nextInt(5)],
-                style: TextStyle(color: blackB2C, fontWeight: FontWeight.w500, fontSize: 10),
+                item.categoryNm[Random().nextInt(item.categoryNm.length)],
+                style: const TextStyle(color: blackB2C, fontWeight: FontWeight.w500, fontSize: 10),
               ),
             ),
           ],

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swyg/constant/constant.dart';
 import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
 import 'package:swyg/cubits/item_list_cubit/item_list_cubit.dart';
+import 'package:swyg/cubits/new_item_cubit/new_item_cubit.dart';
 import 'package:swyg/pages/category_page/category_page.dart';
 import 'package:swyg/pages/home_page/components/custom_action_button.dart';
 import 'package:swyg/pages/home_page/components/home_carousel_slider.dart';
@@ -102,6 +103,7 @@ class _HomeContentState extends State<HomeContent> {
   @override
   void initState() {
     context.read<BannerItemCubit>().getItems();
+    context.read<NewItemCubit>().getItems();
     super.initState();
   }
 

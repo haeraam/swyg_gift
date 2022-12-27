@@ -13,6 +13,7 @@ class HomeNewItemArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Item> items = context.watch<NewItemCubit>().state.itemList;
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
