@@ -39,7 +39,7 @@ class ItemWidget extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          item.memberName,
+          item.memberName!,
           style: const TextStyle(
             color: blackB3C,
             fontSize: 14,

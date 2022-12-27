@@ -17,7 +17,7 @@ class MemberRankWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              item.memberName,
+              item.memberName!,
               style: const TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w400,

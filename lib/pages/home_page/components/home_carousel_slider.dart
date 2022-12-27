@@ -1,5 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
+import 'package:swyg/models/item_model.dart';
 import 'package:swyg/theme/color.dart';
 
 class HomeCarouselSlider extends StatefulWidget {
@@ -12,9 +15,11 @@ class HomeCarouselSlider extends StatefulWidget {
 class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
   CarouselController carouselController = CarouselController();
   int curruntCarouslIndex = 1;
-  
+
   @override
   Widget build(BuildContext context) {
+    List<Item> items = context.watch<BannerItemCubit>().state.itemList;
+
     return SliverList(
         delegate: SliverChildBuilderDelegate(
       childCount: 1,
@@ -46,33 +51,40 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
             ),
             const SizedBox(height: 42),
             CarouselSlider(
-              items: const [
-                HomeCrouselCard(
-                  title: 'PICK1',
-                  coment: '노스 페이스 눕시\n이번 겨울은 노스페이스와!',
-                  imgUrl: 'https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_320.jpg',
-                ),
-                HomeCrouselCard(
-                  title: 'PICK2',
-                  coment: '신혼집 필수템\n인테리어의 시작과 끝!',
-                  imgUrl: 'https://image.msscdn.net/images/goods_img/20220727/2684105/2684105_2_320.jpg',
-                ),
-                HomeCrouselCard(
-                  title: 'PICK3',
-                  coment: '명품도 귀엽게!\n미우미우 페니 로퍼',
-                  imgUrl: 'https://image.msscdn.net/images/goods_img/20220729/2688346/2688346_1_320.jpg',
-                ),
-                HomeCrouselCard(
-                  title: 'PICK4',
-                  coment: '겨울 패션의 마침표.\n기본 니트머플러',
-                  imgUrl: 'https://image.msscdn.net/images/goods_img/20210906/2110699/2110699_7_320.jpg',
-                ),
-                HomeCrouselCard(
-                  title: 'PICK5',
-                  coment: '대세는 살로몬 꾸안꾸 스타일의 완성',
-                  imgUrl: 'https://image.msscdn.net/images/goods_img/20221123/2958053/2958053_1_320.jpg',
-                ),
-              ],
+              items: items
+                  .map((item) => HomeCrouselCard(
+                        title: item.productNm,
+                        coment: item.productBestCmt ?? '',
+                        imgUrl: item.productImg,
+                      ))
+                  .toList(),
+              // items: const [
+              //   HomeCrouselCard(
+              //     title: 'PICK1',
+              //     coment: '노스 페이스 눕시\n이번 겨울은 노스페이스와!',
+              //     imgUrl: 'https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_320.jpg',
+              //   ),
+              //   HomeCrouselCard(
+              //     title: 'PICK2',
+              //     coment: '신혼집 필수템\n인테리어의 시작과 끝!',
+              //     imgUrl: 'https://image.msscdn.net/images/goods_img/20220727/2684105/2684105_2_320.jpg',
+              //   ),
+              //   HomeCrouselCard(
+              //     title: 'PICK3',
+              //     coment: '명품도 귀엽게!\n미우미우 페니 로퍼',
+              //     imgUrl: 'https://image.msscdn.net/images/goods_img/20220729/2688346/2688346_1_320.jpg',
+              //   ),
+              //   HomeCrouselCard(
+              //     title: 'PICK4',
+              //     coment: '겨울 패션의 마침표.\n기본 니트머플러',
+              //     imgUrl: 'https://image.msscdn.net/images/goods_img/20210906/2110699/2110699_7_320.jpg',
+              //   ),
+              //   HomeCrouselCard(
+              //     title: 'PICK5',
+              //     coment: '대세는 살로몬 꾸안꾸 스타일의 완성',
+              //     imgUrl: 'https://image.msscdn.net/images/goods_img/20221123/2958053/2958053_1_320.jpg',
+              //   ),
+              // ],
               carouselController: carouselController,
               options: CarouselOptions(
                 autoPlay: true,
@@ -86,88 +98,6 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
         ),
       ),
     ));
-    return SliverAppBar(
-      primary: false,
-      expandedHeight: 262,
-      collapsedHeight: 100,
-      backgroundColor: blackB1C,
-      flexibleSpace: FlexibleSpaceBar(
-          expandedTitleScale: 1,
-          title: Container(
-            height: 262,
-            color: blackB1C,
-            child: Column(
-              children: [
-                const SizedBox(height: 59),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'My pick',
-                        style: TextStyle(fontSize: 17, color: primaryC, fontWeight: FontWeight.w900),
-                      ),
-                      Text(
-                        '$curruntCarouslIndex / 5',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 11,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 42),
-                CarouselSlider(
-                  items: const [
-                    HomeCrouselCard(
-                      title: 'pick1',
-                      coment: '노스 페이스 눕시\n이번 겨울은 노스페이스와!',
-                      imgUrl:
-                          'https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_320.jpg',
-                    ),
-                    HomeCrouselCard(
-                      title: 'pick2',
-                      coment: '신혼집 필수템\n인테리어의 시작과 끝!',
-                      imgUrl:
-                          'https://image.msscdn.net/images/goods_img/20220727/2684105/2684105_2_320.jpg',
-                    ),
-                    HomeCrouselCard(
-                      title: 'pick3',
-                      coment: '명품도 귀엽게!\n미우미우 페니 로퍼',
-                      imgUrl:
-                          'https://image.msscdn.net/images/goods_img/20220729/2688346/2688346_1_320.jpg',
-                    ),
-                    HomeCrouselCard(
-                      title: 'pick4',
-                      coment: '겨울 패션의 마침표.\n기본 니트머플러',
-                      imgUrl:
-                          'https://image.msscdn.net/images/goods_img/20210906/2110699/2110699_7_320.jpg',
-                    ),
-                    HomeCrouselCard(
-                      title: 'pick5',
-                      coment: '대세는 살로몬 꾸안꾸 스타일의 완성',
-                      imgUrl:
-                          'https://image.msscdn.net/images/goods_img/20221123/2958053/2958053_1_320.jpg',
-                    ),
-                  ],
-                  carouselController: carouselController,
-                  options: CarouselOptions(
-                    autoPlay: true,
-                    height: 122,
-                    viewportFraction: 1,
-                    enlargeCenterPage: false,
-                    onPageChanged: (index, reason) => setState(() => curruntCarouslIndex = index + 1),
-                  ),
-                ),
-              ],
-            ),
-          )),
-      elevation: 0,
-      pinned: true,
-    );
   }
 }
 
@@ -179,6 +109,7 @@ class HomeCrouselCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(coment);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(

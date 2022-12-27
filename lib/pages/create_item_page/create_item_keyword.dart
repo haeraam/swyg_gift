@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:swyg/cubits/cubit/item_list_cubit.dart';
-import 'package:swyg/dummy/testData.dart';
-import 'package:swyg/models/item_model.dart';
 import 'package:swyg/pages/page.dart';
 import 'package:swyg/theme/color.dart';
 
@@ -93,7 +89,7 @@ class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
         title: Container(
           padding: const EdgeInsets.only(top: 50),
           child: const Text(
-            '아이템 생성하기',
+            '대표키워드 검색',
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w600,

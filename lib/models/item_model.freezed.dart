@@ -20,19 +20,19 @@ Item _$ItemFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Item {
-  String get productId => throw _privateConstructorUsedError;
+  int get productId => throw _privateConstructorUsedError;
   String get productNm => throw _privateConstructorUsedError;
-  String get productCm => throw _privateConstructorUsedError;
-  int get productPrice => throw _privateConstructorUsedError;
+  String? get productCm => throw _privateConstructorUsedError;
+  String get productPrice => throw _privateConstructorUsedError;
   String get productUrl => throw _privateConstructorUsedError;
   String get productImg => throw _privateConstructorUsedError;
   List<dynamic> get categoryNm => throw _privateConstructorUsedError;
   int get productCnt => throw _privateConstructorUsedError;
   int get productWcnt => throw _privateConstructorUsedError;
-  String get memberName => throw _privateConstructorUsedError;
-  DateTime get productCreateDt => throw _privateConstructorUsedError;
-  DateTime get productUpdateDt => throw _privateConstructorUsedError;
-  String get productBestcmt => throw _privateConstructorUsedError;
+  String? get memberName => throw _privateConstructorUsedError;
+  String get productCreateDt => throw _privateConstructorUsedError;
+  String get productUpdateDt => throw _privateConstructorUsedError;
+  String? get productBestCmt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,19 +45,19 @@ abstract class $ItemCopyWith<$Res> {
       _$ItemCopyWithImpl<$Res, Item>;
   @useResult
   $Res call(
-      {String productId,
+      {int productId,
       String productNm,
-      String productCm,
-      int productPrice,
+      String? productCm,
+      String productPrice,
       String productUrl,
       String productImg,
       List<dynamic> categoryNm,
       int productCnt,
       int productWcnt,
-      String memberName,
-      DateTime productCreateDt,
-      DateTime productUpdateDt,
-      String productBestcmt});
+      String? memberName,
+      String productCreateDt,
+      String productUpdateDt,
+      String? productBestCmt});
 }
 
 /// @nodoc
@@ -75,35 +75,35 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
   $Res call({
     Object? productId = null,
     Object? productNm = null,
-    Object? productCm = null,
+    Object? productCm = freezed,
     Object? productPrice = null,
     Object? productUrl = null,
     Object? productImg = null,
     Object? categoryNm = null,
     Object? productCnt = null,
     Object? productWcnt = null,
-    Object? memberName = null,
+    Object? memberName = freezed,
     Object? productCreateDt = null,
     Object? productUpdateDt = null,
-    Object? productBestcmt = null,
+    Object? productBestCmt = freezed,
   }) {
     return _then(_value.copyWith(
       productId: null == productId
           ? _value.productId
           : productId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       productNm: null == productNm
           ? _value.productNm
           : productNm // ignore: cast_nullable_to_non_nullable
               as String,
-      productCm: null == productCm
+      productCm: freezed == productCm
           ? _value.productCm
           : productCm // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       productPrice: null == productPrice
           ? _value.productPrice
           : productPrice // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       productUrl: null == productUrl
           ? _value.productUrl
           : productUrl // ignore: cast_nullable_to_non_nullable
@@ -124,22 +124,22 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
           ? _value.productWcnt
           : productWcnt // ignore: cast_nullable_to_non_nullable
               as int,
-      memberName: null == memberName
+      memberName: freezed == memberName
           ? _value.memberName
           : memberName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       productCreateDt: null == productCreateDt
           ? _value.productCreateDt
           : productCreateDt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
       productUpdateDt: null == productUpdateDt
           ? _value.productUpdateDt
           : productUpdateDt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      productBestcmt: null == productBestcmt
-          ? _value.productBestcmt
-          : productBestcmt // ignore: cast_nullable_to_non_nullable
               as String,
+      productBestCmt: freezed == productBestCmt
+          ? _value.productBestCmt
+          : productBestCmt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -151,19 +151,19 @@ abstract class _$$_ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String productId,
+      {int productId,
       String productNm,
-      String productCm,
-      int productPrice,
+      String? productCm,
+      String productPrice,
       String productUrl,
       String productImg,
       List<dynamic> categoryNm,
       int productCnt,
       int productWcnt,
-      String memberName,
-      DateTime productCreateDt,
-      DateTime productUpdateDt,
-      String productBestcmt});
+      String? memberName,
+      String productCreateDt,
+      String productUpdateDt,
+      String? productBestCmt});
 }
 
 /// @nodoc
@@ -177,35 +177,35 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
   $Res call({
     Object? productId = null,
     Object? productNm = null,
-    Object? productCm = null,
+    Object? productCm = freezed,
     Object? productPrice = null,
     Object? productUrl = null,
     Object? productImg = null,
     Object? categoryNm = null,
     Object? productCnt = null,
     Object? productWcnt = null,
-    Object? memberName = null,
+    Object? memberName = freezed,
     Object? productCreateDt = null,
     Object? productUpdateDt = null,
-    Object? productBestcmt = null,
+    Object? productBestCmt = freezed,
   }) {
     return _then(_$_Item(
       productId: null == productId
           ? _value.productId
           : productId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       productNm: null == productNm
           ? _value.productNm
           : productNm // ignore: cast_nullable_to_non_nullable
               as String,
-      productCm: null == productCm
+      productCm: freezed == productCm
           ? _value.productCm
           : productCm // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       productPrice: null == productPrice
           ? _value.productPrice
           : productPrice // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       productUrl: null == productUrl
           ? _value.productUrl
           : productUrl // ignore: cast_nullable_to_non_nullable
@@ -226,22 +226,22 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
           ? _value.productWcnt
           : productWcnt // ignore: cast_nullable_to_non_nullable
               as int,
-      memberName: null == memberName
+      memberName: freezed == memberName
           ? _value.memberName
           : memberName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       productCreateDt: null == productCreateDt
           ? _value.productCreateDt
           : productCreateDt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
       productUpdateDt: null == productUpdateDt
           ? _value.productUpdateDt
           : productUpdateDt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      productBestcmt: null == productBestcmt
-          ? _value.productBestcmt
-          : productBestcmt // ignore: cast_nullable_to_non_nullable
               as String,
+      productBestCmt: freezed == productBestCmt
+          ? _value.productBestCmt
+          : productBestCmt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -262,19 +262,19 @@ class _$_Item implements _Item {
       required this.memberName,
       required this.productCreateDt,
       required this.productUpdateDt,
-      required this.productBestcmt})
+      required this.productBestCmt})
       : _categoryNm = categoryNm;
 
   factory _$_Item.fromJson(Map<String, dynamic> json) => _$$_ItemFromJson(json);
 
   @override
-  final String productId;
+  final int productId;
   @override
   final String productNm;
   @override
-  final String productCm;
+  final String? productCm;
   @override
-  final int productPrice;
+  final String productPrice;
   @override
   final String productUrl;
   @override
@@ -292,17 +292,17 @@ class _$_Item implements _Item {
   @override
   final int productWcnt;
   @override
-  final String memberName;
+  final String? memberName;
   @override
-  final DateTime productCreateDt;
+  final String productCreateDt;
   @override
-  final DateTime productUpdateDt;
+  final String productUpdateDt;
   @override
-  final String productBestcmt;
+  final String? productBestCmt;
 
   @override
   String toString() {
-    return 'Item(productId: $productId, productNm: $productNm, productCm: $productCm, productPrice: $productPrice, productUrl: $productUrl, productImg: $productImg, categoryNm: $categoryNm, productCnt: $productCnt, productWcnt: $productWcnt, memberName: $memberName, productCreateDt: $productCreateDt, productUpdateDt: $productUpdateDt, productBestcmt: $productBestcmt)';
+    return 'Item(productId: $productId, productNm: $productNm, productCm: $productCm, productPrice: $productPrice, productUrl: $productUrl, productImg: $productImg, categoryNm: $categoryNm, productCnt: $productCnt, productWcnt: $productWcnt, memberName: $memberName, productCreateDt: $productCreateDt, productUpdateDt: $productUpdateDt, productBestCmt: $productBestCmt)';
   }
 
   @override
@@ -334,8 +334,8 @@ class _$_Item implements _Item {
                 other.productCreateDt == productCreateDt) &&
             (identical(other.productUpdateDt, productUpdateDt) ||
                 other.productUpdateDt == productUpdateDt) &&
-            (identical(other.productBestcmt, productBestcmt) ||
-                other.productBestcmt == productBestcmt));
+            (identical(other.productBestCmt, productBestCmt) ||
+                other.productBestCmt == productBestCmt));
   }
 
   @JsonKey(ignore: true)
@@ -354,7 +354,7 @@ class _$_Item implements _Item {
       memberName,
       productCreateDt,
       productUpdateDt,
-      productBestcmt);
+      productBestCmt);
 
   @JsonKey(ignore: true)
   @override
@@ -372,30 +372,30 @@ class _$_Item implements _Item {
 
 abstract class _Item implements Item {
   const factory _Item(
-      {required final String productId,
+      {required final int productId,
       required final String productNm,
-      required final String productCm,
-      required final int productPrice,
+      required final String? productCm,
+      required final String productPrice,
       required final String productUrl,
       required final String productImg,
       required final List<dynamic> categoryNm,
       required final int productCnt,
       required final int productWcnt,
-      required final String memberName,
-      required final DateTime productCreateDt,
-      required final DateTime productUpdateDt,
-      required final String productBestcmt}) = _$_Item;
+      required final String? memberName,
+      required final String productCreateDt,
+      required final String productUpdateDt,
+      required final String? productBestCmt}) = _$_Item;
 
   factory _Item.fromJson(Map<String, dynamic> json) = _$_Item.fromJson;
 
   @override
-  String get productId;
+  int get productId;
   @override
   String get productNm;
   @override
-  String get productCm;
+  String? get productCm;
   @override
-  int get productPrice;
+  String get productPrice;
   @override
   String get productUrl;
   @override
@@ -407,13 +407,13 @@ abstract class _Item implements Item {
   @override
   int get productWcnt;
   @override
-  String get memberName;
+  String? get memberName;
   @override
-  DateTime get productCreateDt;
+  String get productCreateDt;
   @override
-  DateTime get productUpdateDt;
+  String get productUpdateDt;
   @override
-  String get productBestcmt;
+  String? get productBestCmt;
   @override
   @JsonKey(ignore: true)
   _$$_ItemCopyWith<_$_Item> get copyWith => throw _privateConstructorUsedError;

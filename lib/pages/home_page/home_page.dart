@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swyg/constant/constant.dart';
-import 'package:swyg/cubits/cubit/item_list_cubit.dart';
-import 'package:swyg/models/item_model.dart';
+import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
+import 'package:swyg/cubits/item_list_cubit/item_list_cubit.dart';
 import 'package:swyg/pages/category_page/category_page.dart';
 import 'package:swyg/pages/home_page/components/custom_action_button.dart';
 import 'package:swyg/pages/home_page/components/home_carousel_slider.dart';
@@ -12,15 +12,10 @@ import 'package:swyg/pages/home_page/components/home_go_to_category_banner.dart'
 import 'package:swyg/pages/home_page/components/home_hot_keyword_area.dart';
 import 'package:swyg/pages/home_page/components/home_member_rank_area.dart';
 import 'package:swyg/pages/home_page/components/home_new_item_area.dart';
-import 'package:swyg/pages/home_page/components/home_title.dart';
 import 'package:swyg/pages/home_page/components/home_weekly_rank_area.dart';
 import 'package:swyg/pages/my_page/my_page.dart';
 import 'package:swyg/pages/my_pick_page/my_pick.dart';
 import 'package:swyg/theme/color.dart';
-import 'package:swyg/widgets/item_list_widget.dart';
-import 'package:swyg/widgets/item_rank_widget.dart';
-import 'package:swyg/widgets/item_widget.dart';
-import 'package:swyg/widgets/member_rank_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -57,26 +52,26 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: _selectedIndex == 0 ? const CustomActionButton() : null,
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Image.asset('assets/images/nav_icon_home.png', width: 32),
             label: '홈',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Image.asset('assets/images/nav_icon_category.png', width: 32),
             label: '카테고리',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Image.asset('assets/images/nav_icon_favorit.png', width: 32),
             label: 'My pick',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Image.asset('assets/images/nav_icon_my_page.png', width: 32),
             label: '내정보',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: primaryC,
+        selectedItemColor: Colors.black,
         unselectedItemColor: Colors.black,
         type: BottomNavigationBarType.fixed,
         onTap: _onItemTapped,
@@ -105,8 +100,13 @@ class HomeContent extends StatefulWidget {
 
 class _HomeContentState extends State<HomeContent> {
   @override
+  void initState() {
+    context.read<BannerItemCubit>().getItems();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    List<Item> items = context.watch<ItemListCubit>().state.itemList;
     List<Widget> homeSliverList = [
       const HomeHotKeywordArea(),
       const SizedBox(height: 50),
@@ -122,8 +122,17 @@ class _HomeContentState extends State<HomeContent> {
       const SizedBox(height: 28),
       const HomeNewItemArea()
     ];
-    return BlocListener<ItemListCubit, ItemListState>(
-      listener: (context, state) {},
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<ItemListCubit, ItemListState>(
+          listener: (context, state) {
+            print(state);
+          },
+        ),
+        BlocListener<BannerItemCubit, BannerItemState>(
+          listener: (context, state) {},
+        ),
+      ],
       child: CustomScrollView(
         slivers: [
           const HomeCarouselSlider(),
@@ -139,4 +148,3 @@ class _HomeContentState extends State<HomeContent> {
     );
   }
 }
-

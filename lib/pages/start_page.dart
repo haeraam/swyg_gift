@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:swyg/cubits/cubit/item_list_cubit.dart';
-import 'package:swyg/dummy/testData.dart';
-import 'package:swyg/models/item_model.dart';
-import 'package:swyg/pages/create_item_page/create_item.dart';
+import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
+import 'package:swyg/cubits/item_list_cubit/item_list_cubit.dart';
 import 'package:swyg/pages/create_item_page/create_item_image.dart';
 import 'package:swyg/pages/create_item_page/create_item_keyword.dart';
 import 'package:swyg/pages/create_item_page/create_item_name.dart';
@@ -21,8 +19,17 @@ class StartPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ItemListCubit(initialList: getTestItemList(5)),
-        )
+          create: (context) => ItemListCubit(initialList: []),
+        ),
+        BlocProvider(
+          create: (context) => BannerItemCubit(),
+        ),
+        BlocProvider(
+          create: (context) => BannerItemCubit(),
+        ),
+        BlocProvider(
+          create: (context) => BannerItemCubit(),
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

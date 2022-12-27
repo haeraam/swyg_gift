@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:swyg/cubits/cubit/item_list_cubit.dart';
-import 'package:swyg/dummy/testData.dart';
-import 'package:swyg/models/item_model.dart';
 import 'package:swyg/pages/page.dart';
 import 'package:swyg/theme/color.dart';
 
@@ -21,7 +17,7 @@ class CreateItemName extends StatelessWidget {
         title: Container(
           padding: const EdgeInsets.only(top: 50),
           child: const Text(
-            '아이템 생성하기',
+            '아이템 정보 입력',
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w600,
@@ -158,7 +154,7 @@ class _CategoryCardState extends State<CategoryCard> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            backgroundColor: isChecked ? Colors.blue : Color(0xFFF4F4F4),
+            backgroundColor: isChecked ? Colors.blue : const Color(0xFFF4F4F4),
           ),
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
