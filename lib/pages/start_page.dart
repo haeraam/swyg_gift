@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
+import 'package:swyg/cubits/best_category_cubit/best_category_cubit.dart';
 import 'package:swyg/cubits/item_list_cubit/item_list_cubit.dart';
+import 'package:swyg/cubits/new_item_cubit/new_item_cubit.dart';
 import 'package:swyg/pages/create_item_page/create_item_image.dart';
 import 'package:swyg/pages/create_item_page/create_item_keyword.dart';
 import 'package:swyg/pages/create_item_page/create_item_name.dart';
@@ -25,10 +27,10 @@ class StartPage extends StatelessWidget {
           create: (context) => BannerItemCubit(),
         ),
         BlocProvider(
-          create: (context) => BannerItemCubit(),
+          create: (context) => NewItemCubit(),
         ),
         BlocProvider(
-          create: (context) => BannerItemCubit(),
+          create: (context) => BestCategoryCubit(),
         ),
       ],
       child: MaterialApp.router(

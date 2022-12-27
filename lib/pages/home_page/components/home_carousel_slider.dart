@@ -109,7 +109,6 @@ class HomeCrouselCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(coment);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
