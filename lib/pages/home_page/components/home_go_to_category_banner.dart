@@ -14,6 +14,7 @@ class HomeGoToCategoryBanner extends StatelessWidget {
         elevation: 0,
         toolbarHeight: 48,
         titleSpacing: 0,
+        backgroundColor: background2C,
         flexibleSpace: FlexibleSpaceBar(
           titlePadding: EdgeInsetsDirectional.zero,
           centerTitle: false,

@@ -20,10 +20,10 @@ Category _$CategoryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Category {
-  String get categoryId => throw _privateConstructorUsedError;
+  int get categoryId => throw _privateConstructorUsedError;
   String get categoryNm => throw _privateConstructorUsedError;
-  int get categoryCd => throw _privateConstructorUsedError;
-  String get categoryRef1 => throw _privateConstructorUsedError;
+  String get categoryCd => throw _privateConstructorUsedError;
+  int get categoryCnt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,10 +37,7 @@ abstract class $CategoryCopyWith<$Res> {
       _$CategoryCopyWithImpl<$Res, Category>;
   @useResult
   $Res call(
-      {String categoryId,
-      String categoryNm,
-      int categoryCd,
-      String categoryRef1});
+      {int categoryId, String categoryNm, String categoryCd, int categoryCnt});
 }
 
 /// @nodoc
@@ -59,13 +56,13 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
     Object? categoryId = null,
     Object? categoryNm = null,
     Object? categoryCd = null,
-    Object? categoryRef1 = null,
+    Object? categoryCnt = null,
   }) {
     return _then(_value.copyWith(
       categoryId: null == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       categoryNm: null == categoryNm
           ? _value.categoryNm
           : categoryNm // ignore: cast_nullable_to_non_nullable
@@ -73,11 +70,11 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
       categoryCd: null == categoryCd
           ? _value.categoryCd
           : categoryCd // ignore: cast_nullable_to_non_nullable
-              as int,
-      categoryRef1: null == categoryRef1
-          ? _value.categoryRef1
-          : categoryRef1 // ignore: cast_nullable_to_non_nullable
               as String,
+      categoryCnt: null == categoryCnt
+          ? _value.categoryCnt
+          : categoryCnt // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -90,10 +87,7 @@ abstract class _$$_CategoryCopyWith<$Res> implements $CategoryCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String categoryId,
-      String categoryNm,
-      int categoryCd,
-      String categoryRef1});
+      {int categoryId, String categoryNm, String categoryCd, int categoryCnt});
 }
 
 /// @nodoc
@@ -110,13 +104,13 @@ class __$$_CategoryCopyWithImpl<$Res>
     Object? categoryId = null,
     Object? categoryNm = null,
     Object? categoryCd = null,
-    Object? categoryRef1 = null,
+    Object? categoryCnt = null,
   }) {
     return _then(_$_Category(
       categoryId: null == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       categoryNm: null == categoryNm
           ? _value.categoryNm
           : categoryNm // ignore: cast_nullable_to_non_nullable
@@ -124,11 +118,11 @@ class __$$_CategoryCopyWithImpl<$Res>
       categoryCd: null == categoryCd
           ? _value.categoryCd
           : categoryCd // ignore: cast_nullable_to_non_nullable
-              as int,
-      categoryRef1: null == categoryRef1
-          ? _value.categoryRef1
-          : categoryRef1 // ignore: cast_nullable_to_non_nullable
               as String,
+      categoryCnt: null == categoryCnt
+          ? _value.categoryCnt
+          : categoryCnt // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -140,23 +134,23 @@ class _$_Category implements _Category {
       {required this.categoryId,
       required this.categoryNm,
       required this.categoryCd,
-      required this.categoryRef1});
+      required this.categoryCnt});
 
   factory _$_Category.fromJson(Map<String, dynamic> json) =>
       _$$_CategoryFromJson(json);
 
   @override
-  final String categoryId;
+  final int categoryId;
   @override
   final String categoryNm;
   @override
-  final int categoryCd;
+  final String categoryCd;
   @override
-  final String categoryRef1;
+  final int categoryCnt;
 
   @override
   String toString() {
-    return 'Category(categoryId: $categoryId, categoryNm: $categoryNm, categoryCd: $categoryCd, categoryRef1: $categoryRef1)';
+    return 'Category(categoryId: $categoryId, categoryNm: $categoryNm, categoryCd: $categoryCd, categoryCnt: $categoryCnt)';
   }
 
   @override
@@ -170,14 +164,14 @@ class _$_Category implements _Category {
                 other.categoryNm == categoryNm) &&
             (identical(other.categoryCd, categoryCd) ||
                 other.categoryCd == categoryCd) &&
-            (identical(other.categoryRef1, categoryRef1) ||
-                other.categoryRef1 == categoryRef1));
+            (identical(other.categoryCnt, categoryCnt) ||
+                other.categoryCnt == categoryCnt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, categoryId, categoryNm, categoryCd, categoryRef1);
+  int get hashCode =>
+      Object.hash(runtimeType, categoryId, categoryNm, categoryCd, categoryCnt);
 
   @JsonKey(ignore: true)
   @override
@@ -195,21 +189,21 @@ class _$_Category implements _Category {
 
 abstract class _Category implements Category {
   const factory _Category(
-      {required final String categoryId,
+      {required final int categoryId,
       required final String categoryNm,
-      required final int categoryCd,
-      required final String categoryRef1}) = _$_Category;
+      required final String categoryCd,
+      required final int categoryCnt}) = _$_Category;
 
   factory _Category.fromJson(Map<String, dynamic> json) = _$_Category.fromJson;
 
   @override
-  String get categoryId;
+  int get categoryId;
   @override
   String get categoryNm;
   @override
-  int get categoryCd;
+  String get categoryCd;
   @override
-  String get categoryRef1;
+  int get categoryCnt;
   @override
   @JsonKey(ignore: true)
   _$$_CategoryCopyWith<_$_Category> get copyWith =>
