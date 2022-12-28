@@ -1,7 +1,7 @@
 import 'dart:math';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:image_network/image_network.dart';
 import 'package:swyg/models/item_model.dart';
 import 'package:swyg/theme/color.dart';
 
@@ -20,11 +20,20 @@ class ItemWidget extends StatelessWidget {
               width: 124,
               height: 124,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  border: Border.all(color: blackB5C),
-                  image: ImageNetwork(image: item.productImg, height: 124, width: 124).imageCache != null
-                      ? DecorationImage(image: ImageNetwork(image: item.productImg, height: 124, width: 124).imageCache!)
-                      : null),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              clipBehavior: Clip.antiAlias,
+              child: CachedNetworkImage(
+                imageUrl: item.productImg,
+                fit: BoxFit.cover,
+              ),
+            ),Container(
+              width: 124,
+              height: 124,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: blackB5C),
+              ),
             ),
             Container(
               padding: const EdgeInsets.all(8),

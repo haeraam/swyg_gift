@@ -1,7 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_network/image_network.dart';
 import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
 import 'package:swyg/models/item_model.dart';
 import 'package:swyg/theme/color.dart';
@@ -59,33 +59,6 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
                         imgUrl: item.productImg,
                       ))
                   .toList(),
-              // items: const [
-              //   HomeCrouselCard(
-              //     title: 'PICK1',
-              //     coment: '노스 페이스 눕시\n이번 겨울은 노스페이스와!',
-              //     imgUrl: 'https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_320.jpg',
-              //   ),
-              //   HomeCrouselCard(
-              //     title: 'PICK2',
-              //     coment: '신혼집 필수템\n인테리어의 시작과 끝!',
-              //     imgUrl: 'https://image.msscdn.net/images/goods_img/20220727/2684105/2684105_2_320.jpg',
-              //   ),
-              //   HomeCrouselCard(
-              //     title: 'PICK3',
-              //     coment: '명품도 귀엽게!\n미우미우 페니 로퍼',
-              //     imgUrl: 'https://image.msscdn.net/images/goods_img/20220729/2688346/2688346_1_320.jpg',
-              //   ),
-              //   HomeCrouselCard(
-              //     title: 'PICK4',
-              //     coment: '겨울 패션의 마침표.\n기본 니트머플러',
-              //     imgUrl: 'https://image.msscdn.net/images/goods_img/20210906/2110699/2110699_7_320.jpg',
-              //   ),
-              //   HomeCrouselCard(
-              //     title: 'PICK5',
-              //     coment: '대세는 살로몬 꾸안꾸 스타일의 완성',
-              //     imgUrl: 'https://image.msscdn.net/images/goods_img/20221123/2958053/2958053_1_320.jpg',
-              //   ),
-              // ],
               carouselController: carouselController,
               options: CarouselOptions(
                 autoPlay: true,
@@ -147,10 +120,7 @@ class HomeCrouselCard extends StatelessWidget {
           SizedBox(
             width: 112,
             height: 112,
-            child: CircleAvatar(
-              backgroundImage: ImageNetwork(image: imgUrl, height: 112, width: 112).imageCache,
-              // CachedNetworkImageProvider(imgUrl)
-            ),
+            child: CircleAvatar(backgroundImage: CachedNetworkImageProvider(imgUrl)),
           ),
         ],
       ),
