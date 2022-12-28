@@ -6,6 +6,7 @@ import 'package:swyg/constant/constant.dart';
 import 'package:swyg/cubits/all_category_cubit/all_category_cubit.dart';
 import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
 import 'package:swyg/cubits/best_category_cubit/best_category_cubit.dart';
+import 'package:swyg/cubits/cubit/weekly_bset_item_cubit.dart';
 import 'package:swyg/cubits/item_list_cubit/item_list_cubit.dart';
 import 'package:swyg/cubits/new_item_cubit/new_item_cubit.dart';
 import 'package:swyg/pages/category_page/category_page.dart';
@@ -39,11 +40,12 @@ class _HomePageState extends State<HomePage> {
     context.read<NewItemCubit>().getItems();
     context.read<BestCategoryCubit>().getCategorys();
     context.read<AllCategoryCubit>().getCategorys();
+    context.read<WeeklyBsetItemCubit>().getItems();
     Api().apiTest();
 
     _pageList = [
       const HomeContent(),
-      CategoryPage(),
+      const CategoryPage(),
       const MyPick(),
       const MyPage(),
     ];

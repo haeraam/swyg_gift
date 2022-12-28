@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swyg/cubits/cubit/weekly_bset_item_cubit.dart';
 import 'package:swyg/models/item_model.dart';
 import 'package:swyg/pages/home_page/components/home_title.dart';
 import 'package:swyg/widgets/item_rank_widget.dart';
@@ -10,6 +12,8 @@ class HomeWeeklyItemRankArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Item> items = context.watch<WeeklyBsetItemCubit>().state.itemList;
+    int rank = 1;
     return NotificationListener<OverscrollIndicatorNotification>(
       onNotification: (overScroll) {
         overScroll.disallowIndicator();
@@ -22,31 +26,12 @@ class HomeWeeklyItemRankArea extends StatelessWidget {
           children: [
             const HomeTitle(title: '주간 아이템 랭킹'),
             const SizedBox(height: 12),
-            ...List.generate(
-              5,
-              (index) => Column(
-                children: [
-                  ItemRankWidget(
-                    rank: index + 1,
-                    item: Item(
-                        productId: 0,
-                        productNm: '아이템명',
-                        productCm: 'productCm',
-                        productPrice: '0',
-                        productUrl: 'productUrl',
-                        productImg: 'productImg',
-                        categoryNm: [],
-                        productCnt: Random().nextInt(100),
-                        productWcnt: 0,
-                        memberName: '제작자',
-                        productCreateDt: DateTime.now().toString(),
-                        productUpdateDt: DateTime.now().toString(),
-                        productBestCmt: 'productBestcmt'),
-                  ),
-                  const SizedBox(height: 8),
-                ],
-              ),
-            )
+            ...items.map((item) => Column(
+                  children: [
+                    ItemRankWidget(item: item, rank: rank++),
+                    const SizedBox(height: 8),
+                  ],
+                )),
           ],
         ),
       ),

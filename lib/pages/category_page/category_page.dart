@@ -5,11 +5,7 @@ import 'package:swyg/models/category_model.dart';
 import 'package:swyg/theme/color.dart';
 
 class CategoryPage extends StatelessWidget {
-  CategoryPage({Key? key}) : super(key: key);
-
-  final List<String> test1 = List.generate(10, (index) => '누구누구$index');
-  final List<String> test2 = List.generate(4, (index) => '어떤선물$index');
-  final List<String> test3 = List.generate(5, (index) => '$index만원이내');
+  const CategoryPage({Key? key}) : super(key: key);
 
   getCategorys(List<Category> categorys) {
     List<Widget> res = [];

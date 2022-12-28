@@ -9,8 +9,16 @@ import 'package:swyg/pages/home_page/components/home_title.dart';
 import 'package:swyg/theme/color.dart';
 import 'package:swyg/widgets/item_list_widget.dart';
 
-class HomeHotKeywordArea extends StatelessWidget {
+class HomeHotKeywordArea extends StatefulWidget {
   const HomeHotKeywordArea({super.key});
+
+  @override
+  State<HomeHotKeywordArea> createState() => _HomeHotKeywordAreaState();
+}
+
+class _HomeHotKeywordAreaState extends State<HomeHotKeywordArea> {
+  int selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     List<Category> categories = context.watch<BestCategoryCubit>().state.categoryList;
@@ -30,17 +38,21 @@ class HomeHotKeywordArea extends StatelessWidget {
               itemCount: categories.length,
               itemBuilder: (context, index) => Row(
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: index == 0 ? blackB1C : blackB5C),
-                      borderRadius: BorderRadius.circular(5),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () => setState(() {
+                        selectedIndex = index;
+                      }),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: index == selectedIndex ? blackB1C : blackB5C),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        child: Text(categories[index].categoryNm, style: TextStyle(color: index == selectedIndex ? blackB1C : blackB5C, fontSize: 13, fontWeight: FontWeight.w600)),
+                      ),
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    child: Text(categories[index].categoryNm,
-                        style: TextStyle(
-                            color: index == 0 ? blackB1C : blackB5C,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600)),
                   ),
                   const SizedBox(width: 6),
                 ],

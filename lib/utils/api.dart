@@ -55,7 +55,7 @@ class Api {
     print(jsonResponse);
   }
 }
-
+// https://pickproduct.shop/likeProductList/selectWeek
 // 상품 좋아요 등록
 // http://44.204.230.127:8080/likeProduct/insert
 // 상품 좋아요 해제

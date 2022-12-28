@@ -55,7 +55,7 @@ class ItemRankWidget extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    item.memberName!,
+                    item.memberName ?? '',
                     style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
