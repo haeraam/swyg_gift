@@ -149,6 +149,7 @@ class HomeCrouselCard extends StatelessWidget {
             height: 112,
             child: CircleAvatar(
               backgroundImage: ImageNetwork(image: imgUrl, height: 112, width: 112).imageCache,
+              // CachedNetworkImageProvider(imgUrl)
             ),
           ),
         ],
