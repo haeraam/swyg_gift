@@ -40,7 +40,7 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
                     style: TextStyle(fontSize: 17, color: primaryC, fontWeight: FontWeight.w900),
                   ),
                   Text(
-                    '$curruntCarouslIndex / 5',
+                    '$curruntCarouslIndex / ${items.length}',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 11,
