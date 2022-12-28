@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swyg/cubits/all_category_cubit/all_category_cubit.dart';
+import 'package:swyg/models/category_model.dart';
 import 'package:swyg/theme/color.dart';
 
 class CategoryPage extends StatelessWidget {
@@ -8,13 +11,13 @@ class CategoryPage extends StatelessWidget {
   final List<String> test2 = List.generate(4, (index) => '어떤선물$index');
   final List<String> test3 = List.generate(5, (index) => '$index만원이내');
 
-  getCategorys(List<String> categorys) {
+  getCategorys(List<Category> categorys) {
     List<Widget> res = [];
     int index = 0;
     List<Widget> rowTmp = [];
     for (var category in categorys) {
       if (index++ % 2 == 0) {
-        rowTmp = [CategoryCard(title: category)];
+        rowTmp = [CategoryCard(title: category.categoryNm)];
         if (categorys.length == index) {
           rowTmp = [
             ...rowTmp,
@@ -33,7 +36,7 @@ class CategoryPage extends StatelessWidget {
         rowTmp = [
           ...rowTmp,
           const SizedBox(width: 14),
-          CategoryCard(title: category),
+          CategoryCard(title: category.categoryNm),
         ];
         res = [
           ...res,
@@ -49,6 +52,10 @@ class CategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Category> categories = context.watch<AllCategoryCubit>().state.categoryList;
+    final whoCategoies = categories.where((element) => element.categoryCd == '01').toList();
+    final whatCategoies = categories.where((element) => element.categoryCd == '02').toList();
+    final howMuchCategoies = categories.where((element) => element.categoryCd == '03').toList();
     return SingleChildScrollView(
       child: Container(
         color: const Color(0xFFF4F4F4),
@@ -82,21 +89,21 @@ class CategoryPage extends StatelessWidget {
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: blackB3C),
             ),
             const SizedBox(height: 12),
-            Column(children: getCategorys(test1)),
+            Column(children: getCategorys(whoCategoies)),
             const SizedBox(height: 28),
             const Text(
               '어떤 선물은 찾으시나요?',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: blackB3C),
             ),
             const SizedBox(height: 12),
-            Column(children: getCategorys(test2)),
+            Column(children: getCategorys(whatCategoies)),
             const SizedBox(height: 28),
             const Text(
               '어떤 가격대를 찾으시나요?',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: blackB3C),
             ),
             const SizedBox(height: 12),
-            Column(children: getCategorys(test3)),
+            Column(children: getCategorys(howMuchCategoies)),
             const SizedBox(height: 12),
           ],
         ),

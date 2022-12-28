@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swyg/constant/constant.dart';
+import 'package:swyg/cubits/all_category_cubit/all_category_cubit.dart';
 import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
 import 'package:swyg/cubits/best_category_cubit/best_category_cubit.dart';
 import 'package:swyg/cubits/item_list_cubit/item_list_cubit.dart';
@@ -18,6 +19,7 @@ import 'package:swyg/pages/home_page/components/home_weekly_rank_area.dart';
 import 'package:swyg/pages/my_page/my_page.dart';
 import 'package:swyg/pages/my_pick_page/my_pick.dart';
 import 'package:swyg/theme/color.dart';
+import 'package:swyg/utils/api.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -33,6 +35,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    context.read<BannerItemCubit>().getItems();
+    context.read<NewItemCubit>().getItems();
+    context.read<BestCategoryCubit>().getCategorys();
+    context.read<AllCategoryCubit>().getCategorys();
+    Api().apiTest();
+
     _pageList = [
       const HomeContent(),
       CategoryPage(),
@@ -103,9 +111,6 @@ class HomeContent extends StatefulWidget {
 class _HomeContentState extends State<HomeContent> {
   @override
   void initState() {
-    context.read<BannerItemCubit>().getItems();
-    context.read<NewItemCubit>().getItems();
-    context.read<BestCategoryCubit>().getCategorys();
     super.initState();
   }
 

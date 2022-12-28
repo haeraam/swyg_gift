@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:swyg/cubits/all_category_cubit/all_category_cubit.dart';
 import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
 import 'package:swyg/cubits/best_category_cubit/best_category_cubit.dart';
+import 'package:swyg/cubits/best_member_cubit/best_member_cubit.dart';
 import 'package:swyg/cubits/item_list_cubit/item_list_cubit.dart';
 import 'package:swyg/cubits/new_item_cubit/new_item_cubit.dart';
 import 'package:swyg/pages/create_item_page/create_item_image.dart';
@@ -23,15 +25,11 @@ class StartPage extends StatelessWidget {
         BlocProvider(
           create: (context) => ItemListCubit(initialList: []),
         ),
-        BlocProvider(
-          create: (context) => BannerItemCubit(),
-        ),
-        BlocProvider(
-          create: (context) => NewItemCubit(),
-        ),
-        BlocProvider(
-          create: (context) => BestCategoryCubit(),
-        ),
+        BlocProvider(create: (context) => BannerItemCubit()),
+        BlocProvider(create: (context) => NewItemCubit()),
+        BlocProvider(create: (context) => BestCategoryCubit()),
+        BlocProvider(create: (context) => AllCategoryCubit()),
+        BlocProvider(create: (context) => BestMemberCubit()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
