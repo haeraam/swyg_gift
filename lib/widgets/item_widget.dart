@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:image_network/image_network.dart';
 import 'package:swyg/models/item_model.dart';
 import 'package:swyg/theme/color.dart';
 
@@ -19,10 +20,11 @@ class ItemWidget extends StatelessWidget {
               width: 124,
               height: 124,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(color: blackB5C),
-              ),
-              child: Image.network(item.productImg),
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(color: blackB5C),
+                  image: ImageNetwork(image: item.productImg, height: 124, width: 124).imageCache != null
+                      ? DecorationImage(image: ImageNetwork(image: item.productImg, height: 124, width: 124).imageCache!)
+                      : null),
             ),
             Container(
               padding: const EdgeInsets.all(8),
@@ -63,15 +65,16 @@ class ItemWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 4),
-            Container(
-              padding: const EdgeInsets.all(4),
-              height: 20,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), color: const Color(0xFFF4F4F4)),
-              child: Text(
-                item.categoryNm[Random().nextInt(item.categoryNm.length)],
-                style: const TextStyle(color: blackB2C, fontWeight: FontWeight.w500, fontSize: 10),
+            if (item.categoryNm.length > 1)
+              Container(
+                padding: const EdgeInsets.all(4),
+                height: 20,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), color: const Color(0xFFF4F4F4)),
+                child: Text(
+                  item.categoryNm[Random().nextInt(item.categoryNm.length)],
+                  style: const TextStyle(color: blackB2C, fontWeight: FontWeight.w500, fontSize: 10),
+                ),
               ),
-            ),
           ],
         ),
         const SizedBox(height: 16),
