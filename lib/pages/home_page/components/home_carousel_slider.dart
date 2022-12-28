@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_network/image_network.dart';
 import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
 import 'package:swyg/models/item_model.dart';
 import 'package:swyg/theme/color.dart';
@@ -147,7 +148,7 @@ class HomeCrouselCard extends StatelessWidget {
             width: 112,
             height: 112,
             child: CircleAvatar(
-              backgroundImage: NetworkImage(imgUrl),
+              backgroundImage: ImageNetwork(image: imgUrl, height: 112, width: 112).imageCache,
             ),
           ),
         ],
