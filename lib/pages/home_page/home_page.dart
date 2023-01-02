@@ -55,6 +55,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _selectedIndex != 0 ? const Color(0xFFF4F4F4) : Colors.white,
       body: PageView(
         controller: homePageController,
         children: _pageList,
