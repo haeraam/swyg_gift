@@ -8,37 +8,40 @@ class MyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        children: [
-          const SizedBox(height: 60),
-          const Text(
-            '마이페이지',
-            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 19),
-          ),
-          const SizedBox(height: 45),
-          Center(
-            child: Container(
-              width: 120,
-              height: 120,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(60), color: blackB5C),
+    return SingleChildScrollView(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            const SizedBox(height: 60),
+            const Text(
+              '마이페이지',
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 19),
             ),
-          ),
-          const SizedBox(height: 30),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-              WhiteBox(num: '3', title: '등록한 아이템'),
-              WhiteBox(num: '1', title: '등록한 리스트'),
-              WhiteBox(num: '5', title: 'My PICK'),
-            ],
-          ),
-          const SizedBox(height: 47),
-          const WhiteBox2(title: '문의하기'),
-          const SizedBox(height: 9),
-          const WhiteBox2(title: '로그아웃'),
-        ],
+            const SizedBox(height: 45),
+            Center(
+              child: Container(
+                width: 120,
+                height: 120,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(60), color: blackB5C),
+              ),
+            ),
+            const SizedBox(height: 30),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: const [
+                WhiteBox(num: '3', title: '등록한 아이템'),
+                WhiteBox(num: '1', title: '등록한 리스트'),
+                WhiteBox(num: '5', title: 'My PICK'),
+              ],
+            ),
+            const SizedBox(height: 47),
+            const WhiteBox2(title: '문의하기'),
+            const SizedBox(height: 9),
+            const WhiteBox2(title: '로그아웃'),
+            const SizedBox(height: 47),
+          ],
+        ),
       ),
     );
   }

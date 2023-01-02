@@ -56,12 +56,17 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: _selectedIndex != 0 ? const Color(0xFFF4F4F4) : Colors.white,
-      body: PageView(
-        controller: homePageController,
-        children: _pageList,
-        onPageChanged: (index) {
-          setState(() => _selectedIndex = index);
-        },
+      body: Center(
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 420),
+          child: PageView(
+            controller: homePageController,
+            children: _pageList,
+            onPageChanged: (index) {
+              setState(() => _selectedIndex = index);
+            },
+          ),
+        ),
       ),
       floatingActionButton: _selectedIndex == 0 ? const CustomActionButton() : null,
       bottomNavigationBar: BottomNavigationBar(
