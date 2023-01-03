@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:swyg/pages/page.dart';
 import 'package:swyg/theme/color.dart';
 
 class MyPage extends StatelessWidget {

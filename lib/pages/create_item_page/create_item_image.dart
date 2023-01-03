@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:swyg/pages/page.dart';
 import 'package:swyg/theme/color.dart';
 
-class CreateItemImage extends StatelessWidget {
+class CreateItemImage extends StatefulWidget {
   CreateItemImage({Key? key}) : super(key: key);
+
+  @override
+  State<CreateItemImage> createState() => _CreateItemImageState();
+}
+
+class _CreateItemImageState extends State<CreateItemImage> {
   final List<String> test1 = List.generate(10, (index) => '카테고리$index');
+
   List choicedCategory = [];
+  Image? _img;
 
   @override
   Widget build(BuildContext context) {
@@ -66,24 +75,34 @@ class CreateItemImage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                Container(
-                  color: const Color(0xFFF4F4F4),
-                  height: 151,
-                  child: Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        Icon(
-                          Icons.add,
-                          color: blackB5C,
-                          size: 24,
-                        ),
-                        SizedBox(height: 4),
-                        Text(
-                          '이미지를 등록해 주세요',
-                          style: TextStyle(color: blackB5C, fontSize: 16),
-                        )
-                      ],
+                GestureDetector(
+                  onTap: () async {
+                    final ImagePicker picker = ImagePicker();
+                    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+                    if (image != null) _img = Image.network(image.path);
+                    setState(() {
+                      
+                    });
+                  },
+                  child: Container(
+                    color: const Color(0xFFF4F4F4),
+                    height: 151,
+                    child: _img ?? Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          Icon(
+                            Icons.add,
+                            color: blackB5C,
+                            size: 24,
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            '이미지를 등록해 주세요',
+                            style: TextStyle(color: blackB5C, fontSize: 16),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -98,8 +117,7 @@ class CreateItemImage extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 const TextField(
-                  decoration:
-                      InputDecoration(border: OutlineInputBorder(), labelText: 'url 주소를 입력해 주세요'),
+                  decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'url 주소를 입력해 주세요'),
                 )
               ],
             ),
