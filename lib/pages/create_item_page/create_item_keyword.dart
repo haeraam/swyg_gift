@@ -15,9 +15,15 @@ class CreateItemKeyWord extends StatefulWidget {
 }
 
 class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
-  final List<String> test1 = List.generate(10, (index) => '카테고리$index');
-  List<Category> choicedCategory = [];
+  late List<Category> choicedCategory;
   bool _isSelected = false;
+
+  initState() {
+    print(context.read<CreateItemCubit>().state.categoryNm);
+    choicedCategory = (context.read<CreateItemCubit>().state.categoryNm ?? <Category>[]);
+    _isSelected = choicedCategory.isNotEmpty;
+    setState(() {});
+  }
 
   getCategorys(List<Category> categorys) {
     List<Widget> res = [];
@@ -28,6 +34,7 @@ class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
       if (index++ % 2 == 0) {
         rowTmp = [
           CategoryCard(
+            isChecked: choicedCategory.any((choicedOne) => choicedOne.categoryId == category.categoryId),
             title: category.categoryNm,
             onClick: (bool isSelected) {
               if (isSelected) {
@@ -61,6 +68,7 @@ class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
           ...rowTmp,
           const SizedBox(width: 14),
           CategoryCard(
+            isChecked: choicedCategory.any((choicedOne) => choicedOne.categoryId == category.categoryId),
             title: category.categoryNm,
             onClick: (bool isSelected) {
               if (isSelected) {
@@ -89,7 +97,7 @@ class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Category> categories = context.watch<AllCategoryCubit>().state.categoryList;
+    final List<Category> categories = context.read<AllCategoryCubit>().state.categoryList;
 
     return Scaffold(
       appBar: AppBar(
@@ -128,6 +136,7 @@ class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
           padding: const EdgeInsets.only(top: 50),
           child: IconButton(
             onPressed: () {
+              context.read<CreateItemCubit>().reset();
               context.go('/', extra: 'back');
             },
             icon: const Icon(Icons.close),
@@ -172,16 +181,23 @@ class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
 }
 
 class CategoryCard extends StatefulWidget {
-  const CategoryCard({super.key, required this.title, required this.onClick});
+  const CategoryCard({super.key, required this.title, required this.onClick, this.isChecked});
   final String title;
   final Function onClick;
+  final bool? isChecked;
 
   @override
   State<CategoryCard> createState() => _CategoryCardState();
 }
 
 class _CategoryCardState extends State<CategoryCard> {
-  bool isChecked = false;
+  late bool isChecked;
+  @override
+  void initState() {
+    super.initState();
+    isChecked = widget.isChecked ?? false;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {

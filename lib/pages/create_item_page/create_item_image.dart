@@ -18,11 +18,21 @@ class CreateItemImage extends StatefulWidget {
 class _CreateItemImageState extends State<CreateItemImage> {
   final List<String> test1 = List.generate(10, (index) => '카테고리$index');
 
-  List choicedCategory = [];
   XFile? _img;
+  String? _url;
   bool isImageSelected = false;
   bool filledTextField = false;
   final TextEditingController _textEditingController = TextEditingController();
+
+  initState() {
+    print(context.read<CreateItemCubit>().state.categoryNm);
+    _img = context.read<CreateItemCubit>().state.image;
+    _url = context.read<CreateItemCubit>().state.productUrl;
+    isImageSelected = _img != null;
+    filledTextField = _url != null;
+    _textEditingController.text = _url ?? '';
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +58,7 @@ class _CreateItemImageState extends State<CreateItemImage> {
               onPressed: () {
                 if ((isImageSelected && filledTextField)) {
                   context.read<CreateItemCubit>().setImages(_img!);
-                  context.read<CreateItemCubit>().setUrl(_textEditingController.text);
+                  context.read<CreateItemCubit>().setUrl(_url!);
                   context.go('/createItemName');
                 }
               },
@@ -146,6 +156,7 @@ class _CreateItemImageState extends State<CreateItemImage> {
                   controller: _textEditingController,
                   onChanged: (s) {
                     filledTextField = s.isNotEmpty;
+                    _url = s;
                     setState(() {});
                   },
                   decoration: const InputDecoration(

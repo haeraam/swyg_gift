@@ -11,6 +11,10 @@ part 'create_item_cubit.freezed.dart';
 class CreateItemCubit extends Cubit<CreateItemState> {
   CreateItemCubit() : super(const CreateItemState.initial());
 
+  reset(){
+    emit(const CreateItemState.initial());
+  }
+
   setCategories(List<Category> newCategories) {
     emit(state.copyWith(categoryNm: newCategories));
   }

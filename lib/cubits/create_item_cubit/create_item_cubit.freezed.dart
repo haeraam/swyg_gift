@@ -21,7 +21,7 @@ mixin _$CreateItemState {
   String? get productCmt => throw _privateConstructorUsedError;
   String? get productNm => throw _privateConstructorUsedError;
   String? get memberNm => throw _privateConstructorUsedError;
-  List<dynamic>? get categoryNm => throw _privateConstructorUsedError;
+  List<Category>? get categoryNm => throw _privateConstructorUsedError;
   XFile? get image => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -31,7 +31,7 @@ mixin _$CreateItemState {
             String? productCmt,
             String? productNm,
             String? memberNm,
-            List<dynamic>? categoryNm,
+            List<Category>? categoryNm,
             XFile? image)
         initial,
   }) =>
@@ -44,7 +44,7 @@ mixin _$CreateItemState {
             String? productCmt,
             String? productNm,
             String? memberNm,
-            List<dynamic>? categoryNm,
+            List<Category>? categoryNm,
             XFile? image)?
         initial,
   }) =>
@@ -57,7 +57,7 @@ mixin _$CreateItemState {
             String? productCmt,
             String? productNm,
             String? memberNm,
-            List<dynamic>? categoryNm,
+            List<Category>? categoryNm,
             XFile? image)?
         initial,
     required TResult orElse(),
@@ -97,7 +97,7 @@ abstract class $CreateItemStateCopyWith<$Res> {
       String? productCmt,
       String? productNm,
       String? memberNm,
-      List<dynamic>? categoryNm,
+      List<Category>? categoryNm,
       XFile? image});
 }
 
@@ -146,7 +146,7 @@ class _$CreateItemStateCopyWithImpl<$Res, $Val extends CreateItemState>
       categoryNm: freezed == categoryNm
           ? _value.categoryNm
           : categoryNm // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<Category>?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -169,7 +169,7 @@ abstract class _$$_InitialCopyWith<$Res>
       String? productCmt,
       String? productNm,
       String? memberNm,
-      List<dynamic>? categoryNm,
+      List<Category>? categoryNm,
       XFile? image});
 }
 
@@ -215,7 +215,7 @@ class __$$_InitialCopyWithImpl<$Res>
       categoryNm: freezed == categoryNm
           ? _value._categoryNm
           : categoryNm // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<Category>?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -233,7 +233,7 @@ class _$_Initial implements _Initial {
       this.productCmt,
       this.productNm,
       this.memberNm,
-      final List<dynamic>? categoryNm,
+      final List<Category>? categoryNm,
       this.image})
       : _categoryNm = categoryNm;
 
@@ -247,9 +247,9 @@ class _$_Initial implements _Initial {
   final String? productNm;
   @override
   final String? memberNm;
-  final List<dynamic>? _categoryNm;
+  final List<Category>? _categoryNm;
   @override
-  List<dynamic>? get categoryNm {
+  List<Category>? get categoryNm {
     final value = _categoryNm;
     if (value == null) return null;
     if (_categoryNm is EqualUnmodifiableListView) return _categoryNm;
@@ -282,7 +282,7 @@ class _$_Initial implements _Initial {
                 other.memberNm == memberNm) &&
             const DeepCollectionEquality()
                 .equals(other._categoryNm, _categoryNm) &&
-            const DeepCollectionEquality().equals(other.image, image));
+            (identical(other.image, image) || other.image == image));
   }
 
   @override
@@ -294,7 +294,7 @@ class _$_Initial implements _Initial {
       productNm,
       memberNm,
       const DeepCollectionEquality().hash(_categoryNm),
-      const DeepCollectionEquality().hash(image));
+      image);
 
   @JsonKey(ignore: true)
   @override
@@ -311,7 +311,7 @@ class _$_Initial implements _Initial {
             String? productCmt,
             String? productNm,
             String? memberNm,
-            List<dynamic>? categoryNm,
+            List<Category>? categoryNm,
             XFile? image)
         initial,
   }) {
@@ -328,7 +328,7 @@ class _$_Initial implements _Initial {
             String? productCmt,
             String? productNm,
             String? memberNm,
-            List<dynamic>? categoryNm,
+            List<Category>? categoryNm,
             XFile? image)?
         initial,
   }) {
@@ -345,7 +345,7 @@ class _$_Initial implements _Initial {
             String? productCmt,
             String? productNm,
             String? memberNm,
-            List<dynamic>? categoryNm,
+            List<Category>? categoryNm,
             XFile? image)?
         initial,
     required TResult orElse(),
@@ -393,7 +393,7 @@ abstract class _Initial implements CreateItemState {
       final String? productCmt,
       final String? productNm,
       final String? memberNm,
-      final List<dynamic>? categoryNm,
+      final List<Category>? categoryNm,
       final XFile? image}) = _$_Initial;
 
   @override
@@ -407,7 +407,7 @@ abstract class _Initial implements CreateItemState {
   @override
   String? get memberNm;
   @override
-  List<dynamic>? get categoryNm;
+  List<Category>? get categoryNm;
   @override
   XFile? get image;
   @override
