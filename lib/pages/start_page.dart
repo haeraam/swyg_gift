@@ -5,9 +5,10 @@ import 'package:swyg/cubits/all_category_cubit/all_category_cubit.dart';
 import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
 import 'package:swyg/cubits/best_category_cubit/best_category_cubit.dart';
 import 'package:swyg/cubits/best_member_cubit/best_member_cubit.dart';
-import 'package:swyg/cubits/cubit/weekly_bset_item_cubit.dart';
+import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
 import 'package:swyg/cubits/item_list_cubit/item_list_cubit.dart';
 import 'package:swyg/cubits/new_item_cubit/new_item_cubit.dart';
+import 'package:swyg/cubits/weekly_bset_item_cubit/weekly_bset_item_cubit.dart';
 import 'package:swyg/pages/create_item_page/create_item_image.dart';
 import 'package:swyg/pages/create_item_page/create_item_keyword.dart';
 import 'package:swyg/pages/create_item_page/create_item_name.dart';
@@ -32,6 +33,7 @@ class StartPage extends StatelessWidget {
         BlocProvider(create: (context) => AllCategoryCubit()),
         BlocProvider(create: (context) => BestMemberCubit()),
         BlocProvider(create: (context) => WeeklyBsetItemCubit()),
+        BlocProvider(create: (context) => CreateItemCubit()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

@@ -1,14 +1,12 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swyg/constant/constant.dart';
 import 'package:swyg/cubits/all_category_cubit/all_category_cubit.dart';
 import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
 import 'package:swyg/cubits/best_category_cubit/best_category_cubit.dart';
-import 'package:swyg/cubits/cubit/weekly_bset_item_cubit.dart';
 import 'package:swyg/cubits/item_list_cubit/item_list_cubit.dart';
 import 'package:swyg/cubits/new_item_cubit/new_item_cubit.dart';
+import 'package:swyg/cubits/weekly_bset_item_cubit/weekly_bset_item_cubit.dart';
 import 'package:swyg/pages/category_page/category_page.dart';
 import 'package:swyg/pages/home_page/components/custom_action_button.dart';
 import 'package:swyg/pages/home_page/components/home_carousel_slider.dart';
@@ -143,7 +141,6 @@ class _HomeContentState extends State<HomeContent> {
       listeners: [
         BlocListener<ItemListCubit, ItemListState>(
           listener: (context, state) {
-            print(state);
           },
         ),
         BlocListener<BannerItemCubit, BannerItemState>(

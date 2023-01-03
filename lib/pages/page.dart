@@ -12,7 +12,13 @@ class PageWrap extends StatelessWidget {
         // context.go('/');
         return false;
       },
-      child: child,
+      child: Container(
+        alignment: Alignment.topCenter,
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 420),
+          child: child,
+        ),
+      ),
     );
   }
 }

@@ -52,7 +52,6 @@ class Api {
   apiTest() async {
     var res = await http.get(Uri.parse('$host/category/select'));
     List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
-    print(jsonResponse);
   }
 }
 // https://pickproduct.shop/likeProductList/selectWeek

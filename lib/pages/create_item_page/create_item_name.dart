@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
 import 'package:swyg/pages/page.dart';
 import 'package:swyg/theme/color.dart';
 
@@ -10,6 +12,12 @@ class CreateItemName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var test = context.read<CreateItemCubit>().state.categoryNm;
+    var test2 = context.read<CreateItemCubit>().state.image;
+    var test3 = context.read<CreateItemCubit>().state.productUrl;
+    print(test);
+    print(test2);
+    print(test3);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 96,

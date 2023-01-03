@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
 import 'package:swyg/pages/page.dart';
 import 'package:swyg/theme/color.dart';
 
@@ -15,7 +19,10 @@ class _CreateItemImageState extends State<CreateItemImage> {
   final List<String> test1 = List.generate(10, (index) => '카테고리$index');
 
   List choicedCategory = [];
-  Image? _img;
+  XFile? _img;
+  bool isImageSelected = false;
+  bool filledTextField = false;
+  final TextEditingController _textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,15 +45,22 @@ class _CreateItemImageState extends State<CreateItemImage> {
           Container(
             padding: const EdgeInsets.only(top: 50),
             child: TextButton(
-                onPressed: () {
+              onPressed: () {
+                if ((isImageSelected && filledTextField)) {
+                  context.read<CreateItemCubit>().setImages(_img!);
+                  context.read<CreateItemCubit>().setUrl(_textEditingController.text);
                   context.go('/createItemName');
-                },
-                child: const Text('다음',
-                    style: TextStyle(
-                      color: blackB3C,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                    ))),
+                }
+              },
+              child: Text(
+                '다음',
+                style: TextStyle(
+                  color: (isImageSelected && filledTextField) ? primaryC : blackB3C,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                ),
+              ),
+            ),
           )
         ],
         leading: Container(
@@ -78,32 +92,44 @@ class _CreateItemImageState extends State<CreateItemImage> {
                 GestureDetector(
                   onTap: () async {
                     final ImagePicker picker = ImagePicker();
-                    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-                    if (image != null) _img = Image.network(image.path);
-                    setState(() {
-                      
-                    });
+                    _img = await picker.pickImage(source: ImageSource.gallery);
+                    if (_img != null) {
+                      isImageSelected = true;
+                    }
+                    setState(() {});
                   },
                   child: Container(
-                    color: const Color(0xFFF4F4F4),
                     height: 151,
-                    child: _img ?? Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: const [
-                          Icon(
-                            Icons.add,
-                            color: blackB5C,
-                            size: 24,
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            '이미지를 등록해 주세요',
-                            style: TextStyle(color: blackB5C, fontSize: 16),
+                    alignment: Alignment.centerLeft,
+                    child: isImageSelected
+                        ? SizedBox(
+                            width: 120,
+                            height: 120,
+                            child: Image.network(
+                              _img!.path,
+                              fit: BoxFit.cover,
+                            ),
                           )
-                        ],
-                      ),
-                    ),
+                        : Container(
+                            color: const Color(0xFFF4F4F4),
+                            child: Center(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: const [
+                                  Icon(
+                                    Icons.add,
+                                    color: blackB5C,
+                                    size: 24,
+                                  ),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    '이미지를 등록해 주세요',
+                                    style: TextStyle(color: blackB5C, fontSize: 16),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
                   ),
                 ),
                 const SizedBox(height: 30),
@@ -116,8 +142,18 @@ class _CreateItemImageState extends State<CreateItemImage> {
                   ),
                 ),
                 const SizedBox(height: 12),
-                const TextField(
-                  decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'url 주소를 입력해 주세요'),
+                TextField(
+                  controller: _textEditingController,
+                  onChanged: (s) {
+                    filledTextField = s.isNotEmpty;
+                    setState(() {});
+                  },
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                    focusedBorder: OutlineInputBorder(),
+                    labelText: 'url 주소를 입력해 주세요',
+                  ),
                 )
               ],
             ),

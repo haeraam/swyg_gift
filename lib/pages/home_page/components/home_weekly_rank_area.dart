@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:swyg/cubits/cubit/weekly_bset_item_cubit.dart';
+import 'package:swyg/cubits/weekly_bset_item_cubit/weekly_bset_item_cubit.dart';
 import 'package:swyg/models/item_model.dart';
 import 'package:swyg/pages/home_page/components/home_title.dart';
 import 'package:swyg/widgets/item_rank_widget.dart';

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:swyg/cubits/all_category_cubit/all_category_cubit.dart';
+import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
+import 'package:swyg/models/category_model.dart';
 import 'package:swyg/pages/page.dart';
 import 'package:swyg/theme/color.dart';
 
@@ -12,26 +16,28 @@ class CreateItemKeyWord extends StatefulWidget {
 
 class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
   final List<String> test1 = List.generate(10, (index) => '카테고리$index');
-  List choicedCategory = [];
+  List<Category> choicedCategory = [];
   bool _isSelected = false;
 
-  getCategorys(List<String> categorys) {
+  getCategorys(List<Category> categorys) {
     List<Widget> res = [];
     int index = 0;
     List<Widget> rowTmp = [];
+
     for (var category in categorys) {
       if (index++ % 2 == 0) {
         rowTmp = [
           CategoryCard(
-            title: category,
+            title: category.categoryNm,
             onClick: (bool isSelected) {
               if (isSelected) {
                 choicedCategory = [...choicedCategory, category];
               } else {
                 choicedCategory = choicedCategory.where((element) => element != category).toList();
               }
+              context.read<CreateItemCubit>().setCategories(choicedCategory);
               setState(() {
-                _isSelected = categorys.isNotEmpty;
+                _isSelected = choicedCategory.isNotEmpty;
               });
             },
           )
@@ -55,15 +61,16 @@ class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
           ...rowTmp,
           const SizedBox(width: 14),
           CategoryCard(
-            title: category,
+            title: category.categoryNm,
             onClick: (bool isSelected) {
               if (isSelected) {
                 choicedCategory = [...choicedCategory, category];
               } else {
                 choicedCategory = choicedCategory.where((element) => element != category).toList();
               }
+              context.read<CreateItemCubit>().setCategories(choicedCategory);
               setState(() {
-                _isSelected = categorys.isNotEmpty;
+                _isSelected = choicedCategory.isNotEmpty;
               });
             },
           ),
@@ -82,6 +89,8 @@ class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Category> categories = context.watch<AllCategoryCubit>().state.categoryList;
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 96,
@@ -102,7 +111,7 @@ class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
             padding: const EdgeInsets.only(top: 50),
             child: TextButton(
               onPressed: () {
-                context.go('/createItemImage');
+                if (_isSelected) context.go('/createItemImage');
               },
               child: Text(
                 '다음',
@@ -119,7 +128,7 @@ class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
           padding: const EdgeInsets.only(top: 50),
           child: IconButton(
             onPressed: () {
-              context.go('/',extra: 'back');
+              context.go('/', extra: 'back');
             },
             icon: const Icon(Icons.close),
           ),
@@ -152,7 +161,7 @@ class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
                     ),
                   ],
                 ),
-                ...getCategorys(test1),
+                ...getCategorys(categories),
               ],
             ),
           ),
@@ -177,7 +186,7 @@ class _CategoryCardState extends State<CategoryCard> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
+      child: SizedBox(
         height: 53,
         child: ElevatedButton(
           onPressed: () {
@@ -191,7 +200,7 @@ class _CategoryCardState extends State<CategoryCard> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            backgroundColor: isChecked ? primary2C : Color(0xFFF4F4F4),
+            backgroundColor: isChecked ? primary2C : const Color(0xFFF4F4F4),
           ),
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 0),

@@ -27,7 +27,7 @@ class _CustomActionButtonState extends State<CustomActionButton> {
           AnimatedContainer(
             duration: const Duration(milliseconds: 300),
             curve: Curves.easeIn,
-            margin: isOpend ? const EdgeInsets.only(bottom: 100, right: 0) : EdgeInsets.zero,
+            margin: isOpend ? const EdgeInsets.only(bottom: 106, right: 0) : EdgeInsets.zero,
             child: AnimatedOpacity(
               duration: const Duration(milliseconds: 300),
               opacity: isOpend ? 1 : 0,
@@ -55,9 +55,13 @@ class _CustomActionButtonState extends State<CustomActionButton> {
                   child: Center(
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        Icon(Icons.favorite, size: 14, color: Colors.black),
-                        Text(
+                      children: [
+                        Image.asset(
+                          'assets/images/fab_button_icon_add_item.png',
+                          width: 14,
+                        ),
+                        const SizedBox(width: 4),
+                        const Text(
                           '아이템 생성',
                           style: TextStyle(fontSize: 14, color: Colors.black),
                         ),
@@ -100,9 +104,13 @@ class _CustomActionButtonState extends State<CustomActionButton> {
                   child: Center(
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        Icon(Icons.favorite, size: 14, color: Colors.black),
-                        Text(
+                      children: [
+                        Image.asset(
+                          'assets/images/fab_button_icon_add_list.png',
+                          width: 14,
+                        ),
+                        const SizedBox(width: 4),
+                        const Text(
                           '리스트 생성',
                           style: TextStyle(fontSize: 14, color: Colors.black),
                         ),
