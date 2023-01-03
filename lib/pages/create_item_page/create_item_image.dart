@@ -25,7 +25,6 @@ class _CreateItemImageState extends State<CreateItemImage> {
   final TextEditingController _textEditingController = TextEditingController();
 
   initState() {
-    print(context.read<CreateItemCubit>().state.categoryNm);
     _img = context.read<CreateItemCubit>().state.image;
     _url = context.read<CreateItemCubit>().state.productUrl;
     isImageSelected = _img != null;
@@ -110,15 +109,19 @@ class _CreateItemImageState extends State<CreateItemImage> {
                   },
                   child: Container(
                     height: 151,
-                    alignment: Alignment.centerLeft,
+                    alignment: Alignment.center,
                     child: isImageSelected
                         ? SizedBox(
-                            width: 120,
-                            height: 120,
+                            width: 151,
+                            height: 151,
                             child: Image.network(
                               _img!.path,
                               fit: BoxFit.cover,
                             ),
+                            //     child: Image.file(
+                            //   File(_img!.path),
+                            //   fit: BoxFit.cover,
+                            // ),
                           )
                         : Container(
                             color: const Color(0xFFF4F4F4),

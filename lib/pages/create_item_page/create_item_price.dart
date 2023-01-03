@@ -1,15 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
+import 'package:swyg/models/category_model.dart';
+import 'package:swyg/pages/create_item_page/create_item_preview.dart';
 import 'package:swyg/pages/page.dart';
 import 'package:swyg/theme/color.dart';
+import 'package:swyg/utils/api.dart';
 
-class CreateItemPrice extends StatelessWidget {
+class CreateItemPrice extends StatefulWidget {
   CreateItemPrice({Key? key}) : super(key: key);
+
+  @override
+  State<CreateItemPrice> createState() => _CreateItemPriceState();
+}
+
+class _CreateItemPriceState extends State<CreateItemPrice> {
   final List<String> test1 = List.generate(10, (index) => '카테고리$index');
-  List choicedCategory = [];
+  int selectedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
+    List<Category> categoryNm = context.read<CreateItemCubit>().state.categoryNm ?? <Category>[];
+    XFile image = context.read<CreateItemCubit>().state.image ?? XFile('');
+    String itemName = context.read<CreateItemCubit>().state.productNm ?? '';
+    String itemComent = context.read<CreateItemCubit>().state.productCmt ?? '';
+    String url = context.read<CreateItemCubit>().state.productUrl ?? '';
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 96,
@@ -30,12 +47,23 @@ class CreateItemPrice extends StatelessWidget {
             padding: const EdgeInsets.only(top: 50),
             child: TextButton(
               onPressed: () {
-                context.go('/');
+                if (selectedIndex != -1) {
+                  context.go('/');
+                  context.read<CreateItemCubit>().createItem(
+                        image: image,
+                        productNm: itemName,
+                        productCmt: itemComent,
+                        productPrice: 'productPrice',
+                        productUrl: url,
+                        catrgoryNm: categoryNm.map((e) => e.categoryNm).toList(),
+                        memberNm: '테스터',
+                      );
+                }
               },
-              child: const Text(
+              child: Text(
                 '완료',
                 style: TextStyle(
-                  color: blackB3C,
+                  color: selectedIndex != -1 ? primaryC : blackB3C,
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
                 ),
@@ -69,36 +97,12 @@ class CreateItemPrice extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                Container(
-                  color: const Color(0xFFF4F4F4),
-                  height: 151,
-                  child: Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        Text(
-                          '미리보기',
-                          style: TextStyle(color: blackB5C, fontSize: 16),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 30),
-                const Text(
-                  '아이템 명',
-                  style: TextStyle(
-                    fontSize: 17,
-                    color: blackB1C,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                const TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: '아이템 명을 입력해 주세요',
-                  ),
+                CreateItemPreview(
+                  image: image,
+                  memberName: '테스트',
+                  itemName: itemName,
+                  categories: categoryNm,
+                  coment: itemComent,
                 ),
                 const SizedBox(height: 30),
                 const Text(
@@ -115,18 +119,30 @@ class CreateItemPrice extends StatelessWidget {
                     Row(
                       children: [
                         PriceCard(
+                          isChecked: selectedIndex == 0,
                           title: '3만원 이내',
-                          onClick: () {},
+                          onClick: () {
+                            selectedIndex = 0;
+                            setState(() {});
+                          },
                         ),
                         const SizedBox(width: 8),
                         PriceCard(
+                          isChecked: selectedIndex == 1,
                           title: '5만원 이내',
-                          onClick: () {},
+                          onClick: () {
+                            selectedIndex = 1;
+                            setState(() {});
+                          },
                         ),
                         const SizedBox(width: 8),
                         PriceCard(
+                          isChecked: selectedIndex == 2,
                           title: '10만원 이내',
-                          onClick: () {},
+                          onClick: () {
+                            selectedIndex = 2;
+                            setState(() {});
+                          },
                         ),
                       ],
                     ),
@@ -134,13 +150,21 @@ class CreateItemPrice extends StatelessWidget {
                     Row(
                       children: [
                         PriceCard(
+                          isChecked: selectedIndex == 3,
                           title: '20만원 이내',
-                          onClick: () {},
+                          onClick: () {
+                            selectedIndex = 3;
+                            setState(() {});
+                          },
                         ),
                         const SizedBox(width: 8),
                         PriceCard(
+                          isChecked: selectedIndex == 4,
                           title: '20만원 이상',
-                          onClick: () {},
+                          onClick: () {
+                            selectedIndex = 4;
+                            setState(() {});
+                          },
                         ),
                         const SizedBox(width: 8),
                         Expanded(child: Container())
@@ -158,17 +182,16 @@ class CreateItemPrice extends StatelessWidget {
 }
 
 class PriceCard extends StatefulWidget {
-  const PriceCard({super.key, required this.title, required this.onClick});
+  const PriceCard({super.key, required this.title, required this.onClick, required this.isChecked});
   final String title;
-  final Function onClick;
+  final void Function() onClick;
+  final bool isChecked;
 
   @override
   State<PriceCard> createState() => _PriceCardState();
 }
 
 class _PriceCardState extends State<PriceCard> {
-  bool isChecked = false;
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -178,19 +201,14 @@ class _PriceCardState extends State<PriceCard> {
           borderRadius: BorderRadius.circular(10),
         ),
         child: ElevatedButton(
-          onPressed: () {
-            setState(() {
-              isChecked = !isChecked;
-            });
-            widget.onClick(isChecked);
-          },
+          onPressed: widget.onClick,
           style: ElevatedButton.styleFrom(
             elevation: 0,
-            side: BorderSide(width: 1, color: isChecked ? primaryC : blackB2C),
+            side: BorderSide(width: 1, color: widget.isChecked ? primaryC : blackB2C),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            backgroundColor: isChecked ? primary2C : Colors.white,
+            backgroundColor: widget.isChecked ? primary2C : Colors.white,
           ),
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 15),
@@ -199,8 +217,8 @@ class _PriceCardState extends State<PriceCard> {
                 widget.title,
                 style: TextStyle(
                   fontSize: 16,
-                  fontWeight: isChecked ? FontWeight.w500 : FontWeight.w400,
-                  color: isChecked ? primaryC : blackB2C,
+                  fontWeight: widget.isChecked ? FontWeight.w500 : FontWeight.w400,
+                  color: widget.isChecked ? primaryC : blackB2C,
                 ),
               ),
             ),

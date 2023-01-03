@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:swyg/models/category_model.dart';
 import 'package:swyg/models/item_model.dart';
 
@@ -24,8 +26,7 @@ class Api {
   getBestMember() async {
     var res = await http.get(Uri.parse('$host/likeMember/select'));
     List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
-    List<Item> items = jsonResponse.map((data) => Item.fromJson(data)).toList();
-    return items;
+    return jsonResponse;
   }
 
   getNewItem() async {
@@ -49,10 +50,33 @@ class Api {
     return categorys;
   }
 
-  apiTest() async {
-    var res = await http.get(Uri.parse('$host/category/select'));
-    List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
+  createItem({
+    required XFile image,
+    required productNm,
+    required productCmt,
+    required productPrice,
+    required productUrl,
+    required catrgoryNm,
+    required memberNm,
+  }) async {
+    var request = http.MultipartRequest("POST", Uri.parse('$host/productList/insert'));
+
+    request.fields['productNm'] = productNm;
+    request.fields['productCmt'] = productCmt;
+    request.fields['productPrice'] = productPrice;
+    request.fields['productUrl'] = productUrl;
+    request.fields['catrgoryNm'] = catrgoryNm.toString();
+    request.fields['memberNm'] = memberNm;
+
+    request.files.add(await http.MultipartFile.fromPath('imageFileList', image.path));
+
+    var response = await request.send();
+
+    print(response);
+    return response;
   }
+
+  apiTest() async {}
 }
 // https://pickproduct.shop/likeProductList/selectWeek
 // 상품 좋아요 등록

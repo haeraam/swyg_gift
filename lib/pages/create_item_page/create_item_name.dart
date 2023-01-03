@@ -1,23 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
+import 'package:swyg/models/category_model.dart';
+import 'package:swyg/pages/create_item_page/create_item_preview.dart';
 import 'package:swyg/pages/page.dart';
 import 'package:swyg/theme/color.dart';
 
-class CreateItemName extends StatelessWidget {
+class CreateItemName extends StatefulWidget {
   CreateItemName({Key? key}) : super(key: key);
-  final List<String> test1 = List.generate(10, (index) => '카테고리$index');
-  List choicedCategory = [];
+
+  @override
+  State<CreateItemName> createState() => _CreateItemNameState();
+}
+
+class _CreateItemNameState extends State<CreateItemName> {
+  String _itemName = '';
+  String _itemComent = '';
+  final TextEditingController _itemNemeTextController = TextEditingController();
+  final TextEditingController _itemComentTextController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _itemName = context.read<CreateItemCubit>().state.productNm ?? '';
+    _itemComent = context.read<CreateItemCubit>().state.productCmt ?? '';
+    _itemNemeTextController.text = _itemName;
+    _itemComentTextController.text = _itemComent;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
-    var test = context.read<CreateItemCubit>().state.categoryNm;
-    var test2 = context.read<CreateItemCubit>().state.image;
-    var test3 = context.read<CreateItemCubit>().state.productUrl;
-    print(test);
-    print(test2);
-    print(test3);
+    List<Category> categoryNm = context.read<CreateItemCubit>().state.categoryNm ?? <Category>[];
+    XFile image = context.read<CreateItemCubit>().state.image ?? XFile('');
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 96,
@@ -37,15 +56,22 @@ class CreateItemName extends StatelessWidget {
           Container(
             padding: const EdgeInsets.only(top: 50),
             child: TextButton(
-                onPressed: () {
+              onPressed: () {
+                if (_itemNemeTextController.text.isNotEmpty && _itemComentTextController.text.isNotEmpty) {
                   context.go('/createItemPrice');
-                },
-                child: const Text('다음',
-                    style: TextStyle(
-                      color: blackB3C,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                    ))),
+                  context.read<CreateItemCubit>().setItemName(_itemName);
+                  context.read<CreateItemCubit>().setComent(_itemComent);
+                }
+              },
+              child: Text(
+                '다음',
+                style: TextStyle(
+                  color: (_itemNemeTextController.text.isNotEmpty && _itemComentTextController.text.isNotEmpty) ? primaryC : blackB3C,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                ),
+              ),
+            ),
           )
         ],
         leading: Container(
@@ -74,20 +100,12 @@ class CreateItemName extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                Container(
-                  color: const Color(0xFFF4F4F4),
-                  height: 151,
-                  child: Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        Text(
-                          '미리보기',
-                          style: TextStyle(color: blackB5C, fontSize: 16),
-                        )
-                      ],
-                    ),
-                  ),
+                CreateItemPreview(
+                  image: image,
+                  memberName: '테스트',
+                  itemName: _itemName,
+                  categories: categoryNm,
+                  coment: _itemComent,
                 ),
                 const SizedBox(height: 30),
                 const Text(
@@ -99,9 +117,16 @@ class CreateItemName extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                const TextField(
-                  decoration: InputDecoration(
+                TextField(
+                  onChanged: (s) {
+                    _itemName = s;
+                    setState(() {});
+                  },
+                  controller: _itemNemeTextController,
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                    focusedBorder: OutlineInputBorder(),
                     labelText: '아이템 명을 입력해 주세요',
                   ),
                 ),
@@ -115,79 +140,19 @@ class CreateItemName extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                const TextField(
-                  decoration: InputDecoration(
+                TextField(
+                  onChanged: (s) {
+                    _itemComent = s;
+                    setState(() {});
+                  },
+                  controller: _itemComentTextController,
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                    focusedBorder: OutlineInputBorder(),
                     labelText: '소개글을 입력해 주세요',
                   ),
                 )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CategoryCard extends StatefulWidget {
-  const CategoryCard({super.key, required this.title, required this.onClick});
-  final String title;
-  final Function onClick;
-
-  @override
-  State<CategoryCard> createState() => _CategoryCardState();
-}
-
-class _CategoryCardState extends State<CategoryCard> {
-  bool isChecked = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        height: 53,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: ElevatedButton(
-          onPressed: () {
-            setState(() {
-              isChecked = !isChecked;
-            });
-            widget.onClick(isChecked);
-          },
-          style: ElevatedButton.styleFrom(
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            backgroundColor: isChecked ? Colors.blue : const Color(0xFFF4F4F4),
-          ),
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.star,
-                  size: 16,
-                  color: isChecked ? Colors.white : blackB2C,
-                ),
-                const SizedBox(width: 4),
-                Text(
-                  widget.title,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    color: isChecked ? Colors.white : blackB2C,
-                  ),
-                ),
-                Expanded(child: Container()),
-                Icon(
-                  Icons.check_circle,
-                  size: 16,
-                  color: isChecked ? Colors.white : blackB5C,
-                ),
               ],
             ),
           ),
