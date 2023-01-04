@@ -20,15 +20,19 @@ ItemList _$ItemListFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ItemList {
-  String get productListId => throw _privateConstructorUsedError;
+  int get productListId => throw _privateConstructorUsedError;
+  List<dynamic> get productListPd => throw _privateConstructorUsedError;
   String get productListNm => throw _privateConstructorUsedError;
-  String get productListCm => throw _privateConstructorUsedError;
-  String get productImg => throw _privateConstructorUsedError;
-  DateTime get productCreateDt => throw _privateConstructorUsedError;
-  DateTime get productUpdateDt => throw _privateConstructorUsedError;
-  String get mnmberName => throw _privateConstructorUsedError;
-  List<dynamic> get productId => throw _privateConstructorUsedError;
-  String get prodictListCnt => throw _privateConstructorUsedError;
+  String get productListCmt => throw _privateConstructorUsedError;
+  List<dynamic> get categoryNm => throw _privateConstructorUsedError;
+  String get memberNm => throw _privateConstructorUsedError;
+  String get productListCreateDt => throw _privateConstructorUsedError;
+  String get productListUpdateDt => throw _privateConstructorUsedError;
+  int get productListCnt => throw _privateConstructorUsedError;
+  int get productListWcnt => throw _privateConstructorUsedError;
+  String get productListBestcmt => throw _privateConstructorUsedError;
+  int get productListLikeCnt => throw _privateConstructorUsedError;
+  List<Item> get products => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,15 +46,19 @@ abstract class $ItemListCopyWith<$Res> {
       _$ItemListCopyWithImpl<$Res, ItemList>;
   @useResult
   $Res call(
-      {String productListId,
+      {int productListId,
+      List<dynamic> productListPd,
       String productListNm,
-      String productListCm,
-      String productImg,
-      DateTime productCreateDt,
-      DateTime productUpdateDt,
-      String mnmberName,
-      List<dynamic> productId,
-      String prodictListCnt});
+      String productListCmt,
+      List<dynamic> categoryNm,
+      String memberNm,
+      String productListCreateDt,
+      String productListUpdateDt,
+      int productListCnt,
+      int productListWcnt,
+      String productListBestcmt,
+      int productListLikeCnt,
+      List<Item> products});
 }
 
 /// @nodoc
@@ -67,52 +75,72 @@ class _$ItemListCopyWithImpl<$Res, $Val extends ItemList>
   @override
   $Res call({
     Object? productListId = null,
+    Object? productListPd = null,
     Object? productListNm = null,
-    Object? productListCm = null,
-    Object? productImg = null,
-    Object? productCreateDt = null,
-    Object? productUpdateDt = null,
-    Object? mnmberName = null,
-    Object? productId = null,
-    Object? prodictListCnt = null,
+    Object? productListCmt = null,
+    Object? categoryNm = null,
+    Object? memberNm = null,
+    Object? productListCreateDt = null,
+    Object? productListUpdateDt = null,
+    Object? productListCnt = null,
+    Object? productListWcnt = null,
+    Object? productListBestcmt = null,
+    Object? productListLikeCnt = null,
+    Object? products = null,
   }) {
     return _then(_value.copyWith(
       productListId: null == productListId
           ? _value.productListId
           : productListId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
+      productListPd: null == productListPd
+          ? _value.productListPd
+          : productListPd // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
       productListNm: null == productListNm
           ? _value.productListNm
           : productListNm // ignore: cast_nullable_to_non_nullable
               as String,
-      productListCm: null == productListCm
-          ? _value.productListCm
-          : productListCm // ignore: cast_nullable_to_non_nullable
+      productListCmt: null == productListCmt
+          ? _value.productListCmt
+          : productListCmt // ignore: cast_nullable_to_non_nullable
               as String,
-      productImg: null == productImg
-          ? _value.productImg
-          : productImg // ignore: cast_nullable_to_non_nullable
-              as String,
-      productCreateDt: null == productCreateDt
-          ? _value.productCreateDt
-          : productCreateDt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      productUpdateDt: null == productUpdateDt
-          ? _value.productUpdateDt
-          : productUpdateDt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      mnmberName: null == mnmberName
-          ? _value.mnmberName
-          : mnmberName // ignore: cast_nullable_to_non_nullable
-              as String,
-      productId: null == productId
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
+      categoryNm: null == categoryNm
+          ? _value.categoryNm
+          : categoryNm // ignore: cast_nullable_to_non_nullable
               as List<dynamic>,
-      prodictListCnt: null == prodictListCnt
-          ? _value.prodictListCnt
-          : prodictListCnt // ignore: cast_nullable_to_non_nullable
+      memberNm: null == memberNm
+          ? _value.memberNm
+          : memberNm // ignore: cast_nullable_to_non_nullable
               as String,
+      productListCreateDt: null == productListCreateDt
+          ? _value.productListCreateDt
+          : productListCreateDt // ignore: cast_nullable_to_non_nullable
+              as String,
+      productListUpdateDt: null == productListUpdateDt
+          ? _value.productListUpdateDt
+          : productListUpdateDt // ignore: cast_nullable_to_non_nullable
+              as String,
+      productListCnt: null == productListCnt
+          ? _value.productListCnt
+          : productListCnt // ignore: cast_nullable_to_non_nullable
+              as int,
+      productListWcnt: null == productListWcnt
+          ? _value.productListWcnt
+          : productListWcnt // ignore: cast_nullable_to_non_nullable
+              as int,
+      productListBestcmt: null == productListBestcmt
+          ? _value.productListBestcmt
+          : productListBestcmt // ignore: cast_nullable_to_non_nullable
+              as String,
+      productListLikeCnt: null == productListLikeCnt
+          ? _value.productListLikeCnt
+          : productListLikeCnt // ignore: cast_nullable_to_non_nullable
+              as int,
+      products: null == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Item>,
     ) as $Val);
   }
 }
@@ -125,15 +153,19 @@ abstract class _$$_ItemListCopyWith<$Res> implements $ItemListCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String productListId,
+      {int productListId,
+      List<dynamic> productListPd,
       String productListNm,
-      String productListCm,
-      String productImg,
-      DateTime productCreateDt,
-      DateTime productUpdateDt,
-      String mnmberName,
-      List<dynamic> productId,
-      String prodictListCnt});
+      String productListCmt,
+      List<dynamic> categoryNm,
+      String memberNm,
+      String productListCreateDt,
+      String productListUpdateDt,
+      int productListCnt,
+      int productListWcnt,
+      String productListBestcmt,
+      int productListLikeCnt,
+      List<Item> products});
 }
 
 /// @nodoc
@@ -148,52 +180,72 @@ class __$$_ItemListCopyWithImpl<$Res>
   @override
   $Res call({
     Object? productListId = null,
+    Object? productListPd = null,
     Object? productListNm = null,
-    Object? productListCm = null,
-    Object? productImg = null,
-    Object? productCreateDt = null,
-    Object? productUpdateDt = null,
-    Object? mnmberName = null,
-    Object? productId = null,
-    Object? prodictListCnt = null,
+    Object? productListCmt = null,
+    Object? categoryNm = null,
+    Object? memberNm = null,
+    Object? productListCreateDt = null,
+    Object? productListUpdateDt = null,
+    Object? productListCnt = null,
+    Object? productListWcnt = null,
+    Object? productListBestcmt = null,
+    Object? productListLikeCnt = null,
+    Object? products = null,
   }) {
     return _then(_$_ItemList(
       productListId: null == productListId
           ? _value.productListId
           : productListId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
+      productListPd: null == productListPd
+          ? _value._productListPd
+          : productListPd // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
       productListNm: null == productListNm
           ? _value.productListNm
           : productListNm // ignore: cast_nullable_to_non_nullable
               as String,
-      productListCm: null == productListCm
-          ? _value.productListCm
-          : productListCm // ignore: cast_nullable_to_non_nullable
+      productListCmt: null == productListCmt
+          ? _value.productListCmt
+          : productListCmt // ignore: cast_nullable_to_non_nullable
               as String,
-      productImg: null == productImg
-          ? _value.productImg
-          : productImg // ignore: cast_nullable_to_non_nullable
-              as String,
-      productCreateDt: null == productCreateDt
-          ? _value.productCreateDt
-          : productCreateDt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      productUpdateDt: null == productUpdateDt
-          ? _value.productUpdateDt
-          : productUpdateDt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      mnmberName: null == mnmberName
-          ? _value.mnmberName
-          : mnmberName // ignore: cast_nullable_to_non_nullable
-              as String,
-      productId: null == productId
-          ? _value._productId
-          : productId // ignore: cast_nullable_to_non_nullable
+      categoryNm: null == categoryNm
+          ? _value._categoryNm
+          : categoryNm // ignore: cast_nullable_to_non_nullable
               as List<dynamic>,
-      prodictListCnt: null == prodictListCnt
-          ? _value.prodictListCnt
-          : prodictListCnt // ignore: cast_nullable_to_non_nullable
+      memberNm: null == memberNm
+          ? _value.memberNm
+          : memberNm // ignore: cast_nullable_to_non_nullable
               as String,
+      productListCreateDt: null == productListCreateDt
+          ? _value.productListCreateDt
+          : productListCreateDt // ignore: cast_nullable_to_non_nullable
+              as String,
+      productListUpdateDt: null == productListUpdateDt
+          ? _value.productListUpdateDt
+          : productListUpdateDt // ignore: cast_nullable_to_non_nullable
+              as String,
+      productListCnt: null == productListCnt
+          ? _value.productListCnt
+          : productListCnt // ignore: cast_nullable_to_non_nullable
+              as int,
+      productListWcnt: null == productListWcnt
+          ? _value.productListWcnt
+          : productListWcnt // ignore: cast_nullable_to_non_nullable
+              as int,
+      productListBestcmt: null == productListBestcmt
+          ? _value.productListBestcmt
+          : productListBestcmt // ignore: cast_nullable_to_non_nullable
+              as String,
+      productListLikeCnt: null == productListLikeCnt
+          ? _value.productListLikeCnt
+          : productListLikeCnt // ignore: cast_nullable_to_non_nullable
+              as int,
+      products: null == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Item>,
     ));
   }
 }
@@ -203,47 +255,72 @@ class __$$_ItemListCopyWithImpl<$Res>
 class _$_ItemList implements _ItemList {
   const _$_ItemList(
       {required this.productListId,
+      required final List<dynamic> productListPd,
       required this.productListNm,
-      required this.productListCm,
-      required this.productImg,
-      required this.productCreateDt,
-      required this.productUpdateDt,
-      required this.mnmberName,
-      required final List<dynamic> productId,
-      required this.prodictListCnt})
-      : _productId = productId;
+      required this.productListCmt,
+      required final List<dynamic> categoryNm,
+      required this.memberNm,
+      required this.productListCreateDt,
+      required this.productListUpdateDt,
+      required this.productListCnt,
+      required this.productListWcnt,
+      required this.productListBestcmt,
+      required this.productListLikeCnt,
+      required final List<Item> products})
+      : _productListPd = productListPd,
+        _categoryNm = categoryNm,
+        _products = products;
 
   factory _$_ItemList.fromJson(Map<String, dynamic> json) =>
       _$$_ItemListFromJson(json);
 
   @override
-  final String productListId;
+  final int productListId;
+  final List<dynamic> _productListPd;
   @override
-  final String productListNm;
-  @override
-  final String productListCm;
-  @override
-  final String productImg;
-  @override
-  final DateTime productCreateDt;
-  @override
-  final DateTime productUpdateDt;
-  @override
-  final String mnmberName;
-  final List<dynamic> _productId;
-  @override
-  List<dynamic> get productId {
-    if (_productId is EqualUnmodifiableListView) return _productId;
+  List<dynamic> get productListPd {
+    if (_productListPd is EqualUnmodifiableListView) return _productListPd;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_productId);
+    return EqualUnmodifiableListView(_productListPd);
   }
 
   @override
-  final String prodictListCnt;
+  final String productListNm;
+  @override
+  final String productListCmt;
+  final List<dynamic> _categoryNm;
+  @override
+  List<dynamic> get categoryNm {
+    if (_categoryNm is EqualUnmodifiableListView) return _categoryNm;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_categoryNm);
+  }
+
+  @override
+  final String memberNm;
+  @override
+  final String productListCreateDt;
+  @override
+  final String productListUpdateDt;
+  @override
+  final int productListCnt;
+  @override
+  final int productListWcnt;
+  @override
+  final String productListBestcmt;
+  @override
+  final int productListLikeCnt;
+  final List<Item> _products;
+  @override
+  List<Item> get products {
+    if (_products is EqualUnmodifiableListView) return _products;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_products);
+  }
 
   @override
   String toString() {
-    return 'ItemList(productListId: $productListId, productListNm: $productListNm, productListCm: $productListCm, productImg: $productImg, productCreateDt: $productCreateDt, productUpdateDt: $productUpdateDt, mnmberName: $mnmberName, productId: $productId, prodictListCnt: $prodictListCnt)';
+    return 'ItemList(productListId: $productListId, productListPd: $productListPd, productListNm: $productListNm, productListCmt: $productListCmt, categoryNm: $categoryNm, memberNm: $memberNm, productListCreateDt: $productListCreateDt, productListUpdateDt: $productListUpdateDt, productListCnt: $productListCnt, productListWcnt: $productListWcnt, productListBestcmt: $productListBestcmt, productListLikeCnt: $productListLikeCnt, products: $products)';
   }
 
   @override
@@ -253,22 +330,29 @@ class _$_ItemList implements _ItemList {
             other is _$_ItemList &&
             (identical(other.productListId, productListId) ||
                 other.productListId == productListId) &&
+            const DeepCollectionEquality()
+                .equals(other._productListPd, _productListPd) &&
             (identical(other.productListNm, productListNm) ||
                 other.productListNm == productListNm) &&
-            (identical(other.productListCm, productListCm) ||
-                other.productListCm == productListCm) &&
-            (identical(other.productImg, productImg) ||
-                other.productImg == productImg) &&
-            (identical(other.productCreateDt, productCreateDt) ||
-                other.productCreateDt == productCreateDt) &&
-            (identical(other.productUpdateDt, productUpdateDt) ||
-                other.productUpdateDt == productUpdateDt) &&
-            (identical(other.mnmberName, mnmberName) ||
-                other.mnmberName == mnmberName) &&
+            (identical(other.productListCmt, productListCmt) ||
+                other.productListCmt == productListCmt) &&
             const DeepCollectionEquality()
-                .equals(other._productId, _productId) &&
-            (identical(other.prodictListCnt, prodictListCnt) ||
-                other.prodictListCnt == prodictListCnt));
+                .equals(other._categoryNm, _categoryNm) &&
+            (identical(other.memberNm, memberNm) ||
+                other.memberNm == memberNm) &&
+            (identical(other.productListCreateDt, productListCreateDt) ||
+                other.productListCreateDt == productListCreateDt) &&
+            (identical(other.productListUpdateDt, productListUpdateDt) ||
+                other.productListUpdateDt == productListUpdateDt) &&
+            (identical(other.productListCnt, productListCnt) ||
+                other.productListCnt == productListCnt) &&
+            (identical(other.productListWcnt, productListWcnt) ||
+                other.productListWcnt == productListWcnt) &&
+            (identical(other.productListBestcmt, productListBestcmt) ||
+                other.productListBestcmt == productListBestcmt) &&
+            (identical(other.productListLikeCnt, productListLikeCnt) ||
+                other.productListLikeCnt == productListLikeCnt) &&
+            const DeepCollectionEquality().equals(other._products, _products));
   }
 
   @JsonKey(ignore: true)
@@ -276,14 +360,18 @@ class _$_ItemList implements _ItemList {
   int get hashCode => Object.hash(
       runtimeType,
       productListId,
+      const DeepCollectionEquality().hash(_productListPd),
       productListNm,
-      productListCm,
-      productImg,
-      productCreateDt,
-      productUpdateDt,
-      mnmberName,
-      const DeepCollectionEquality().hash(_productId),
-      prodictListCnt);
+      productListCmt,
+      const DeepCollectionEquality().hash(_categoryNm),
+      memberNm,
+      productListCreateDt,
+      productListUpdateDt,
+      productListCnt,
+      productListWcnt,
+      productListBestcmt,
+      productListLikeCnt,
+      const DeepCollectionEquality().hash(_products));
 
   @JsonKey(ignore: true)
   @override
@@ -301,36 +389,48 @@ class _$_ItemList implements _ItemList {
 
 abstract class _ItemList implements ItemList {
   const factory _ItemList(
-      {required final String productListId,
+      {required final int productListId,
+      required final List<dynamic> productListPd,
       required final String productListNm,
-      required final String productListCm,
-      required final String productImg,
-      required final DateTime productCreateDt,
-      required final DateTime productUpdateDt,
-      required final String mnmberName,
-      required final List<dynamic> productId,
-      required final String prodictListCnt}) = _$_ItemList;
+      required final String productListCmt,
+      required final List<dynamic> categoryNm,
+      required final String memberNm,
+      required final String productListCreateDt,
+      required final String productListUpdateDt,
+      required final int productListCnt,
+      required final int productListWcnt,
+      required final String productListBestcmt,
+      required final int productListLikeCnt,
+      required final List<Item> products}) = _$_ItemList;
 
   factory _ItemList.fromJson(Map<String, dynamic> json) = _$_ItemList.fromJson;
 
   @override
-  String get productListId;
+  int get productListId;
+  @override
+  List<dynamic> get productListPd;
   @override
   String get productListNm;
   @override
-  String get productListCm;
+  String get productListCmt;
   @override
-  String get productImg;
+  List<dynamic> get categoryNm;
   @override
-  DateTime get productCreateDt;
+  String get memberNm;
   @override
-  DateTime get productUpdateDt;
+  String get productListCreateDt;
   @override
-  String get mnmberName;
+  String get productListUpdateDt;
   @override
-  List<dynamic> get productId;
+  int get productListCnt;
   @override
-  String get prodictListCnt;
+  int get productListWcnt;
+  @override
+  String get productListBestcmt;
+  @override
+  int get productListLikeCnt;
+  @override
+  List<Item> get products;
   @override
   @JsonKey(ignore: true)
   _$$_ItemListCopyWith<_$_ItemList> get copyWith =>

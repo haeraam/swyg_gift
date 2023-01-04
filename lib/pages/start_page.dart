@@ -6,7 +6,7 @@ import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
 import 'package:swyg/cubits/best_category_cubit/best_category_cubit.dart';
 import 'package:swyg/cubits/best_member_cubit/best_member_cubit.dart';
 import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
-import 'package:swyg/cubits/item_list_cubit/item_list_cubit.dart';
+import 'package:swyg/cubits/hot_keyword_item_list_cubit/hot_keyword_item_list_cubit.dart';
 import 'package:swyg/cubits/new_item_cubit/new_item_cubit.dart';
 import 'package:swyg/cubits/weekly_bset_item_cubit/weekly_bset_item_cubit.dart';
 import 'package:swyg/pages/create_item_page/create_item_image.dart';
@@ -24,9 +24,6 @@ class StartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => ItemListCubit(initialList: []),
-        ),
         BlocProvider(create: (context) => BannerItemCubit()),
         BlocProvider(create: (context) => NewItemCubit()),
         BlocProvider(create: (context) => BestCategoryCubit()),
@@ -34,6 +31,7 @@ class StartPage extends StatelessWidget {
         BlocProvider(create: (context) => BestMemberCubit()),
         BlocProvider(create: (context) => WeeklyBsetItemCubit()),
         BlocProvider(create: (context) => CreateItemCubit()),
+        BlocProvider(create: (context) => HotKeywordItemListCubit()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

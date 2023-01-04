@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swyg/cubits/best_category_cubit/best_category_cubit.dart';
+import 'package:swyg/cubits/hot_keyword_item_list_cubit/hot_keyword_item_list_cubit.dart';
 import 'package:swyg/models/category_model.dart';
 import 'package:swyg/models/item_list_model.dart';
 import 'package:swyg/pages/home_page/components/home_title.dart';
@@ -18,10 +19,18 @@ class HomeHotKeywordArea extends StatefulWidget {
 
 class _HomeHotKeywordAreaState extends State<HomeHotKeywordArea> {
   int selectedIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    // List<Category> categories = context.read<BestCategoryCubit>().state.categoryList;
+    // context.read<HotKeywordItemListCubit>().getItemListByCategory(categories[0].categoryNm);
+  }
 
   @override
   Widget build(BuildContext context) {
     List<Category> categories = context.watch<BestCategoryCubit>().state.categoryList;
+    // List<ItemList> itemLists = context.watch<HotKeywordItemListCubit>().state.itemLists;
+    List<ItemList> itemLists = [];
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -71,23 +80,9 @@ class _HomeHotKeywordAreaState extends State<HomeHotKeywordArea> {
                 primary: false,
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                itemCount: 10,
+                itemCount: itemLists.length,
                 itemBuilder: (context, index) => Row(
-                  children: [
-                    ItemListWidget(
-                      itemList: ItemList(
-                          productListId: 'productListId',
-                          productListNm: '리스트명',
-                          productListCm: 'productListCm',
-                          productImg: 'productImg',
-                          productCreateDt: DateTime.now(),
-                          productUpdateDt: DateTime.now(),
-                          mnmberName: '제작자',
-                          productId: [],
-                          prodictListCnt: '${Random().nextInt(50)}'),
-                    ),
-                    const SizedBox(width: 10),
-                  ],
+                  children: itemLists.map((itemList) => ItemListWidget(itemList: itemList)).toList(),
                 ),
               ),
             ),

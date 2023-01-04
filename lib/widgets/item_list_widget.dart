@@ -76,7 +76,7 @@ class ItemListWidget extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          itemList.mnmberName,
+          itemList.memberNm,
           style: const TextStyle(
             color: blackB3C,
             fontSize: 14,
@@ -93,7 +93,7 @@ class ItemListWidget extends StatelessWidget {
             ),
             const SizedBox(width: 3),
             Text(
-              itemList.prodictListCnt,
+              '${itemList.productListCnt}',
               style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600),
             )
           ],

@@ -4,7 +4,6 @@ import 'package:swyg/constant/constant.dart';
 import 'package:swyg/cubits/all_category_cubit/all_category_cubit.dart';
 import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
 import 'package:swyg/cubits/best_category_cubit/best_category_cubit.dart';
-import 'package:swyg/cubits/item_list_cubit/item_list_cubit.dart';
 import 'package:swyg/cubits/new_item_cubit/new_item_cubit.dart';
 import 'package:swyg/cubits/weekly_bset_item_cubit/weekly_bset_item_cubit.dart';
 import 'package:swyg/pages/category_page/category_page.dart';
@@ -37,7 +36,6 @@ class _HomePageState extends State<HomePage> {
     context.read<BannerItemCubit>().getItems();
     context.read<NewItemCubit>().getItems();
     context.read<BestCategoryCubit>().getCategorys();
-    context.read<AllCategoryCubit>().getCategorys();
     context.read<WeeklyBsetItemCubit>().getItems();
     Api().apiTest();
 
@@ -139,10 +137,6 @@ class _HomeContentState extends State<HomeContent> {
     ];
     return MultiBlocListener(
       listeners: [
-        BlocListener<ItemListCubit, ItemListState>(
-          listener: (context, state) {
-          },
-        ),
         BlocListener<BannerItemCubit, BannerItemState>(
           listener: (context, state) {},
         ),

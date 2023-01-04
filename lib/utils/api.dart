@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:swyg/models/category_model.dart';
+import 'package:swyg/models/item_list_model.dart';
 import 'package:swyg/models/item_model.dart';
 
 class Api {
@@ -50,6 +51,13 @@ class Api {
     return categorys;
   }
 
+  getListByCategoryName(String categoryName) async {
+    var res = await http.get(Uri.parse('$host/productList/categorySelect?categoryNm=$categoryName'));
+    List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
+    List<ItemList> itemLists = jsonResponse.map((data) => ItemList.fromJson(data)).toList();
+    return itemLists;
+  }
+
   createItem({
     required XFile image,
     required productNm,
@@ -61,6 +69,10 @@ class Api {
   }) async {
     var request = http.MultipartRequest("POST", Uri.parse('$host/product/insert'));
 
+    request.headers.addAll({
+      "Content-Type": "application/json; charset=utf-8",
+    });
+
     request.fields['productNm'] = productNm;
     request.fields['productCmt'] = productCmt;
     request.fields['productPrice'] = productPrice;
@@ -69,9 +81,6 @@ class Api {
     request.fields['memberNm'] = memberNm;
 
     var file = http.MultipartFile.fromBytes('imageFileList', await image.readAsBytes());
-
-    request.headers['Access-Control-Allow-Origin'] = '*';
-    request.headers['Access-Control-Allow-Methods'] = "POST, GET, OPTIONS, PUT, DELETE, HEAD";
 
     request.files.add(file);
 

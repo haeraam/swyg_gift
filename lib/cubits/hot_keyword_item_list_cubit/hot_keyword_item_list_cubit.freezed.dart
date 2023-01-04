@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'item_list_cubit.dart';
+part of 'hot_keyword_item_list_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,21 +15,21 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ItemListState {
-  List<Item> get itemList => throw _privateConstructorUsedError;
+mixin _$HotKeywordItemListState {
+  List<ItemList> get itemLists => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Item> itemList) initial,
+    required TResult Function(List<ItemList> itemLists) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Item> itemList)? initial,
+    TResult? Function(List<ItemList> itemLists)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Item> itemList)? initial,
+    TResult Function(List<ItemList> itemLists)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,23 +51,24 @@ mixin _$ItemListState {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ItemListStateCopyWith<ItemListState> get copyWith =>
+  $HotKeywordItemListStateCopyWith<HotKeywordItemListState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ItemListStateCopyWith<$Res> {
-  factory $ItemListStateCopyWith(
-          ItemListState value, $Res Function(ItemListState) then) =
-      _$ItemListStateCopyWithImpl<$Res, ItemListState>;
+abstract class $HotKeywordItemListStateCopyWith<$Res> {
+  factory $HotKeywordItemListStateCopyWith(HotKeywordItemListState value,
+          $Res Function(HotKeywordItemListState) then) =
+      _$HotKeywordItemListStateCopyWithImpl<$Res, HotKeywordItemListState>;
   @useResult
-  $Res call({List<Item> itemList});
+  $Res call({List<ItemList> itemLists});
 }
 
 /// @nodoc
-class _$ItemListStateCopyWithImpl<$Res, $Val extends ItemListState>
-    implements $ItemListStateCopyWith<$Res> {
-  _$ItemListStateCopyWithImpl(this._value, this._then);
+class _$HotKeywordItemListStateCopyWithImpl<$Res,
+        $Val extends HotKeywordItemListState>
+    implements $HotKeywordItemListStateCopyWith<$Res> {
+  _$HotKeywordItemListStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -77,31 +78,31 @@ class _$ItemListStateCopyWithImpl<$Res, $Val extends ItemListState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? itemList = null,
+    Object? itemLists = null,
   }) {
     return _then(_value.copyWith(
-      itemList: null == itemList
-          ? _value.itemList
-          : itemList // ignore: cast_nullable_to_non_nullable
-              as List<Item>,
+      itemLists: null == itemLists
+          ? _value.itemLists
+          : itemLists // ignore: cast_nullable_to_non_nullable
+              as List<ItemList>,
     ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$_InitialCopyWith<$Res>
-    implements $ItemListStateCopyWith<$Res> {
+    implements $HotKeywordItemListStateCopyWith<$Res> {
   factory _$$_InitialCopyWith(
           _$_Initial value, $Res Function(_$_Initial) then) =
       __$$_InitialCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Item> itemList});
+  $Res call({List<ItemList> itemLists});
 }
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$ItemListStateCopyWithImpl<$Res, _$_Initial>
+    extends _$HotKeywordItemListStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -109,13 +110,13 @@ class __$$_InitialCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? itemList = null,
+    Object? itemLists = null,
   }) {
     return _then(_$_Initial(
-      itemList: null == itemList
-          ? _value._itemList
-          : itemList // ignore: cast_nullable_to_non_nullable
-              as List<Item>,
+      itemLists: null == itemLists
+          ? _value._itemLists
+          : itemLists // ignore: cast_nullable_to_non_nullable
+              as List<ItemList>,
     ));
   }
 }
@@ -123,19 +124,20 @@ class __$$_InitialCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Initial implements _Initial {
-  const _$_Initial({required final List<Item> itemList}) : _itemList = itemList;
+  const _$_Initial({required final List<ItemList> itemLists})
+      : _itemLists = itemLists;
 
-  final List<Item> _itemList;
+  final List<ItemList> _itemLists;
   @override
-  List<Item> get itemList {
-    if (_itemList is EqualUnmodifiableListView) return _itemList;
+  List<ItemList> get itemLists {
+    if (_itemLists is EqualUnmodifiableListView) return _itemLists;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_itemList);
+    return EqualUnmodifiableListView(_itemLists);
   }
 
   @override
   String toString() {
-    return 'ItemListState.initial(itemList: $itemList)';
+    return 'HotKeywordItemListState.initial(itemLists: $itemLists)';
   }
 
   @override
@@ -143,12 +145,13 @@ class _$_Initial implements _Initial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Initial &&
-            const DeepCollectionEquality().equals(other._itemList, _itemList));
+            const DeepCollectionEquality()
+                .equals(other._itemLists, _itemLists));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_itemList));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_itemLists));
 
   @JsonKey(ignore: true)
   @override
@@ -159,27 +162,27 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Item> itemList) initial,
+    required TResult Function(List<ItemList> itemLists) initial,
   }) {
-    return initial(itemList);
+    return initial(itemLists);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Item> itemList)? initial,
+    TResult? Function(List<ItemList> itemLists)? initial,
   }) {
-    return initial?.call(itemList);
+    return initial?.call(itemLists);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Item> itemList)? initial,
+    TResult Function(List<ItemList> itemLists)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(itemList);
+      return initial(itemLists);
     }
     return orElse();
   }
@@ -213,11 +216,12 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements ItemListState {
-  const factory _Initial({required final List<Item> itemList}) = _$_Initial;
+abstract class _Initial implements HotKeywordItemListState {
+  const factory _Initial({required final List<ItemList> itemLists}) =
+      _$_Initial;
 
   @override
-  List<Item> get itemList;
+  List<ItemList> get itemLists;
   @override
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>
