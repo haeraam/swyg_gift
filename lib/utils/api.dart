@@ -70,6 +70,9 @@ class Api {
 
     var file = http.MultipartFile.fromBytes('imageFileList', await image.readAsBytes());
 
+    request.headers['Access-Control-Allow-Origin'] = '*';
+    request.headers['Access-Control-Allow-Methods'] = "POST, GET, OPTIONS, PUT, DELETE, HEAD";
+
     request.files.add(file);
 
     var response = await request.send();
