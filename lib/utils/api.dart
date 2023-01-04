@@ -59,7 +59,7 @@ class Api {
     required catrgoryNm,
     required memberNm,
   }) async {
-    var request = http.MultipartRequest("POST", Uri.parse('$host/productList/insert'));
+    var request = http.MultipartRequest("POST", Uri.parse('$host/product/insert'));
 
     request.fields['productNm'] = productNm;
     request.fields['productCmt'] = productCmt;
@@ -68,11 +68,13 @@ class Api {
     request.fields['catrgoryNm'] = catrgoryNm.toString();
     request.fields['memberNm'] = memberNm;
 
-    request.files.add(await http.MultipartFile.fromPath('imageFileList', image.path));
+    var file = http.MultipartFile.fromBytes('imageFileList', await image.readAsBytes());
+
+    request.files.add(file);
 
     var response = await request.send();
-
-    print(response);
+    final jsonBody = json.decode(await response.stream.bytesToString()); // json 응답 값을 decode
+    print(jsonBody);
     return response;
   }
 
