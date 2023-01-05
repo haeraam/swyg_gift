@@ -19,9 +19,7 @@ _$_ItemList _$$_ItemListFromJson(Map<String, dynamic> json) => _$_ItemList(
       productListWcnt: json['productListWcnt'] as int,
       productListBestcmt: json['productListBestcmt'] as String,
       productListLikeCnt: json['productListLikeCnt'] as int,
-      products: (json['products'] as List<dynamic>)
-          .map((e) => Item.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      products: Item.fromJson(json['products'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ItemListToJson(_$_ItemList instance) =>

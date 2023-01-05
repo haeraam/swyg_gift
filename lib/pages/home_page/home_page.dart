@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    context.read<AllCategoryCubit>().getCategorys();
     context.read<BannerItemCubit>().getItems();
     context.read<NewItemCubit>().getItems();
     context.read<BestCategoryCubit>().getCategorys();
@@ -47,6 +48,7 @@ class _HomePageState extends State<HomePage> {
     ];
     super.initState();
   }
+
 
   @override
   Widget build(BuildContext context) {

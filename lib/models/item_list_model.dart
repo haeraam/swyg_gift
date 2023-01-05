@@ -18,7 +18,7 @@ class ItemList with _$ItemList {
     required int productListWcnt,
     required String productListBestcmt,
     required int productListLikeCnt,
-    required List<Item> products,
+    required Item products,
   }) = _ItemList;
 
   factory ItemList.fromJson(Map<String, dynamic> json) => _$ItemListFromJson(json);

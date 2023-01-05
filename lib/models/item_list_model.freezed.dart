@@ -32,7 +32,7 @@ mixin _$ItemList {
   int get productListWcnt => throw _privateConstructorUsedError;
   String get productListBestcmt => throw _privateConstructorUsedError;
   int get productListLikeCnt => throw _privateConstructorUsedError;
-  List<Item> get products => throw _privateConstructorUsedError;
+  Item get products => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -58,7 +58,9 @@ abstract class $ItemListCopyWith<$Res> {
       int productListWcnt,
       String productListBestcmt,
       int productListLikeCnt,
-      List<Item> products});
+      Item products});
+
+  $ItemCopyWith<$Res> get products;
 }
 
 /// @nodoc
@@ -140,8 +142,16 @@ class _$ItemListCopyWithImpl<$Res, $Val extends ItemList>
       products: null == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<Item>,
+              as Item,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ItemCopyWith<$Res> get products {
+    return $ItemCopyWith<$Res>(_value.products, (value) {
+      return _then(_value.copyWith(products: value) as $Val);
+    });
   }
 }
 
@@ -165,7 +175,10 @@ abstract class _$$_ItemListCopyWith<$Res> implements $ItemListCopyWith<$Res> {
       int productListWcnt,
       String productListBestcmt,
       int productListLikeCnt,
-      List<Item> products});
+      Item products});
+
+  @override
+  $ItemCopyWith<$Res> get products;
 }
 
 /// @nodoc
@@ -243,9 +256,9 @@ class __$$_ItemListCopyWithImpl<$Res>
           : productListLikeCnt // ignore: cast_nullable_to_non_nullable
               as int,
       products: null == products
-          ? _value._products
+          ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<Item>,
+              as Item,
     ));
   }
 }
@@ -266,10 +279,9 @@ class _$_ItemList implements _ItemList {
       required this.productListWcnt,
       required this.productListBestcmt,
       required this.productListLikeCnt,
-      required final List<Item> products})
+      required this.products})
       : _productListPd = productListPd,
-        _categoryNm = categoryNm,
-        _products = products;
+        _categoryNm = categoryNm;
 
   factory _$_ItemList.fromJson(Map<String, dynamic> json) =>
       _$$_ItemListFromJson(json);
@@ -310,13 +322,8 @@ class _$_ItemList implements _ItemList {
   final String productListBestcmt;
   @override
   final int productListLikeCnt;
-  final List<Item> _products;
   @override
-  List<Item> get products {
-    if (_products is EqualUnmodifiableListView) return _products;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_products);
-  }
+  final Item products;
 
   @override
   String toString() {
@@ -352,7 +359,8 @@ class _$_ItemList implements _ItemList {
                 other.productListBestcmt == productListBestcmt) &&
             (identical(other.productListLikeCnt, productListLikeCnt) ||
                 other.productListLikeCnt == productListLikeCnt) &&
-            const DeepCollectionEquality().equals(other._products, _products));
+            (identical(other.products, products) ||
+                other.products == products));
   }
 
   @JsonKey(ignore: true)
@@ -371,7 +379,7 @@ class _$_ItemList implements _ItemList {
       productListWcnt,
       productListBestcmt,
       productListLikeCnt,
-      const DeepCollectionEquality().hash(_products));
+      products);
 
   @JsonKey(ignore: true)
   @override
@@ -401,7 +409,7 @@ abstract class _ItemList implements ItemList {
       required final int productListWcnt,
       required final String productListBestcmt,
       required final int productListLikeCnt,
-      required final List<Item> products}) = _$_ItemList;
+      required final Item products}) = _$_ItemList;
 
   factory _ItemList.fromJson(Map<String, dynamic> json) = _$_ItemList.fromJson;
 
@@ -430,7 +438,7 @@ abstract class _ItemList implements ItemList {
   @override
   int get productListLikeCnt;
   @override
-  List<Item> get products;
+  Item get products;
   @override
   @JsonKey(ignore: true)
   _$$_ItemListCopyWith<_$_ItemList> get copyWith =>
