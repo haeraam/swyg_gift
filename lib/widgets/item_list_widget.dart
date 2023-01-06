@@ -30,7 +30,7 @@ class ItemListWidget extends StatelessWidget {
                           color: Colors.red,
                           borderRadius: BorderRadius.only(topLeft: Radius.circular(15)),
                           image: DecorationImage(
-                            image: CachedNetworkImageProvider(itemList.products.productImg),
+                            image: CachedNetworkImageProvider(itemList.products[0].productImg),
                           ),
                         ),
                       ),

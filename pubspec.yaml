@@ -31,20 +31,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc:
-  equatable:
-  uuid:
-  go_router:
-  lottie:
-  hive:
-  path_provider:
-  freezed_annotation:
-  carousel_slider:
-  flutter_dotenv:
-  url_launcher:
-  cached_network_image:
-  image_picker:
-  http:
+  flutter_bloc: ^8.1.1
+  equatable : ^2.0.5
+  uuid : ^3.0.7
+  go_router: ^6.0.1
+  lottie: ^2.1.0
+  hive : ^2.2.3
+  path_provider: ^2.0.11
+  freezed_annotation: ^2.2.0
+  carousel_slider: ^4.2.1
+  url_launcher: ^6.1.7
+  cached_network_image: ^3.2.3
+  image_picker: ^0.8.6
+  http: ^0.13.5
+  bloc: ^8.1.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -52,9 +52,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner:
-  json_serializable:
-  freezed:
+  build_runner: ^2.3.3
+  json_serializable : ^6.5.4
+  freezed: ^2.3.2
   analyzer: 5.2.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
