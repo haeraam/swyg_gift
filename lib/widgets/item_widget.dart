@@ -54,7 +54,7 @@ class ItemWidget extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          item.memberName ?? '',
+          item.memberNm ?? '',
           style: const TextStyle(
             color: blackB3C,
             fontSize: 14,
@@ -62,6 +62,7 @@ class ItemWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
+        if(item.categoryNm.isNotEmpty)
         Row(
           children: [
             Container(

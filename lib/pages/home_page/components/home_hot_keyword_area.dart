@@ -23,8 +23,6 @@ class _HomeHotKeywordAreaState extends State<HomeHotKeywordArea> {
   @override
   void initState() {
     super.initState();
-    // List<Category> categories = context.read<BestCategoryCubit>().state.categoryList;
-    // context.read<HotKeywordItemListCubit>().getItemListByCategory(categories[0].categoryNm);
   }
 
   @override
@@ -32,7 +30,9 @@ class _HomeHotKeywordAreaState extends State<HomeHotKeywordArea> {
     List<Category> categories = context.watch<BestCategoryCubit>().state.categoryList;
     List<ItemList> itemLists = context.watch<HotKeywordItemListCubit>().state.itemLists;
     return BlocListener<BestCategoryCubit, BestCategoryState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        context.read<HotKeywordItemListCubit>().getItemListByCategory(state.categoryList[0].categoryNm);
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(

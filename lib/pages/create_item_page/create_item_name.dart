@@ -1,7 +1,8 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
 import 'package:swyg/models/category_model.dart';
 import 'package:swyg/pages/create_item_page/create_item_preview.dart';
@@ -9,7 +10,7 @@ import 'package:swyg/pages/page.dart';
 import 'package:swyg/theme/color.dart';
 
 class CreateItemName extends StatefulWidget {
-  CreateItemName({Key? key}) : super(key: key);
+  const CreateItemName({Key? key}) : super(key: key);
 
   @override
   State<CreateItemName> createState() => _CreateItemNameState();
@@ -35,7 +36,7 @@ class _CreateItemNameState extends State<CreateItemName> {
   @override
   Widget build(BuildContext context) {
     List<Category> categoryNm = context.read<CreateItemCubit>().state.categoryNm ?? <Category>[];
-    XFile image = context.read<CreateItemCubit>().state.image ?? XFile('');
+    Uint8List? image = context.read<CreateItemCubit>().state.image;
 
     return Scaffold(
       appBar: AppBar(

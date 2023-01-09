@@ -1,15 +1,15 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:image_picker_web/image_picker_web.dart';
 import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
 import 'package:swyg/pages/page.dart';
 import 'package:swyg/theme/color.dart';
 
 class CreateItemImage extends StatefulWidget {
-  CreateItemImage({Key? key}) : super(key: key);
+  const CreateItemImage({Key? key}) : super(key: key);
 
   @override
   State<CreateItemImage> createState() => _CreateItemImageState();
@@ -18,7 +18,7 @@ class CreateItemImage extends StatefulWidget {
 class _CreateItemImageState extends State<CreateItemImage> {
   final List<String> test1 = List.generate(10, (index) => '카테고리$index');
 
-  XFile? _img;
+  Uint8List? _img;
   String? _url;
   bool isImageSelected = false;
   bool filledTextField = false;
@@ -100,8 +100,9 @@ class _CreateItemImageState extends State<CreateItemImage> {
                 const SizedBox(height: 12),
                 GestureDetector(
                   onTap: () async {
-                    final ImagePicker picker = ImagePicker();
-                    _img = await picker.pickImage(source: ImageSource.gallery);
+                    // final ImagePicker picker = ImagePicker();
+                    // _img = await picker.pickImage(source: ImageSource.gallery);
+                    _img = await ImagePickerWeb.getImageAsBytes();
                     if (_img != null) {
                       isImageSelected = true;
                     }
@@ -110,12 +111,12 @@ class _CreateItemImageState extends State<CreateItemImage> {
                   child: Container(
                     height: 151,
                     alignment: Alignment.center,
-                    child: isImageSelected
+                    child: isImageSelected && _img != null
                         ? SizedBox(
                             width: 151,
                             height: 151,
-                            child: Image.network(
-                              _img!.path,
+                            child: Image.memory(
+                              _img!,
                               fit: BoxFit.cover,
                             ),
                             //     child: Image.file(

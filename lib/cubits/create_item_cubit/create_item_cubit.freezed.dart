@@ -22,7 +22,7 @@ mixin _$CreateItemState {
   String? get productNm => throw _privateConstructorUsedError;
   String? get memberNm => throw _privateConstructorUsedError;
   List<Category>? get categoryNm => throw _privateConstructorUsedError;
-  XFile? get image => throw _privateConstructorUsedError;
+  Uint8List? get image => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -32,7 +32,7 @@ mixin _$CreateItemState {
             String? productNm,
             String? memberNm,
             List<Category>? categoryNm,
-            XFile? image)
+            Uint8List? image)
         initial,
   }) =>
       throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ mixin _$CreateItemState {
             String? productNm,
             String? memberNm,
             List<Category>? categoryNm,
-            XFile? image)?
+            Uint8List? image)?
         initial,
   }) =>
       throw _privateConstructorUsedError;
@@ -58,7 +58,7 @@ mixin _$CreateItemState {
             String? productNm,
             String? memberNm,
             List<Category>? categoryNm,
-            XFile? image)?
+            Uint8List? image)?
         initial,
     required TResult orElse(),
   }) =>
@@ -98,7 +98,7 @@ abstract class $CreateItemStateCopyWith<$Res> {
       String? productNm,
       String? memberNm,
       List<Category>? categoryNm,
-      XFile? image});
+      Uint8List? image});
 }
 
 /// @nodoc
@@ -150,7 +150,7 @@ class _$CreateItemStateCopyWithImpl<$Res, $Val extends CreateItemState>
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as XFile?,
+              as Uint8List?,
     ) as $Val);
   }
 }
@@ -170,7 +170,7 @@ abstract class _$$_InitialCopyWith<$Res>
       String? productNm,
       String? memberNm,
       List<Category>? categoryNm,
-      XFile? image});
+      Uint8List? image});
 }
 
 /// @nodoc
@@ -219,7 +219,7 @@ class __$$_InitialCopyWithImpl<$Res>
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as XFile?,
+              as Uint8List?,
     ));
   }
 }
@@ -258,7 +258,7 @@ class _$_Initial implements _Initial {
   }
 
   @override
-  final XFile? image;
+  final Uint8List? image;
 
   @override
   String toString() {
@@ -282,7 +282,7 @@ class _$_Initial implements _Initial {
                 other.memberNm == memberNm) &&
             const DeepCollectionEquality()
                 .equals(other._categoryNm, _categoryNm) &&
-            (identical(other.image, image) || other.image == image));
+            const DeepCollectionEquality().equals(other.image, image));
   }
 
   @override
@@ -294,7 +294,7 @@ class _$_Initial implements _Initial {
       productNm,
       memberNm,
       const DeepCollectionEquality().hash(_categoryNm),
-      image);
+      const DeepCollectionEquality().hash(image));
 
   @JsonKey(ignore: true)
   @override
@@ -312,7 +312,7 @@ class _$_Initial implements _Initial {
             String? productNm,
             String? memberNm,
             List<Category>? categoryNm,
-            XFile? image)
+            Uint8List? image)
         initial,
   }) {
     return initial(productUrl, productPrice, productCmt, productNm, memberNm,
@@ -329,7 +329,7 @@ class _$_Initial implements _Initial {
             String? productNm,
             String? memberNm,
             List<Category>? categoryNm,
-            XFile? image)?
+            Uint8List? image)?
         initial,
   }) {
     return initial?.call(productUrl, productPrice, productCmt, productNm,
@@ -346,7 +346,7 @@ class _$_Initial implements _Initial {
             String? productNm,
             String? memberNm,
             List<Category>? categoryNm,
-            XFile? image)?
+            Uint8List? image)?
         initial,
     required TResult orElse(),
   }) {
@@ -394,7 +394,7 @@ abstract class _Initial implements CreateItemState {
       final String? productNm,
       final String? memberNm,
       final List<Category>? categoryNm,
-      final XFile? image}) = _$_Initial;
+      final Uint8List? image}) = _$_Initial;
 
   @override
   String? get productUrl;
@@ -409,7 +409,7 @@ abstract class _Initial implements CreateItemState {
   @override
   List<Category>? get categoryNm;
   @override
-  XFile? get image;
+  Uint8List? get image;
   @override
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>

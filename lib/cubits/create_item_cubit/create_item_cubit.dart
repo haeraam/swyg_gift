@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
@@ -18,7 +20,7 @@ class CreateItemCubit extends Cubit<CreateItemState> {
     emit(state.copyWith(categoryNm: newCategories));
   }
 
-  setImages(XFile image) {
+  setImages(Uint8List image) {
     emit(state.copyWith(image: image));
   }
 

@@ -1,11 +1,12 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:swyg/models/category_model.dart';
 import 'package:swyg/theme/color.dart';
 
 class CreateItemPreview extends StatelessWidget {
   const CreateItemPreview({super.key, required this.image, required this.memberName, required this.itemName, required this.categories, required this.coment});
-  final XFile image;
+  final Uint8List? image;
   final String memberName;
   final String itemName;
   final List<Category> categories;
@@ -31,14 +32,12 @@ class CreateItemPreview extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                     ),
                     clipBehavior: Clip.antiAlias,
-                    child: Image.network(
-                      image.path,
-                      fit: BoxFit.cover,
-                    ),
-                    //  child: Image.file(
-                    //   File(image.path),
-                    //   fit: BoxFit.cover,
-                    // ),
+                    child: image != null
+                        ? Image.memory(
+                            image!,
+                            fit: BoxFit.cover,
+                          )
+                        : Container(),
                   ),
                   Container(
                     width: 80,
@@ -67,7 +66,7 @@ class CreateItemPreview extends StatelessWidget {
                   Row(
                     children: categories
                         .map((category) => Container(
-                          margin: const EdgeInsets.only(left: 4),
+                              margin: const EdgeInsets.only(left: 4),
                               padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(color: const Color(0xFFE7E7E7), borderRadius: BorderRadius.circular(3)),
                               child: Text(

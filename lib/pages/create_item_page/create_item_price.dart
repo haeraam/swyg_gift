@@ -1,7 +1,11 @@
+import 'dart:html';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:image_picker_web/image_picker_web.dart';
 import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
 import 'package:swyg/models/category_model.dart';
 import 'package:swyg/pages/create_item_page/create_item_preview.dart';
@@ -19,14 +23,16 @@ class CreateItemPrice extends StatefulWidget {
 class _CreateItemPriceState extends State<CreateItemPrice> {
   final List<String> test1 = List.generate(10, (index) => '카테고리$index');
   int selectedIndex = -1;
+  Uint8List? test;
 
   @override
   Widget build(BuildContext context) {
     List<Category> categoryNm = context.read<CreateItemCubit>().state.categoryNm ?? <Category>[];
-    XFile image = context.read<CreateItemCubit>().state.image ?? XFile('');
+    Uint8List? image = context.read<CreateItemCubit>().state.image;
     String itemName = context.read<CreateItemCubit>().state.productNm ?? '';
     String itemComent = context.read<CreateItemCubit>().state.productCmt ?? '';
     String url = context.read<CreateItemCubit>().state.productUrl ?? '';
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 96,

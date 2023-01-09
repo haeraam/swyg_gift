@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
@@ -59,7 +60,7 @@ class Api {
   }
 
   createItem({
-    required XFile image,
+    required Uint8List image,
     required productNm,
     required productCmt,
     required productPrice,
@@ -77,16 +78,21 @@ class Api {
     request.fields['productCmt'] = productCmt;
     request.fields['productPrice'] = productPrice;
     request.fields['productUrl'] = productUrl;
-    request.fields['catrgoryNm'] = catrgoryNm.toString();
+    // request.fields['catrgoryNm'] = catrgoryNm.toString();
     request.fields['memberNm'] = memberNm;
 
-    var file = http.MultipartFile.fromBytes('imageFileList', await image.readAsBytes());
+    int categoryNum = 0;
+    for (var category in (catrgoryNm as List)) {
+      request.fields['categoryNm[${categoryNum++}]'] = category;
+    }
+
+    var file = http.MultipartFile.fromBytes('image', image, filename: 'name');
+    // var file = http.MultipartFile('image', image.readAsBytes().asStream(),image.lengthSync());
 
     request.files.add(file);
 
     var response = await request.send();
-    final jsonBody = json.decode(await response.stream.bytesToString()); // json 응답 값을 decode
-    print(jsonBody);
+    print(response);
     return response;
   }
 

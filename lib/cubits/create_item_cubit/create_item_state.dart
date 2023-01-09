@@ -9,6 +9,6 @@ class CreateItemState with _$CreateItemState {
     String? productNm,
     String? memberNm,
     List<Category>? categoryNm,
-    XFile? image,
+    Uint8List? image,
   }) = _Initial;
 }

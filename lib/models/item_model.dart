@@ -14,7 +14,7 @@ class Item with _$Item {
     required List categoryNm,
     required int productCnt,
     required int productWcnt,
-    required String? memberName,
+    required String? memberNm,
     required String productCreateDt,
     required String productUpdateDt,
     required String? productBestCmt,
