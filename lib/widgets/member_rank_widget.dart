@@ -33,7 +33,7 @@ class MemberRankWidget extends StatelessWidget {
                   color: Colors.white,
                 ),
                 Text(
-                  '${item.productCnt}',
+                  item.productCmt,
                   style: const TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w400,

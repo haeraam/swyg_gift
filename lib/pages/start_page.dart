@@ -7,15 +7,19 @@ import 'package:swyg/cubits/best_category_cubit/best_category_cubit.dart';
 import 'package:swyg/cubits/best_member_cubit/best_member_cubit.dart';
 import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
 import 'package:swyg/cubits/hot_keyword_item_list_cubit/hot_keyword_item_list_cubit.dart';
+import 'package:swyg/cubits/item_detail_cubit/item_detail_cubit.dart';
 import 'package:swyg/cubits/new_item_cubit/new_item_cubit.dart';
 import 'package:swyg/cubits/weekly_bset_item_cubit/weekly_bset_item_cubit.dart';
+import 'package:swyg/models/item_model.dart';
 import 'package:swyg/pages/create_item_page/create_item_image.dart';
 import 'package:swyg/pages/create_item_page/create_item_keyword.dart';
 import 'package:swyg/pages/create_item_page/create_item_name.dart';
 import 'package:swyg/pages/create_item_page/create_item_price.dart';
 import 'package:swyg/pages/create_list_page/create_list.dart';
 import 'package:swyg/pages/home_page/home_page.dart';
+import 'package:swyg/pages/item_page/item_detail_page.dart';
 import 'package:swyg/pages/my_page/my_page.dart';
+import 'package:swyg/pages/signIn/sign_in.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({Key? key}) : super(key: key);
@@ -32,6 +36,7 @@ class StartPage extends StatelessWidget {
         BlocProvider(create: (context) => WeeklyBsetItemCubit()),
         BlocProvider(create: (context) => CreateItemCubit()),
         BlocProvider(create: (context) => HotKeywordItemListCubit()),
+        BlocProvider(create: (context) => ItemDetailCubit()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
@@ -86,7 +91,7 @@ final _router = GoRouter(
       path: '/createItemImage',
       pageBuilder: (context, state) => CustomTransitionPage<void>(
         key: state.pageKey,
-        child: CreateItemImage(),
+        child: const CreateItemImage(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
             position: animation.drive(
               Tween(
@@ -103,7 +108,7 @@ final _router = GoRouter(
       path: '/createItemName',
       pageBuilder: (context, state) => CustomTransitionPage<void>(
         key: state.pageKey,
-        child: CreateItemName(),
+        child: const CreateItemName(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
             position: animation.drive(
               Tween(
@@ -145,10 +150,21 @@ final _router = GoRouter(
       ),
     ),
     GoRoute(
-      path: '/createList',
+      path: '/item/:itemId',
       pageBuilder: (context, state) => CustomTransitionPage<void>(
         key: state.pageKey,
-        child: const CreateListPage(),
+        child:  ItemDetailPage(itemId: state.params['itemId'] ?? '0'),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
+          opacity: animation,
+          child: child,
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/signIn',
+      pageBuilder: (context, state) => CustomTransitionPage<void>(
+        key: state.pageKey,
+        child: const SignIn(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
           opacity: animation,
           child: child,

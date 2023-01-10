@@ -12,13 +12,29 @@ class Item with _$Item {
     required String productUrl,
     required String productImg,
     required List categoryNm,
-    required int productCnt,
+    required String productCmt,
     required int productWcnt,
     required String? memberNm,
     required String productCreateDt,
     required String productUpdateDt,
     required String? productBestCmt,
   }) = _Item;
+
+  factory Item.empty() => const Item(
+        productId: 0,
+        productNm: '',
+        productCm: '',
+        productPrice: '',
+        productUrl: '',
+        productImg: '',
+        categoryNm: [],
+        productCmt: '',
+        productWcnt: 0,
+        memberNm: '',
+        productCreateDt: '',
+        productUpdateDt: '',
+        productBestCmt: '',
+      );
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
 }

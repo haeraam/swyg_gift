@@ -59,6 +59,13 @@ class Api {
     return itemLists;
   }
 
+  getItem(String itemId) async {
+    var res = await http.get(Uri.parse('$host/product/select?productId=$itemId'));
+    List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
+    Item item = Item.fromJson(jsonResponse[0]);
+    return item;
+  }
+
   createItem({
     required Uint8List image,
     required productNm,
@@ -92,7 +99,6 @@ class Api {
     request.files.add(file);
 
     var response = await request.send();
-    print(response);
     return response;
   }
 

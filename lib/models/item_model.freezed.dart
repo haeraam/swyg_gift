@@ -27,7 +27,7 @@ mixin _$Item {
   String get productUrl => throw _privateConstructorUsedError;
   String get productImg => throw _privateConstructorUsedError;
   List<dynamic> get categoryNm => throw _privateConstructorUsedError;
-  int get productCnt => throw _privateConstructorUsedError;
+  String get productCmt => throw _privateConstructorUsedError;
   int get productWcnt => throw _privateConstructorUsedError;
   String? get memberNm => throw _privateConstructorUsedError;
   String get productCreateDt => throw _privateConstructorUsedError;
@@ -52,7 +52,7 @@ abstract class $ItemCopyWith<$Res> {
       String productUrl,
       String productImg,
       List<dynamic> categoryNm,
-      int productCnt,
+      String productCmt,
       int productWcnt,
       String? memberNm,
       String productCreateDt,
@@ -80,7 +80,7 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
     Object? productUrl = null,
     Object? productImg = null,
     Object? categoryNm = null,
-    Object? productCnt = null,
+    Object? productCmt = null,
     Object? productWcnt = null,
     Object? memberNm = freezed,
     Object? productCreateDt = null,
@@ -116,10 +116,10 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
           ? _value.categoryNm
           : categoryNm // ignore: cast_nullable_to_non_nullable
               as List<dynamic>,
-      productCnt: null == productCnt
-          ? _value.productCnt
-          : productCnt // ignore: cast_nullable_to_non_nullable
-              as int,
+      productCmt: null == productCmt
+          ? _value.productCmt
+          : productCmt // ignore: cast_nullable_to_non_nullable
+              as String,
       productWcnt: null == productWcnt
           ? _value.productWcnt
           : productWcnt // ignore: cast_nullable_to_non_nullable
@@ -158,7 +158,7 @@ abstract class _$$_ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
       String productUrl,
       String productImg,
       List<dynamic> categoryNm,
-      int productCnt,
+      String productCmt,
       int productWcnt,
       String? memberNm,
       String productCreateDt,
@@ -182,7 +182,7 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
     Object? productUrl = null,
     Object? productImg = null,
     Object? categoryNm = null,
-    Object? productCnt = null,
+    Object? productCmt = null,
     Object? productWcnt = null,
     Object? memberNm = freezed,
     Object? productCreateDt = null,
@@ -218,10 +218,10 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
           ? _value._categoryNm
           : categoryNm // ignore: cast_nullable_to_non_nullable
               as List<dynamic>,
-      productCnt: null == productCnt
-          ? _value.productCnt
-          : productCnt // ignore: cast_nullable_to_non_nullable
-              as int,
+      productCmt: null == productCmt
+          ? _value.productCmt
+          : productCmt // ignore: cast_nullable_to_non_nullable
+              as String,
       productWcnt: null == productWcnt
           ? _value.productWcnt
           : productWcnt // ignore: cast_nullable_to_non_nullable
@@ -257,7 +257,7 @@ class _$_Item implements _Item {
       required this.productUrl,
       required this.productImg,
       required final List<dynamic> categoryNm,
-      required this.productCnt,
+      required this.productCmt,
       required this.productWcnt,
       required this.memberNm,
       required this.productCreateDt,
@@ -288,7 +288,7 @@ class _$_Item implements _Item {
   }
 
   @override
-  final int productCnt;
+  final String productCmt;
   @override
   final int productWcnt;
   @override
@@ -302,7 +302,7 @@ class _$_Item implements _Item {
 
   @override
   String toString() {
-    return 'Item(productId: $productId, productNm: $productNm, productCm: $productCm, productPrice: $productPrice, productUrl: $productUrl, productImg: $productImg, categoryNm: $categoryNm, productCnt: $productCnt, productWcnt: $productWcnt, memberNm: $memberNm, productCreateDt: $productCreateDt, productUpdateDt: $productUpdateDt, productBestCmt: $productBestCmt)';
+    return 'Item(productId: $productId, productNm: $productNm, productCm: $productCm, productPrice: $productPrice, productUrl: $productUrl, productImg: $productImg, categoryNm: $categoryNm, productCmt: $productCmt, productWcnt: $productWcnt, memberNm: $memberNm, productCreateDt: $productCreateDt, productUpdateDt: $productUpdateDt, productBestCmt: $productBestCmt)';
   }
 
   @override
@@ -324,8 +324,8 @@ class _$_Item implements _Item {
                 other.productImg == productImg) &&
             const DeepCollectionEquality()
                 .equals(other._categoryNm, _categoryNm) &&
-            (identical(other.productCnt, productCnt) ||
-                other.productCnt == productCnt) &&
+            (identical(other.productCmt, productCmt) ||
+                other.productCmt == productCmt) &&
             (identical(other.productWcnt, productWcnt) ||
                 other.productWcnt == productWcnt) &&
             (identical(other.memberNm, memberNm) ||
@@ -349,7 +349,7 @@ class _$_Item implements _Item {
       productUrl,
       productImg,
       const DeepCollectionEquality().hash(_categoryNm),
-      productCnt,
+      productCmt,
       productWcnt,
       memberNm,
       productCreateDt,
@@ -379,7 +379,7 @@ abstract class _Item implements Item {
       required final String productUrl,
       required final String productImg,
       required final List<dynamic> categoryNm,
-      required final int productCnt,
+      required final String productCmt,
       required final int productWcnt,
       required final String? memberNm,
       required final String productCreateDt,
@@ -403,7 +403,7 @@ abstract class _Item implements Item {
   @override
   List<dynamic> get categoryNm;
   @override
-  int get productCnt;
+  String get productCmt;
   @override
   int get productWcnt;
   @override

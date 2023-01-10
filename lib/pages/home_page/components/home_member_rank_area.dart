@@ -40,7 +40,7 @@ class HomeMemberRankArea extends StatelessWidget {
                           productUrl: 'productUrl',
                           productImg: 'productImg',
                           categoryNm: [],
-                          productCnt: Random().nextInt(100),
+                          productCmt: '',
                           productWcnt: 0,
                           memberNm: '제작자',
                           productCreateDt: DateTime.now().toString(),
