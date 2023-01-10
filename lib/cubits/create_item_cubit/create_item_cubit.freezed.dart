@@ -23,6 +23,7 @@ mixin _$CreateItemState {
   String? get memberNm => throw _privateConstructorUsedError;
   List<Category>? get categoryNm => throw _privateConstructorUsedError;
   Uint8List? get image => throw _privateConstructorUsedError;
+  String? get createdItemId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -32,7 +33,8 @@ mixin _$CreateItemState {
             String? productNm,
             String? memberNm,
             List<Category>? categoryNm,
-            Uint8List? image)
+            Uint8List? image,
+            String? createdItemId)
         initial,
   }) =>
       throw _privateConstructorUsedError;
@@ -45,7 +47,8 @@ mixin _$CreateItemState {
             String? productNm,
             String? memberNm,
             List<Category>? categoryNm,
-            Uint8List? image)?
+            Uint8List? image,
+            String? createdItemId)?
         initial,
   }) =>
       throw _privateConstructorUsedError;
@@ -58,7 +61,8 @@ mixin _$CreateItemState {
             String? productNm,
             String? memberNm,
             List<Category>? categoryNm,
-            Uint8List? image)?
+            Uint8List? image,
+            String? createdItemId)?
         initial,
     required TResult orElse(),
   }) =>
@@ -98,7 +102,8 @@ abstract class $CreateItemStateCopyWith<$Res> {
       String? productNm,
       String? memberNm,
       List<Category>? categoryNm,
-      Uint8List? image});
+      Uint8List? image,
+      String? createdItemId});
 }
 
 /// @nodoc
@@ -121,6 +126,7 @@ class _$CreateItemStateCopyWithImpl<$Res, $Val extends CreateItemState>
     Object? memberNm = freezed,
     Object? categoryNm = freezed,
     Object? image = freezed,
+    Object? createdItemId = freezed,
   }) {
     return _then(_value.copyWith(
       productUrl: freezed == productUrl
@@ -151,6 +157,10 @@ class _$CreateItemStateCopyWithImpl<$Res, $Val extends CreateItemState>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as Uint8List?,
+      createdItemId: freezed == createdItemId
+          ? _value.createdItemId
+          : createdItemId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -170,7 +180,8 @@ abstract class _$$_InitialCopyWith<$Res>
       String? productNm,
       String? memberNm,
       List<Category>? categoryNm,
-      Uint8List? image});
+      Uint8List? image,
+      String? createdItemId});
 }
 
 /// @nodoc
@@ -190,6 +201,7 @@ class __$$_InitialCopyWithImpl<$Res>
     Object? memberNm = freezed,
     Object? categoryNm = freezed,
     Object? image = freezed,
+    Object? createdItemId = freezed,
   }) {
     return _then(_$_Initial(
       productUrl: freezed == productUrl
@@ -220,6 +232,10 @@ class __$$_InitialCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as Uint8List?,
+      createdItemId: freezed == createdItemId
+          ? _value.createdItemId
+          : createdItemId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -234,7 +250,8 @@ class _$_Initial implements _Initial {
       this.productNm,
       this.memberNm,
       final List<Category>? categoryNm,
-      this.image})
+      this.image,
+      this.createdItemId})
       : _categoryNm = categoryNm;
 
   @override
@@ -259,10 +276,12 @@ class _$_Initial implements _Initial {
 
   @override
   final Uint8List? image;
+  @override
+  final String? createdItemId;
 
   @override
   String toString() {
-    return 'CreateItemState.initial(productUrl: $productUrl, productPrice: $productPrice, productCmt: $productCmt, productNm: $productNm, memberNm: $memberNm, categoryNm: $categoryNm, image: $image)';
+    return 'CreateItemState.initial(productUrl: $productUrl, productPrice: $productPrice, productCmt: $productCmt, productNm: $productNm, memberNm: $memberNm, categoryNm: $categoryNm, image: $image, createdItemId: $createdItemId)';
   }
 
   @override
@@ -282,7 +301,9 @@ class _$_Initial implements _Initial {
                 other.memberNm == memberNm) &&
             const DeepCollectionEquality()
                 .equals(other._categoryNm, _categoryNm) &&
-            const DeepCollectionEquality().equals(other.image, image));
+            const DeepCollectionEquality().equals(other.image, image) &&
+            (identical(other.createdItemId, createdItemId) ||
+                other.createdItemId == createdItemId));
   }
 
   @override
@@ -294,7 +315,8 @@ class _$_Initial implements _Initial {
       productNm,
       memberNm,
       const DeepCollectionEquality().hash(_categoryNm),
-      const DeepCollectionEquality().hash(image));
+      const DeepCollectionEquality().hash(image),
+      createdItemId);
 
   @JsonKey(ignore: true)
   @override
@@ -312,11 +334,12 @@ class _$_Initial implements _Initial {
             String? productNm,
             String? memberNm,
             List<Category>? categoryNm,
-            Uint8List? image)
+            Uint8List? image,
+            String? createdItemId)
         initial,
   }) {
     return initial(productUrl, productPrice, productCmt, productNm, memberNm,
-        categoryNm, image);
+        categoryNm, image, createdItemId);
   }
 
   @override
@@ -329,11 +352,12 @@ class _$_Initial implements _Initial {
             String? productNm,
             String? memberNm,
             List<Category>? categoryNm,
-            Uint8List? image)?
+            Uint8List? image,
+            String? createdItemId)?
         initial,
   }) {
     return initial?.call(productUrl, productPrice, productCmt, productNm,
-        memberNm, categoryNm, image);
+        memberNm, categoryNm, image, createdItemId);
   }
 
   @override
@@ -346,13 +370,14 @@ class _$_Initial implements _Initial {
             String? productNm,
             String? memberNm,
             List<Category>? categoryNm,
-            Uint8List? image)?
+            Uint8List? image,
+            String? createdItemId)?
         initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
       return initial(productUrl, productPrice, productCmt, productNm, memberNm,
-          categoryNm, image);
+          categoryNm, image, createdItemId);
     }
     return orElse();
   }
@@ -394,7 +419,8 @@ abstract class _Initial implements CreateItemState {
       final String? productNm,
       final String? memberNm,
       final List<Category>? categoryNm,
-      final Uint8List? image}) = _$_Initial;
+      final Uint8List? image,
+      final String? createdItemId}) = _$_Initial;
 
   @override
   String? get productUrl;
@@ -410,6 +436,8 @@ abstract class _Initial implements CreateItemState {
   List<Category>? get categoryNm;
   @override
   Uint8List? get image;
+  @override
+  String? get createdItemId;
   @override
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>

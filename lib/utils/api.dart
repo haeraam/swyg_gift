@@ -98,8 +98,9 @@ class Api {
 
     request.files.add(file);
 
-    var response = await request.send();
-    return response;
+    var res = await request.send();
+    var itemId = await res.stream.bytesToString();
+    return itemId;
   }
 
   apiTest() async {}

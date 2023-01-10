@@ -2,7 +2,6 @@ import 'dart:typed_data';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:swyg/models/category_model.dart';
 import 'package:swyg/utils/api.dart';
 
@@ -43,8 +42,9 @@ class CreateItemCubit extends Cubit<CreateItemState> {
     required productPrice,
     required productUrl,
     required catrgoryNm,
-    required memberNm,}) async {
-    await Api().createItem(
+    required memberNm,
+  }) async {
+    String itemId = await Api().createItem(
       image: image,
       productNm: productNm,
       productCmt: productCmt,
@@ -53,6 +53,7 @@ class CreateItemCubit extends Cubit<CreateItemState> {
       catrgoryNm: catrgoryNm,
       memberNm: memberNm,
     );
-    emit(const CreateItemState.initial());
+
+    emit(state.copyWith(createdItemId: itemId));
   }
 }

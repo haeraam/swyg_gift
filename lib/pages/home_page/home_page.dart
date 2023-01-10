@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:swyg/constant/constant.dart';
 import 'package:swyg/cubits/all_category_cubit/all_category_cubit.dart';
 import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
 import 'package:swyg/cubits/best_category_cubit/best_category_cubit.dart';
+import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
 import 'package:swyg/cubits/new_item_cubit/new_item_cubit.dart';
 import 'package:swyg/cubits/weekly_bset_item_cubit/weekly_bset_item_cubit.dart';
 import 'package:swyg/pages/category_page/category_page.dart';
@@ -48,7 +50,6 @@ class _HomePageState extends State<HomePage> {
     ];
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +140,7 @@ class _HomeContentState extends State<HomeContent> {
     ];
     return MultiBlocListener(
       listeners: [
-        BlocListener<BannerItemCubit, BannerItemState>(
+        BlocListener<CreateItemCubit, CreateItemState>(
           listener: (context, state) {},
         ),
       ],

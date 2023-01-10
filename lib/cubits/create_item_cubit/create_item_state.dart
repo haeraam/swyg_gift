@@ -10,5 +10,6 @@ class CreateItemState with _$CreateItemState {
     String? memberNm,
     List<Category>? categoryNm,
     Uint8List? image,
+    String? createdItemId
   }) = _Initial;
 }

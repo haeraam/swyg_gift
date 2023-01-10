@@ -54,7 +54,6 @@ class _CreateItemPriceState extends State<CreateItemPrice> {
             child: TextButton(
               onPressed: () {
                 if (selectedIndex != -1) {
-                  context.go('/');
                   context.read<CreateItemCubit>().createItem(
                         image: image,
                         productNm: itemName,
@@ -87,98 +86,106 @@ class _CreateItemPriceState extends State<CreateItemPrice> {
           ),
         ),
       ),
-      body: PageWrap(
-        child: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 28),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  '미리보기',
-                  style: TextStyle(
-                    fontSize: 17,
-                    color: blackB1C,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                CreateItemPreview(
-                  image: image,
-                  memberName: '테스트',
-                  itemName: itemName,
-                  categories: categoryNm,
-                  coment: itemComent,
-                ),
-                const SizedBox(height: 30),
-                const Text(
-                  '가격대',
-                  style: TextStyle(
-                    fontSize: 17,
-                    color: blackB1C,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        PriceCard(
-                          isChecked: selectedIndex == 0,
-                          title: '3만원 이내',
-                          onClick: () {
-                            selectedIndex = 0;
-                            setState(() {});
-                          },
-                        ),
-                        const SizedBox(width: 8),
-                        PriceCard(
-                          isChecked: selectedIndex == 1,
-                          title: '5만원 이내',
-                          onClick: () {
-                            selectedIndex = 1;
-                            setState(() {});
-                          },
-                        ),
-                        const SizedBox(width: 8),
-                        PriceCard(
-                          isChecked: selectedIndex == 2,
-                          title: '10만원 이내',
-                          onClick: () {
-                            selectedIndex = 2;
-                            setState(() {});
-                          },
-                        ),
-                      ],
+      body: BlocListener<CreateItemCubit, CreateItemState>(
+        listener: (context, state) {
+          if (state.createdItemId != null) {
+            context.go('/item/${state.createdItemId}');
+            context.read<CreateItemCubit>().reset();
+          }
+        },
+        child: PageWrap(
+          child: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 28),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    '미리보기',
+                    style: TextStyle(
+                      fontSize: 17,
+                      color: blackB1C,
+                      fontWeight: FontWeight.w500,
                     ),
-                    const SizedBox(height: 12),
-                    Row(
-                      children: [
-                        PriceCard(
-                          isChecked: selectedIndex == 3,
-                          title: '20만원 이내',
-                          onClick: () {
-                            selectedIndex = 3;
-                            setState(() {});
-                          },
-                        ),
-                        const SizedBox(width: 8),
-                        PriceCard(
-                          isChecked: selectedIndex == 4,
-                          title: '20만원 이상',
-                          onClick: () {
-                            selectedIndex = 4;
-                            setState(() {});
-                          },
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(child: Container())
-                      ],
-                    )
-                  ],
-                )
-              ],
+                  ),
+                  const SizedBox(height: 12),
+                  CreateItemPreview(
+                    image: image,
+                    memberName: '테스트',
+                    itemName: itemName,
+                    categories: categoryNm,
+                    coment: itemComent,
+                  ),
+                  const SizedBox(height: 30),
+                  const Text(
+                    '가격대',
+                    style: TextStyle(
+                      fontSize: 17,
+                      color: blackB1C,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          PriceCard(
+                            isChecked: selectedIndex == 0,
+                            title: '3만원 이내',
+                            onClick: () {
+                              selectedIndex = 0;
+                              setState(() {});
+                            },
+                          ),
+                          const SizedBox(width: 8),
+                          PriceCard(
+                            isChecked: selectedIndex == 1,
+                            title: '5만원 이내',
+                            onClick: () {
+                              selectedIndex = 1;
+                              setState(() {});
+                            },
+                          ),
+                          const SizedBox(width: 8),
+                          PriceCard(
+                            isChecked: selectedIndex == 2,
+                            title: '10만원 이내',
+                            onClick: () {
+                              selectedIndex = 2;
+                              setState(() {});
+                            },
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          PriceCard(
+                            isChecked: selectedIndex == 3,
+                            title: '20만원 이내',
+                            onClick: () {
+                              selectedIndex = 3;
+                              setState(() {});
+                            },
+                          ),
+                          const SizedBox(width: 8),
+                          PriceCard(
+                            isChecked: selectedIndex == 4,
+                            title: '20만원 이상',
+                            onClick: () {
+                              selectedIndex = 4;
+                              setState(() {});
+                            },
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(child: Container())
+                        ],
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
