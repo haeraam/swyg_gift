@@ -1,20 +1,17 @@
-import 'dart:html';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:image_picker_web/image_picker_web.dart';
+import 'package:swyg/cubits/all_category_cubit/all_category_cubit.dart';
 import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
 import 'package:swyg/models/category_model.dart';
 import 'package:swyg/pages/create_item_page/create_item_preview.dart';
 import 'package:swyg/pages/page.dart';
 import 'package:swyg/theme/color.dart';
-import 'package:swyg/utils/api.dart';
 
 class CreateItemPrice extends StatefulWidget {
-  CreateItemPrice({Key? key}) : super(key: key);
+  const CreateItemPrice({Key? key}) : super(key: key);
 
   @override
   State<CreateItemPrice> createState() => _CreateItemPriceState();
@@ -32,6 +29,7 @@ class _CreateItemPriceState extends State<CreateItemPrice> {
     String itemName = context.read<CreateItemCubit>().state.productNm ?? '';
     String itemComent = context.read<CreateItemCubit>().state.productCmt ?? '';
     String url = context.read<CreateItemCubit>().state.productUrl ?? '';
+    final List<Category> priceCategoies = context.read<AllCategoryCubit>().state.categoryList.where((category) => category.categoryCd == '03').toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -136,6 +134,8 @@ class _CreateItemPriceState extends State<CreateItemPrice> {
                             onClick: () {
                               selectedIndex = 0;
                               setState(() {});
+                              List<Category> res = context.read<CreateItemCubit>().state.categoryNm!.where((category) => category.categoryCd != '03').toList();
+                              context.read<CreateItemCubit>().setCategories([...res, priceCategoies.firstWhere((category) => category.categoryNm == '3만원이내')]);
                             },
                           ),
                           const SizedBox(width: 8),
@@ -145,6 +145,8 @@ class _CreateItemPriceState extends State<CreateItemPrice> {
                             onClick: () {
                               selectedIndex = 1;
                               setState(() {});
+                              List<Category> res = context.read<CreateItemCubit>().state.categoryNm!.where((category) => category.categoryCd != '03').toList();
+                              context.read<CreateItemCubit>().setCategories([...res, priceCategoies.firstWhere((category) => category.categoryNm == '5만원이내')]);
                             },
                           ),
                           const SizedBox(width: 8),
@@ -154,6 +156,8 @@ class _CreateItemPriceState extends State<CreateItemPrice> {
                             onClick: () {
                               selectedIndex = 2;
                               setState(() {});
+                              List<Category> res = context.read<CreateItemCubit>().state.categoryNm!.where((category) => category.categoryCd != '03').toList();
+                              context.read<CreateItemCubit>().setCategories([...res, priceCategoies.firstWhere((category) => category.categoryNm == '10만원이내')]);
                             },
                           ),
                         ],
@@ -167,6 +171,8 @@ class _CreateItemPriceState extends State<CreateItemPrice> {
                             onClick: () {
                               selectedIndex = 3;
                               setState(() {});
+                              List<Category> res = context.read<CreateItemCubit>().state.categoryNm!.where((category) => category.categoryCd != '03').toList();
+                              context.read<CreateItemCubit>().setCategories([...res, priceCategoies.firstWhere((category) => category.categoryNm == '20만원이내')]);
                             },
                           ),
                           const SizedBox(width: 8),
@@ -176,6 +182,8 @@ class _CreateItemPriceState extends State<CreateItemPrice> {
                             onClick: () {
                               selectedIndex = 4;
                               setState(() {});
+                              List<Category> res = context.read<CreateItemCubit>().state.categoryNm!.where((category) => category.categoryCd != '03').toList();
+                              context.read<CreateItemCubit>().setCategories([...res, priceCategoies.firstWhere((category) => category.categoryNm == '20만원이상')]);
                             },
                           ),
                           const SizedBox(width: 8),

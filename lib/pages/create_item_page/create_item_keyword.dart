@@ -19,7 +19,6 @@ class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
   bool _isSelected = false;
 
   initState() {
-    print(context.read<CreateItemCubit>().state.categoryNm);
     choicedCategory = (context.read<CreateItemCubit>().state.categoryNm ?? <Category>[]);
     _isSelected = choicedCategory.isNotEmpty;
     setState(() {});
@@ -97,7 +96,7 @@ class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Category> categories = context.read<AllCategoryCubit>().state.categoryList;
+    final List<Category> categories = context.read<AllCategoryCubit>().state.categoryList.where((category) => category.categoryCd != '03').toList();
 
     return Scaffold(
       appBar: AppBar(

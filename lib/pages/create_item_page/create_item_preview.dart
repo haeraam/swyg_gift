@@ -1,6 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
 import 'package:swyg/models/category_model.dart';
 import 'package:swyg/theme/color.dart';
 
@@ -14,6 +16,8 @@ class CreateItemPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Category> categories = context.watch<CreateItemCubit>().state.categoryNm!;
+
     return Container(
       padding: const EdgeInsets.only(top: 17, left: 28, right: 28),
       height: 151,
