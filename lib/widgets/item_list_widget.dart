@@ -27,8 +27,7 @@ class ItemListWidget extends StatelessWidget {
                         width: 61,
                         height: 61,
                         decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(15)),
+                          borderRadius: const BorderRadius.only(topLeft: Radius.circular(15)),
                           image: DecorationImage(
                             image: CachedNetworkImageProvider(itemList.products[0].productImg),
                           ),
@@ -37,7 +36,12 @@ class ItemListWidget extends StatelessWidget {
                       Container(
                         width: 61,
                         height: 61,
-                        decoration: const BoxDecoration(color: Colors.green, borderRadius: BorderRadius.only(topRight: Radius.circular(15))),
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(topRight: Radius.circular(15)),
+                          image: DecorationImage(
+                            image: CachedNetworkImageProvider(itemList.products[1].productImg),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -46,12 +50,22 @@ class ItemListWidget extends StatelessWidget {
                       Container(
                         width: 61,
                         height: 61,
-                        decoration: const BoxDecoration(color: Colors.black, borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15))),
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(15)),
+                          image: DecorationImage(
+                            image: CachedNetworkImageProvider(itemList.products[2].productImg),
+                          ),
+                        ),
                       ),
                       Container(
                         width: 61,
                         height: 61,
-                        decoration: const BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.only(bottomRight: Radius.circular(15))),
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(bottomRight: Radius.circular(15)),
+                          image: DecorationImage(
+                            image: CachedNetworkImageProvider(itemList.products[3].productImg),
+                          ),
+                        ),
                       ),
                     ],
                   ),

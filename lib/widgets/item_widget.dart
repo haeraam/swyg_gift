@@ -58,9 +58,13 @@ class ItemWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 16),
-          Text(
-            item.productNm,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          SizedBox(
+            width: 124,
+            child: Text(
+              item.productNm,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            ),
           ),
           const SizedBox(height: 4),
           Text(
@@ -98,7 +102,7 @@ class ItemWidget extends StatelessWidget {
               ),
               const SizedBox(width: 3),
               Text(
-                item.productCmt,
+                '${item.productWcnt}',
                 style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600),
               )
             ],

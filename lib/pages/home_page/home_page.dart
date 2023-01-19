@@ -68,30 +68,33 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: _selectedIndex == 0 ? const CustomActionButton() : null,
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Image.asset('assets/images/nav_icon_home.png', width: 32),
-            label: '홈',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset('assets/images/nav_icon_category.png', width: 32),
-            label: '카테고리',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset('assets/images/nav_icon_favorit.png', width: 32),
-            label: 'My pick',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset('assets/images/nav_icon_my_page.png', width: 32),
-            label: '내정보',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.black,
-        type: BottomNavigationBarType.fixed,
-        onTap: _onItemTapped,
+      bottomNavigationBar: Container(
+        constraints: const BoxConstraints(maxWidth: 420),
+        child: BottomNavigationBar(
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/images/nav_icon_home.png', width: 32),
+              label: '홈',
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/images/nav_icon_category.png', width: 32),
+              label: '카테고리',
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/images/nav_icon_favorit.png', width: 32),
+              label: 'My pick',
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/images/nav_icon_my_page.png', width: 32),
+              label: '내정보',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.black,
+          type: BottomNavigationBarType.fixed,
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }

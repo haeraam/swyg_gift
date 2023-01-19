@@ -115,26 +115,42 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
+      child: SizedBox(
         height: 40,
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
-        child: Row(
-          children: [
-            const Icon(
-              Icons.star,
-              size: 16,
-              color: blackB2C,
+        child: OutlinedButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+              (Set<MaterialState> states) {
+                // if (states.contains(MaterialState.focused) || states.contains(MaterialState.pressed)) return Colors.black.withOpacity(0.03);
+                if (states.contains(MaterialState.hovered)) return Colors.black.withOpacity(0.01);
+                return Colors.white; // Defer to the widget's default.
+              },
             ),
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                color: blackB2C,
+            overlayColor: MaterialStateProperty.all(Colors.black.withOpacity(0.03)),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
             ),
-          ],
+          ),
+          onPressed: () {},
+          child: Row(
+            children: [
+              const Icon(
+                Icons.star,
+                size: 16,
+                color: blackB2C,
+              ),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: blackB2C,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

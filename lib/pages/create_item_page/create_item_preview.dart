@@ -58,7 +58,7 @@ class CreateItemPreview extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    itemName,
+                    itemName.isEmpty ? '아이템 명을 입력해 주세요' : itemName,
                     style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: blackB3C),
                   ),
                   const SizedBox(height: 5),
@@ -70,7 +70,7 @@ class CreateItemPreview extends StatelessWidget {
                   Row(
                     children: categories
                         .map((category) => Container(
-                              margin: const EdgeInsets.only(left: 4),
+                              margin: const EdgeInsets.only(right: 4),
                               padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(color: const Color(0xFFE7E7E7), borderRadius: BorderRadius.circular(3)),
                               child: Text(

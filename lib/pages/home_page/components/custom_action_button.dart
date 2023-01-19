@@ -39,8 +39,8 @@ class _CustomActionButtonState extends State<CustomActionButton> {
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),
                 )),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
+                child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
                     backgroundColor: const Color(0xFFFFFFFF),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
@@ -88,8 +88,8 @@ class _CustomActionButtonState extends State<CustomActionButton> {
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),
                 )),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
+                child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
                     backgroundColor: const Color(0xFFFFFFFF),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(

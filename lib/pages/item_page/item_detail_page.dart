@@ -46,68 +46,75 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
         ],
       ),
       body: PageWrap(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AspectRatio(
-              aspectRatio: 1,
-              child: item.productImg == ''
-                  ? Container()
-                  : Image.network(
-                      item.productImg,
-                      fit: BoxFit.cover,
-                    ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 18),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 26),
-                  Row(
-                    children: [
-                      Text(
-                        item.productNm,
-                        style: const TextStyle(fontWeight: FontWeight.w600, color: blackB1C, fontSize: 21),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AspectRatio(
+                aspectRatio: 1,
+                child: item.productImg == ''
+                    ? Container()
+                    : Image.network(
+                        item.productImg,
+                        fit: BoxFit.cover,
                       ),
-                      const SizedBox(width: 4),
-                      const Icon(Icons.favorite, color: Colors.red, size: 14),
-                      const SizedBox(width: 2),
-                      Text(item.productWcnt.toString()),
-                    ],
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    item.memberNm ?? '',
-                    style: const TextStyle(fontWeight: FontWeight.w400, color: blackB2C, fontSize: 20),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    item.productCmt,
-                    style: const TextStyle(fontWeight: FontWeight.w400, color: blackB3C, fontSize: 16),
-                  ),
-                  const SizedBox(height: 12),
-                  SizedBox(
-                    height: 20,
-                    child: ListView.builder(
-                      primary: false,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: item.categoryNm.length,
-                      itemBuilder: (context, index) => CategoryWidget(
-                        title: item.categoryNm[index],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 30),
-                  Text(
-                    '생성일: ${item.productCreateDt.substring(0, min(10, item.productCreateDt.length))}',
-                    style: const TextStyle(fontWeight: FontWeight.w400, color: blackB4C, fontSize: 12),
-                  )
-                ],
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.only(left: 18, bottom: 50),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 26),
+                    Row(
+                      children: [
+                        Text(
+                          item.productNm,
+                          style: const TextStyle(fontWeight: FontWeight.w600, color: blackB1C, fontSize: 21),
+                        ),
+                        const SizedBox(width: 4),
+                        const Icon(Icons.favorite, color: Colors.red, size: 14),
+                        const SizedBox(width: 2),
+                        Text(item.productWcnt.toString()),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      item.memberNm ?? '',
+                      style: const TextStyle(fontWeight: FontWeight.w400, color: blackB2C, fontSize: 20),
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      item.productCmt,
+                      style: const TextStyle(fontWeight: FontWeight.w400, color: blackB3C, fontSize: 16),
+                    ),
+                    const SizedBox(height: 12),
+                    SizedBox(
+                      height: 20,
+                      child: ListView.builder(
+                        primary: false,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: item.categoryNm.length,
+                        itemBuilder: (context, index) => Row(
+                          children: [
+                            CategoryWidget(
+                              title: item.categoryNm[index],
+                            ),
+                            const SizedBox(width: 8)
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    Text(
+                      '생성일: ${item.productCreateDt.substring(0, min(10, item.productCreateDt.length))}',
+                      style: const TextStyle(fontWeight: FontWeight.w400, color: blackB4C, fontSize: 12),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

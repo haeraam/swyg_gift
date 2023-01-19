@@ -10,7 +10,6 @@ import 'package:swyg/cubits/hot_keyword_item_list_cubit/hot_keyword_item_list_cu
 import 'package:swyg/cubits/item_detail_cubit/item_detail_cubit.dart';
 import 'package:swyg/cubits/new_item_cubit/new_item_cubit.dart';
 import 'package:swyg/cubits/weekly_bset_item_cubit/weekly_bset_item_cubit.dart';
-import 'package:swyg/models/item_model.dart';
 import 'package:swyg/pages/create_item_page/create_item_image.dart';
 import 'package:swyg/pages/create_item_page/create_item_keyword.dart';
 import 'package:swyg/pages/create_item_page/create_item_name.dart';
@@ -38,10 +37,14 @@ class StartPage extends StatelessWidget {
         BlocProvider(create: (context) => HotKeywordItemListCubit()),
         BlocProvider(create: (context) => ItemDetailCubit()),
       ],
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        routerConfig: _router,
-        theme: ThemeData(fontFamily: 'Pretendard'),
+      child: Container(
+        constraints: const BoxConstraints(maxWidth: 420),
+
+        child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          routerConfig: _router,
+          theme: ThemeData(fontFamily: 'Pretendard'),
+        ),
       ),
     );
   }

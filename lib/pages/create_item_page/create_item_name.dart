@@ -110,7 +110,7 @@ class _CreateItemNameState extends State<CreateItemName> {
                 ),
                 const SizedBox(height: 30),
                 const Text(
-                  '아이템 명',
+                  '아이템명',
                   style: TextStyle(
                     fontSize: 17,
                     color: blackB1C,
@@ -118,18 +118,36 @@ class _CreateItemNameState extends State<CreateItemName> {
                   ),
                 ),
                 const SizedBox(height: 12),
-                TextField(
-                  onChanged: (s) {
-                    _itemName = s;
-                    setState(() {});
-                  },
-                  controller: _itemNemeTextController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    focusedBorder: OutlineInputBorder(),
-                    labelText: '아이템 명을 입력해 주세요',
-                  ),
+                Stack(
+                  alignment: Alignment.centerRight,
+                  children: [
+                    TextField(
+                      onChanged: (s) {
+                        _itemName = s;
+                        setState(() {});
+                      },
+                      controller: _itemNemeTextController,
+                      decoration: const InputDecoration(
+                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: blackB5C)),
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        focusedBorder: OutlineInputBorder(),
+                        labelText: '아이템 명을 입력해 주세요',
+                        labelStyle: TextStyle(color: blackB5C),
+                      ),
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const [
+                        Text(
+                          '9자이내',
+                          style: TextStyle(color: primaryC, fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(
+                          width: 15,
+                        )
+                      ],
+                    )
+                  ],
                 ),
                 const SizedBox(height: 30),
                 const Text(
@@ -141,18 +159,36 @@ class _CreateItemNameState extends State<CreateItemName> {
                   ),
                 ),
                 const SizedBox(height: 12),
-                TextField(
-                  onChanged: (s) {
-                    _itemComent = s;
-                    setState(() {});
-                  },
-                  controller: _itemComentTextController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    focusedBorder: OutlineInputBorder(),
-                    labelText: '소개글을 입력해 주세요',
-                  ),
+                Stack(
+                  alignment: Alignment.centerRight,
+                  children: [
+                    TextField(
+                      onChanged: (s) {
+                        _itemComent = s;
+                        setState(() {});
+                      },
+                      controller: _itemComentTextController,
+                      decoration: const InputDecoration(
+                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: blackB5C)),
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        focusedBorder: OutlineInputBorder(),
+                        labelText: '소개글을 입력해 주세요',
+                        labelStyle: TextStyle(color: blackB5C),
+                      ),
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const [
+                        Text(
+                          '20자이내',
+                          style: TextStyle(color: primaryC, fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(
+                          width: 15,
+                        )
+                      ],
+                    )
+                  ],
                 )
               ],
             ),
