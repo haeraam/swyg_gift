@@ -85,12 +85,8 @@ class _HomeHotKeywordAreaState extends State<HomeHotKeywordArea> {
                   scrollDirection: Axis.horizontal,
                   itemCount: itemLists.length,
                   itemBuilder: (context, index) => Row(
-                    children: itemLists
-                        .map((itemList) => Row(
-                              children: [ItemListWidget(itemList: itemList), const SizedBox(width: 8)],
-                            ))
-                        .toList(),
-                  ),
+                              children: [ItemListWidget(itemList: itemLists[index]), const SizedBox(width: 8)],
+                            )
                 ),
               ),
             ),

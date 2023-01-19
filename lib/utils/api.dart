@@ -59,11 +59,48 @@ class Api {
     return itemLists;
   }
 
+  getItemByCategoryName(String categoryName) async {
+    var res = await http.get(Uri.parse('$host/product/selectCategory?categoryNm=$categoryName'));
+    List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
+    List<Item> item = jsonResponse.map((data) => Item.fromJson(data)).toList();
+    return item;
+  }
+
   getItem(String itemId) async {
     var res = await http.get(Uri.parse('$host/product/select?productId=$itemId'));
     List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
     Item item = Item.fromJson(jsonResponse[0]);
     return item;
+  }
+
+  getList(String itemId) async {
+    var res = await http.get(Uri.parse('$host/productList/productListSelect?productListId=$itemId'));
+    List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
+    ItemList itemLists = ItemList.fromJson(jsonResponse[0]);
+    return itemLists;
+  }
+
+  createList({
+    required productListNm,
+    required productListCmt,
+    required productListPd,
+    required categoryNm,
+    required memberNm,
+  }) async {
+    Object body = json.encode({
+      'productListNm': productListNm,
+      'productListCmt': productListCmt,
+      'productListPd': productListPd,
+      'categoryNm': categoryNm,
+      'memberNm': memberNm,
+    });
+    print(body);
+    var res = await http.post(
+      Uri.parse('$host/productList/insert'),
+      headers: {"Content-Type": "application/json"},
+      body: body,
+    );
+    return res;
   }
 
   createItem({

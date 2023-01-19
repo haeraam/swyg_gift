@@ -21,5 +21,21 @@ class ItemList with _$ItemList {
     required List<Item> products,
   }) = _ItemList;
 
+  factory ItemList.empty() => const ItemList(
+        productListId: 0,
+        productListPd: [],
+        productListNm: '',
+        productListCmt: '',
+        categoryNm: [],
+        memberNm: '',
+        productListCreateDt: '',
+        productListUpdateDt: '',
+        productListCnt: 0,
+        productListWcnt: 0,
+        productListBestcmt: '',
+        productListLikeCnt: 0,
+        products: [],
+      );
+
   factory ItemList.fromJson(Map<String, dynamic> json) => _$ItemListFromJson(json);
 }
