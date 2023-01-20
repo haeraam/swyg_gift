@@ -1,6 +1,9 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:swyg/cubits/all_category_cubit/all_category_cubit.dart';
 import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
 import 'package:swyg/cubits/best_category_cubit/best_category_cubit.dart';
@@ -21,6 +24,7 @@ import 'package:swyg/pages/item_page/item_detail_page.dart';
 import 'package:swyg/pages/list_page/list_detail_page.dart';
 import 'package:swyg/pages/my_page/my_page.dart';
 import 'package:swyg/pages/signIn/sign_in.dart';
+import 'package:swyg/utils/api.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({Key? key}) : super(key: key);
@@ -42,7 +46,6 @@ class StartPage extends StatelessWidget {
       ],
       child: Container(
         constraints: const BoxConstraints(maxWidth: 420),
-
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
           routerConfig: _router,
@@ -159,7 +162,7 @@ final _router = GoRouter(
       path: '/item/:itemId',
       pageBuilder: (context, state) => CustomTransitionPage<void>(
         key: state.pageKey,
-        child:  ItemDetailPage(itemId: state.params['itemId'] ?? '0'),
+        child: ItemDetailPage(itemId: state.params['itemId'] ?? '0'),
         transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
           opacity: animation,
           child: child,
@@ -170,7 +173,7 @@ final _router = GoRouter(
       path: '/itemlist/:listId',
       pageBuilder: (context, state) => CustomTransitionPage<void>(
         key: state.pageKey,
-        child:  ListDetailPage(listId: state.params['listId'] ?? '0'),
+        child: ListDetailPage(listId: state.params['listId'] ?? '0'),
         transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
           opacity: animation,
           child: child,
@@ -178,7 +181,14 @@ final _router = GoRouter(
       ),
     ),
     GoRoute(
-      path: '/signIn',
+      path: '/singIn',
+      redirect: (context, state) async {
+        var res = await Api().getUser(id: state.queryParams['memberId'] ?? '');
+        Hive.box('auth').put('memberNm', res[0]['memberNm']);
+        Hive.box('auth').put('memberEmail', res[0]['memberEmail']);
+        Hive.box('auth').put('memberId', res[0]['memberId']);
+        return '/';
+      },
       pageBuilder: (context, state) => CustomTransitionPage<void>(
         key: state.pageKey,
         child: const SignIn(),

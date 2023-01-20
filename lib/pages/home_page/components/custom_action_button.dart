@@ -1,8 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:swyg/models/auth.dart';
 import 'package:swyg/pages/page.dart';
 import 'package:go_router/go_router.dart';
+import 'package:swyg/utils/api.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CustomActionButton extends StatefulWidget {
   const CustomActionButton({Key? key}) : super(key: key);
@@ -100,6 +104,7 @@ class _CustomActionButtonState extends State<CustomActionButton> {
                   ),
                   onPressed: () {
                     context.go('/createList');
+                    // Auth().signOut();
                   },
                   child: Center(
                     child: Row(

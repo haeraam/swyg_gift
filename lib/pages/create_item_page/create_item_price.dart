@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:swyg/cubits/all_category_cubit/all_category_cubit.dart';
 import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
+import 'package:swyg/models/auth.dart';
 import 'package:swyg/models/category_model.dart';
 import 'package:swyg/pages/create_item_page/create_item_preview.dart';
 import 'package:swyg/pages/page.dart';
@@ -59,7 +60,7 @@ class _CreateItemPriceState extends State<CreateItemPrice> {
                         productPrice: 'productPrice',
                         productUrl: url,
                         catrgoryNm: categoryNm.map((e) => e.categoryNm).toList(),
-                        memberNm: '테스터',
+                        memberNm: Auth().memberNm,
                       );
                 }
               },
@@ -109,7 +110,7 @@ class _CreateItemPriceState extends State<CreateItemPrice> {
                   const SizedBox(height: 12),
                   CreateItemPreview(
                     image: image,
-                    memberName: '테스트',
+                    memberName: Auth().memberNm,
                     itemName: itemName,
                     categories: categoryNm,
                     coment: itemComent,

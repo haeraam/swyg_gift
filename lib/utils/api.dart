@@ -4,12 +4,19 @@ import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:swyg/models/auth.dart';
 import 'package:swyg/models/category_model.dart';
 import 'package:swyg/models/item_list_model.dart';
 import 'package:swyg/models/item_model.dart';
 
 class Api {
   String host = 'https://pickproduct.shop';
+
+  getUser({required String id}) async {
+    var res = await http.get(Uri.parse('$host/member/info?memberId=$id'));
+    List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
+    return jsonResponse;
+  }
 
   getbestSelect() async {
     var res = await http.get(Uri.parse('$host/product/bestSelect'));
@@ -80,6 +87,34 @@ class Api {
     return itemLists;
   }
 
+  getLikeImte() async {
+    print('$host/member/mypick?memberNm=${Auth().memberNm}&likeCd=상품');
+    var res = await http.get(Uri.parse('$host/member/mypick?memberNm=${Auth().memberNm}&likeCd=상품'));
+    List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
+    List<Item> items = jsonResponse.map((data) => Item.fromJson(data)).toList();
+    return items;
+  }
+
+  changeLikeItem({
+    required isLike,
+    required memberNm,
+    required productId,
+    required productMemberNm,
+  }) async {
+    var res = await http.post(Uri.parse('$host/likeProduct/transaction'),
+        headers: {"Content-Type": "application/json"},
+        body: json.encode({
+          'resist': isLike,
+          'memberNm': memberNm,
+          'productId': productId,
+          'productMemberNm': productMemberNm,
+          'likeCd': '1',
+        }));
+    // var jsonResponse = json.decode(utf8.decode(res.bodyBytes));
+    print(utf8.decode(res.bodyBytes));
+    // return jsonResponse;
+  }
+
   createList({
     required productListNm,
     required productListCmt,
@@ -94,7 +129,6 @@ class Api {
       'categoryNm': categoryNm,
       'memberNm': memberNm,
     });
-    print(body);
     var res = await http.post(
       Uri.parse('$host/productList/insert'),
       headers: {"Content-Type": "application/json"},
