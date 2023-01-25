@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:swyg/constant/constant.dart';
 import 'package:swyg/cubits/all_category_cubit/all_category_cubit.dart';
 import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
 import 'package:swyg/cubits/best_category_cubit/best_category_cubit.dart';
 import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
+import 'package:swyg/cubits/my_pick_cubit/my_pick_cubit.dart';
 import 'package:swyg/cubits/new_item_cubit/new_item_cubit.dart';
 import 'package:swyg/cubits/weekly_bset_item_cubit/weekly_bset_item_cubit.dart';
 import 'package:swyg/pages/category_page/category_page.dart';
@@ -40,6 +40,7 @@ class _HomePageState extends State<HomePage> {
     context.read<NewItemCubit>().getItems();
     context.read<BestCategoryCubit>().getCategorys();
     context.read<WeeklyBsetItemCubit>().getItems();
+    context.read<MyPickCubit>().getLikes();
     Api().apiTest();
 
     _pageList = [
@@ -54,7 +55,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: _selectedIndex != 0 ? const Color(0xFFF4F4F4) : Colors.white,
+      backgroundColor:
+          _selectedIndex != 0 ? const Color(0xFFF4F4F4) : Colors.white,
       body: Center(
         child: Container(
           constraints: const BoxConstraints(maxWidth: 420),
@@ -67,7 +69,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      floatingActionButton: _selectedIndex == 0 ? const CustomActionButton() : null,
+      floatingActionButton:
+          _selectedIndex == 0 ? const CustomActionButton() : null,
       bottomNavigationBar: Container(
         constraints: const BoxConstraints(maxWidth: 420),
         child: BottomNavigationBar(
@@ -77,15 +80,18 @@ class _HomePageState extends State<HomePage> {
               label: '홈',
             ),
             BottomNavigationBarItem(
-              icon: Image.asset('assets/images/nav_icon_category.png', width: 32),
+              icon:
+                  Image.asset('assets/images/nav_icon_category.png', width: 32),
               label: '카테고리',
             ),
             BottomNavigationBarItem(
-              icon: Image.asset('assets/images/nav_icon_favorit.png', width: 32),
+              icon:
+                  Image.asset('assets/images/nav_icon_favorit.png', width: 32),
               label: 'My pick',
             ),
             BottomNavigationBarItem(
-              icon: Image.asset('assets/images/nav_icon_my_page.png', width: 32),
+              icon:
+                  Image.asset('assets/images/nav_icon_my_page.png', width: 32),
               label: '내정보',
             ),
           ],
