@@ -34,7 +34,6 @@ class _ListDetailPageState extends State<ListDetailPage> {
     ItemList itemList = context.watch<ListDetailCubit>().state.itemList ?? ItemList.empty();
     List<int> randomList = List.generate(itemList.products.length, (index) => index)..shuffle();
 
-    print(itemList.products);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,

@@ -112,7 +112,6 @@ class Api {
       headers: {"Content-Type": "application/json"},
       body: body,
     );
-    print(utf8.decode(res.bodyBytes));
     return utf8.decode(res.bodyBytes) == '1';
   }
 
@@ -150,7 +149,6 @@ class Api {
       'categoryNm': categoryNm,
       'memberNm': memberNm,
     });
-    print(body);
     var res = await http.post(
       Uri.parse('$host/productList/insert'),
       headers: {"Content-Type": "application/json"},
