@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swyg/constant/constant.dart';
+import 'package:swyg/cubits/home_menu_cubit/home_menu_cubit.dart';
+import 'package:swyg/cubits/my_pick_cubit/my_pick_cubit.dart';
 import 'package:swyg/models/auth.dart';
 import 'package:swyg/theme/color.dart';
 
@@ -8,6 +12,8 @@ class MyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Auth().checkAuth();
+    int myPickNum = context.watch<MyPickCubit>().state.items.length;
+
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -31,10 +37,29 @@ class MyPage extends StatelessWidget {
             const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                WhiteBox(num: '3', title: '등록한 아이템'),
-                WhiteBox(num: '1', title: '등록한 리스트'),
-                WhiteBox(num: '5', title: 'My PICK'),
+              children: [
+                WhiteBox(
+                  num: '3',
+                  title: '등록한 아이템',
+                  onClick: () {},
+                ),
+                WhiteBox(
+                  num: '1',
+                  title: '등록한 리스트',
+                  onClick: () {},
+                ),
+                WhiteBox(
+                  num: '$myPickNum',
+                  title: 'My PICK',
+                  onClick: () {
+                    context.read<HomeMenuCubit>().setIndex(index: 2);
+                    homePageController.animateToPage(
+                      2,
+                      duration: const Duration(milliseconds: 150),
+                      curve: Curves.easeIn,
+                    );
+                  },
+                ),
               ],
             ),
             const SizedBox(height: 47),
@@ -53,33 +78,37 @@ class MyPage extends StatelessWidget {
 }
 
 class WhiteBox extends StatelessWidget {
-  const WhiteBox({super.key, required this.num, required this.title});
+  const WhiteBox({super.key, required this.num, required this.title, required this.onClick});
   final String num;
   final String title;
+  final void Function()? onClick;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 112,
-      height: 112,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              num,
-              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 26),
-            ),
-            const SizedBox(height: 7),
-            Text(
-              title,
-              style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
-            )
-          ],
+    return GestureDetector(
+      onTap: onClick,
+      child: Container(
+        width: 112,
+        height: 112,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                num,
+                style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 26),
+              ),
+              const SizedBox(height: 7),
+              Text(
+                title,
+                style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
+              )
+            ],
+          ),
         ),
       ),
     );

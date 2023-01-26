@@ -12,10 +12,11 @@ import 'package:swyg/utils/api.dart';
 import 'package:swyg/widgets/category_widget.dart';
 
 class ItemWidget extends StatefulWidget {
-  const ItemWidget({Key? key, required this.item, this.isVertical = false, this.isLike = false}) : super(key: key);
+  const ItemWidget({Key? key, required this.item, this.isVertical = false, this.isLike = false, this.readOnly = false}) : super(key: key);
   final Item item;
   final bool isVertical;
   final bool isLike;
+  final bool readOnly;
 
   @override
   State<ItemWidget> createState() => _ItemWidgetState();
@@ -50,6 +51,7 @@ class _ItemWidgetState extends State<ItemWidget> {
         ),
         GestureDetector(
           onTap: () {
+            if (widget.readOnly) return;
             context.read<ItemDetailCubit>().clear();
             context.go('/item/${widget.item.productId}');
           },
@@ -64,6 +66,7 @@ class _ItemWidgetState extends State<ItemWidget> {
         ),
         GestureDetector(
           onTap: () => setState(() {
+            if (widget.readOnly) return;
             _isLike = !_isLike;
             Api().changeLikeItem(
               isLike: _isLike,
@@ -158,11 +161,5 @@ class _ItemWidgetState extends State<ItemWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: children,
           );
-    GestureDetector(
-      onTap: () {
-        context.read<ItemDetailCubit>().clear();
-        context.go('/item/${widget.item.productId}');
-      },
-    );
   }
 }

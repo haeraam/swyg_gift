@@ -7,6 +7,8 @@ import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
 import 'package:swyg/cubits/best_category_cubit/best_category_cubit.dart';
 import 'package:swyg/cubits/best_member_cubit/best_member_cubit.dart';
 import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
+import 'package:swyg/cubits/create_list_cubit/create_list_cubit.dart';
+import 'package:swyg/cubits/home_menu_cubit/home_menu_cubit.dart';
 import 'package:swyg/cubits/hot_keyword_item_list_cubit/hot_keyword_item_list_cubit.dart';
 import 'package:swyg/cubits/item_detail_cubit/item_detail_cubit.dart';
 import 'package:swyg/cubits/list_detail_cubit/list_detail_cubit.dart';
@@ -18,6 +20,9 @@ import 'package:swyg/pages/create_item_page/create_item_keyword.dart';
 import 'package:swyg/pages/create_item_page/create_item_name.dart';
 import 'package:swyg/pages/create_item_page/create_item_price.dart';
 import 'package:swyg/pages/create_list_page/create_list.dart';
+import 'package:swyg/pages/create_list_page/create_list_choice_item.dart';
+import 'package:swyg/pages/create_list_page/create_list_keyword.dart';
+import 'package:swyg/pages/create_list_page/create_list_name.dart';
 import 'package:swyg/pages/home_page/home_page.dart';
 import 'package:swyg/pages/item_page/item_detail_page.dart';
 import 'package:swyg/pages/list_page/list_detail_page.dart';
@@ -43,6 +48,8 @@ class StartPage extends StatelessWidget {
         BlocProvider(create: (context) => ItemDetailCubit()),
         BlocProvider(create: (context) => ListDetailCubit()),
         BlocProvider(create: (context) => MyPickCubit()),
+        BlocProvider(create: (context) => HomeMenuCubit()),
+        BlocProvider(create: (context) => CreateListCubit()),
       ],
       child: Container(
         constraints: const BoxConstraints(maxWidth: 420),
@@ -62,19 +69,16 @@ final _router = GoRouter(
       path: '/',
       pageBuilder: (context, state) => CustomTransitionPage<void>(
         child: const HomePage(),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            SlideTransition(
-                position: animation.drive(
-                  Tween(
-                    begin: state.extra == 'back'
-                        ? const Offset(-1.0, 0.0)
-                        : const Offset(1.0, 0.0),
-                    end: Offset.zero,
-                  ).chain(
-                    CurveTween(curve: Curves.ease),
-                  ),
-                ),
-                child: child),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
+            position: animation.drive(
+              Tween(
+                begin: state.extra == 'back' ? const Offset(-1.0, 0.0) : const Offset(1.0, 0.0),
+                end: Offset.zero,
+              ).chain(
+                CurveTween(curve: Curves.ease),
+              ),
+            ),
+            child: child),
       ),
       // builder: (context, state) => const HomePage(),
     ),
@@ -87,19 +91,16 @@ final _router = GoRouter(
       pageBuilder: (context, state) => CustomTransitionPage<void>(
         key: state.pageKey,
         child: CreateItemKeyWord(),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            SlideTransition(
-                position: animation.drive(
-                  Tween(
-                    begin: state.extra == 'back'
-                        ? const Offset(-1.0, 0.0)
-                        : const Offset(1.0, 0.0),
-                    end: Offset.zero,
-                  ).chain(
-                    CurveTween(curve: Curves.ease),
-                  ),
-                ),
-                child: child),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
+            position: animation.drive(
+              Tween(
+                begin: state.extra == 'back' ? const Offset(-1.0, 0.0) : const Offset(1.0, 0.0),
+                end: Offset.zero,
+              ).chain(
+                CurveTween(curve: Curves.ease),
+              ),
+            ),
+            child: child),
       ),
     ),
     GoRoute(
@@ -107,19 +108,16 @@ final _router = GoRouter(
       pageBuilder: (context, state) => CustomTransitionPage<void>(
         key: state.pageKey,
         child: const CreateItemImage(),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            SlideTransition(
-                position: animation.drive(
-                  Tween(
-                    begin: state.extra == 'back'
-                        ? const Offset(-1.0, 0.0)
-                        : const Offset(1.0, 0.0),
-                    end: Offset.zero,
-                  ).chain(
-                    CurveTween(curve: Curves.ease),
-                  ),
-                ),
-                child: child),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
+            position: animation.drive(
+              Tween(
+                begin: state.extra == 'back' ? const Offset(-1.0, 0.0) : const Offset(1.0, 0.0),
+                end: Offset.zero,
+              ).chain(
+                CurveTween(curve: Curves.ease),
+              ),
+            ),
+            child: child),
       ),
     ),
     GoRoute(
@@ -127,51 +125,84 @@ final _router = GoRouter(
       pageBuilder: (context, state) => CustomTransitionPage<void>(
         key: state.pageKey,
         child: const CreateItemName(),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            SlideTransition(
-                position: animation.drive(
-                  Tween(
-                    begin: state.extra == 'back'
-                        ? const Offset(-1.0, 0.0)
-                        : const Offset(1.0, 0.0),
-                    end: Offset.zero,
-                  ).chain(
-                    CurveTween(curve: Curves.ease),
-                  ),
-                ),
-                child: child),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
+            position: animation.drive(
+              Tween(
+                begin: state.extra == 'back' ? const Offset(-1.0, 0.0) : const Offset(1.0, 0.0),
+                end: Offset.zero,
+              ).chain(
+                CurveTween(curve: Curves.ease),
+              ),
+            ),
+            child: child),
       ),
     ),
     GoRoute(
       path: '/createItemPrice',
       pageBuilder: (context, state) => CustomTransitionPage<void>(
         key: state.pageKey,
-        child: CreateItemPrice(),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            SlideTransition(
-                position: animation.drive(
-                  Tween(
-                    begin: state.extra == 'back'
-                        ? const Offset(-1.0, 0.0)
-                        : const Offset(1.0, 0.0),
-                    end: Offset.zero,
-                  ).chain(
-                    CurveTween(curve: Curves.ease),
-                  ),
-                ),
-                child: child),
+        child: const CreateItemPrice(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
+            position: animation.drive(
+              Tween(
+                begin: state.extra == 'back' ? const Offset(-1.0, 0.0) : const Offset(1.0, 0.0),
+                end: Offset.zero,
+              ).chain(
+                CurveTween(curve: Curves.ease),
+              ),
+            ),
+            child: child),
       ),
     ),
     GoRoute(
-      path: '/createList',
+      path: '/createListKeyWord',
       pageBuilder: (context, state) => CustomTransitionPage<void>(
         key: state.pageKey,
-        child: const CreateListPage(),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            FadeTransition(
-          opacity: animation,
-          child: child,
-        ),
+        child: const CreateListKeyWord(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
+            position: animation.drive(
+              Tween(
+                begin: state.extra == 'back' ? const Offset(-1.0, 0.0) : const Offset(1.0, 0.0),
+                end: Offset.zero,
+              ).chain(
+                CurveTween(curve: Curves.ease),
+              ),
+            ),
+            child: child),
+      ),
+    ),
+    GoRoute(
+      path: '/createListChoiceItem',
+      pageBuilder: (context, state) => CustomTransitionPage<void>(
+        key: state.pageKey,
+        child: const CreateListChoiceItem(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
+            position: animation.drive(
+              Tween(
+                begin: state.extra == 'back' ? const Offset(-1.0, 0.0) : const Offset(1.0, 0.0),
+                end: Offset.zero,
+              ).chain(
+                CurveTween(curve: Curves.ease),
+              ),
+            ),
+            child: child),
+      ),
+    ),
+    GoRoute(
+      path: '/createListName',
+      pageBuilder: (context, state) => CustomTransitionPage<void>(
+        key: state.pageKey,
+        child: const CreateListName(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
+            position: animation.drive(
+              Tween(
+                begin: state.extra == 'back' ? const Offset(-1.0, 0.0) : const Offset(1.0, 0.0),
+                end: Offset.zero,
+              ).chain(
+                CurveTween(curve: Curves.ease),
+              ),
+            ),
+            child: child),
       ),
     ),
     GoRoute(
@@ -179,8 +210,7 @@ final _router = GoRouter(
       pageBuilder: (context, state) => CustomTransitionPage<void>(
         key: state.pageKey,
         child: ItemDetailPage(itemId: state.params['itemId'] ?? '0'),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            FadeTransition(
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
           opacity: animation,
           child: child,
         ),
@@ -191,8 +221,7 @@ final _router = GoRouter(
       pageBuilder: (context, state) => CustomTransitionPage<void>(
         key: state.pageKey,
         child: ListDetailPage(listId: state.params['listId'] ?? '0'),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            FadeTransition(
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
           opacity: animation,
           child: child,
         ),
@@ -210,8 +239,7 @@ final _router = GoRouter(
       pageBuilder: (context, state) => CustomTransitionPage<void>(
         key: state.pageKey,
         child: const SignIn(),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            FadeTransition(
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
           opacity: animation,
           child: child,
         ),

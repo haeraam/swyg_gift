@@ -5,6 +5,7 @@ import 'package:swyg/cubits/all_category_cubit/all_category_cubit.dart';
 import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
 import 'package:swyg/cubits/best_category_cubit/best_category_cubit.dart';
 import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
+import 'package:swyg/cubits/home_menu_cubit/home_menu_cubit.dart';
 import 'package:swyg/cubits/my_pick_cubit/my_pick_cubit.dart';
 import 'package:swyg/cubits/new_item_cubit/new_item_cubit.dart';
 import 'package:swyg/cubits/weekly_bset_item_cubit/weekly_bset_item_cubit.dart';
@@ -29,8 +30,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
-
   List<Widget> _pageList = [];
 
   @override
@@ -54,9 +53,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    int pageIndex = context.watch<HomeMenuCubit>().state.pageIndex;
+
     return Scaffold(
-      backgroundColor:
-          _selectedIndex != 0 ? const Color(0xFFF4F4F4) : Colors.white,
+      backgroundColor: pageIndex != 0 ? const Color(0xFFF4F4F4) : Colors.white,
       body: Center(
         child: Container(
           constraints: const BoxConstraints(maxWidth: 420),
@@ -64,13 +64,12 @@ class _HomePageState extends State<HomePage> {
             controller: homePageController,
             children: _pageList,
             onPageChanged: (index) {
-              setState(() => _selectedIndex = index);
+              context.read<HomeMenuCubit>().setIndex(index: index);
             },
           ),
         ),
       ),
-      floatingActionButton:
-          _selectedIndex == 0 ? const CustomActionButton() : null,
+      floatingActionButton: pageIndex == 0 ? const CustomActionButton() : null,
       bottomNavigationBar: Container(
         constraints: const BoxConstraints(maxWidth: 420),
         child: BottomNavigationBar(
@@ -80,22 +79,19 @@ class _HomePageState extends State<HomePage> {
               label: '홈',
             ),
             BottomNavigationBarItem(
-              icon:
-                  Image.asset('assets/images/nav_icon_category.png', width: 32),
+              icon: Image.asset('assets/images/nav_icon_category.png', width: 32),
               label: '카테고리',
             ),
             BottomNavigationBarItem(
-              icon:
-                  Image.asset('assets/images/nav_icon_favorit.png', width: 32),
+              icon: Image.asset('assets/images/nav_icon_favorit.png', width: 32),
               label: 'My pick',
             ),
             BottomNavigationBarItem(
-              icon:
-                  Image.asset('assets/images/nav_icon_my_page.png', width: 32),
+              icon: Image.asset('assets/images/nav_icon_my_page.png', width: 32),
               label: '내정보',
             ),
           ],
-          currentIndex: _selectedIndex,
+          currentIndex: pageIndex,
           selectedItemColor: Colors.black,
           unselectedItemColor: Colors.black,
           type: BottomNavigationBarType.fixed,
@@ -106,14 +102,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   _onItemTapped(index) {
-    setState(() {
-      _selectedIndex = index;
-      homePageController.animateToPage(
-        index,
-        duration: const Duration(milliseconds: 150),
-        curve: Curves.easeIn,
-      );
-    });
+    context.read<HomeMenuCubit>().setIndex(index: index);
+    homePageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 150),
+      curve: Curves.easeIn,
+    );
   }
 }
 

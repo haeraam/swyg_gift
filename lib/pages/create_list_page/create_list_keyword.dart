@@ -2,26 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:swyg/cubits/all_category_cubit/all_category_cubit.dart';
-import 'package:swyg/cubits/create_item_cubit/create_item_cubit.dart';
+import 'package:swyg/cubits/create_list_cubit/create_list_cubit.dart';
 import 'package:swyg/models/category_model.dart';
 import 'package:swyg/pages/page.dart';
 import 'package:swyg/theme/color.dart';
 
-class CreateItemKeyWord extends StatefulWidget {
-  const CreateItemKeyWord({Key? key}) : super(key: key);
+class CreateListKeyWord extends StatefulWidget {
+  const CreateListKeyWord({Key? key}) : super(key: key);
 
   @override
-  State<CreateItemKeyWord> createState() => _CreateItemKeyWordState();
+  State<CreateListKeyWord> createState() => _CreateListKeyWordState();
 }
 
-class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
+class _CreateListKeyWordState extends State<CreateListKeyWord> {
   late List<Category> choicedCategory;
   bool _isSelected = false;
 
   @override
   initState() {
     super.initState();
-    choicedCategory = (context.read<CreateItemCubit>().state.categoryNm ?? <Category>[]);
+    choicedCategory = (context.read<CreateListCubit>().state.categoryNm ?? <Category>[]);
     _isSelected = choicedCategory.isNotEmpty;
     setState(() {});
   }
@@ -43,7 +43,7 @@ class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
               } else {
                 choicedCategory = choicedCategory.where((element) => element != category).toList();
               }
-              context.read<CreateItemCubit>().setCategories(choicedCategory);
+              context.read<CreateListCubit>().setCategories(choicedCategory);
               setState(() {
                 _isSelected = choicedCategory.isNotEmpty;
               });
@@ -77,7 +77,7 @@ class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
               } else {
                 choicedCategory = choicedCategory.where((element) => element != category).toList();
               }
-              context.read<CreateItemCubit>().setCategories(choicedCategory);
+              context.read<CreateListCubit>().setCategories(choicedCategory);
               setState(() {
                 _isSelected = choicedCategory.isNotEmpty;
               });
@@ -120,7 +120,7 @@ class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
             padding: const EdgeInsets.only(top: 50),
             child: TextButton(
               onPressed: () {
-                if (_isSelected) context.go('/createItemImage');
+                if (_isSelected) context.go('/createListChoiceItem');
               },
               child: Text(
                 '다음',
@@ -137,7 +137,7 @@ class _CreateItemKeyWordState extends State<CreateItemKeyWord> {
           padding: const EdgeInsets.only(top: 50),
           child: IconButton(
             onPressed: () {
-              context.read<CreateItemCubit>().reset();
+              context.read<CreateListCubit>().reset();
               context.go('/', extra: 'back');
             },
             icon: const Icon(Icons.close),
