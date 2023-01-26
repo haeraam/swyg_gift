@@ -153,10 +153,13 @@ class CreateListItemPicker extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        color: selected ? primaryC : Colors.white,
+        color: selected ? primary2C : Colors.white,
         child: Row(
           children: [
-            const Icon(Icons.face),
+            Icon(
+              Icons.face,
+              color: selected ? primaryC : Colors.grey,
+            ),
             const SizedBox(
               width: 8,
             ),

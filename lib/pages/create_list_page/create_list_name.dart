@@ -88,8 +88,7 @@ class _CreateListNameState extends State<CreateListName> {
       body: BlocListener<CreateListCubit, CreateListState>(
         listener: (context, state) {
           if (state.createListId != null) {
-            // context.go('/list/${state.createListId}');
-            context.go('/');
+            context.go('/list/${state.createListId}');
             context.read<CreateListCubit>().reset();
           }
         },

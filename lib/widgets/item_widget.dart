@@ -12,10 +12,9 @@ import 'package:swyg/utils/api.dart';
 import 'package:swyg/widgets/category_widget.dart';
 
 class ItemWidget extends StatefulWidget {
-  const ItemWidget({Key? key, required this.item, this.isVertical = false, this.isLike = false, this.readOnly = false}) : super(key: key);
+  const ItemWidget({Key? key, required this.item, this.isVertical = false, this.readOnly = false}) : super(key: key);
   final Item item;
   final bool isVertical;
-  final bool isLike;
   final bool readOnly;
 
   @override
@@ -28,9 +27,12 @@ class _ItemWidgetState extends State<ItemWidget> {
   @override
   void initState() {
     super.initState();
-    setState(() {
-      _isLike = widget.isLike;
-    });
+    getLise();
+  }
+
+  getLise() async {
+    _isLike = await Api().checkIsLikedItem(widget.item.productId);
+    setState(() {});
   }
 
   @override

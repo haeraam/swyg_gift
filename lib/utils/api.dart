@@ -102,6 +102,20 @@ class Api {
     return items;
   }
 
+  checkIsLikedItem(int productId) async {
+    Object body = json.encode({
+      'memberNm': Auth().memberNm,
+      'productId': productId,
+    });
+    var res = await http.post(
+      Uri.parse('$host/likeProduct/checkPick'),
+      headers: {"Content-Type": "application/json"},
+      body: body,
+    );
+    print(utf8.decode(res.bodyBytes));
+    return utf8.decode(res.bodyBytes) == '1';
+  }
+
   changeLikeItem({
     required isLike,
     required memberNm,
