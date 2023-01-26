@@ -4,7 +4,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:swyg/cubits/banner_item_cubit.dart/banner_item_cubit.dart';
 import 'package:swyg/cubits/item_detail_cubit/item_detail_cubit.dart';
+import 'package:swyg/cubits/my_pick_cubit/my_pick_cubit.dart';
+import 'package:swyg/cubits/new_item_cubit/new_item_cubit.dart';
+import 'package:swyg/cubits/weekly_bset_item_cubit/weekly_bset_item_cubit.dart';
 import 'package:swyg/models/auth.dart';
 import 'package:swyg/models/item_model.dart';
 import 'package:swyg/theme/color.dart';
@@ -12,7 +16,12 @@ import 'package:swyg/utils/api.dart';
 import 'package:swyg/widgets/category_widget.dart';
 
 class ItemWidget extends StatefulWidget {
-  const ItemWidget({Key? key, required this.item, this.isVertical = false, this.readOnly = false}) : super(key: key);
+  const ItemWidget({
+    Key? key,
+    required this.item,
+    this.isVertical = false,
+    this.readOnly = false,
+  }) : super(key: key);
   final Item item;
   final bool isVertical;
   final bool readOnly;
@@ -25,18 +34,15 @@ class _ItemWidgetState extends State<ItemWidget> {
   bool _isLike = false;
 
   @override
-  void initState() {
-    super.initState();
-    getLise();
-  }
-
-  getLise() async {
-    _isLike = await Api().checkIsLikedItem(widget.item.productId);
-    setState(() {});
-  }
-
-  @override
   Widget build(BuildContext context) {
+    if (context
+        .read<MyPickCubit>()
+        .state
+        .items
+        .any((item) => item.productId == widget.item.productId)) {
+      _isLike = true;
+    }
+
     Widget img = Stack(
       children: [
         Container(
@@ -70,12 +76,14 @@ class _ItemWidgetState extends State<ItemWidget> {
           onTap: () => setState(() {
             if (widget.readOnly) return;
             _isLike = !_isLike;
-            Api().changeLikeItem(
-              isLike: _isLike,
-              memberNm: Auth().memberNm,
-              productId: widget.item.productId,
-              productMemberNm: widget.item.memberNm,
-            );
+            Api()
+                .changeLikeItem(
+                  isLike: _isLike,
+                  memberNm: Auth().memberNm,
+                  productId: widget.item.productId,
+                  productMemberNm: widget.item.memberNm,
+                )
+                .then((value) => context.read<MyPickCubit>().getLikes());
           }),
           child: Container(
             padding: const EdgeInsets.all(8),
@@ -116,13 +124,15 @@ class _ItemWidgetState extends State<ItemWidget> {
           Row(
             children: [
               CategoryWidget(
-                title: widget.item.categoryNm[Random().nextInt(widget.item.categoryNm.length)],
+                title: widget.item.categoryNm[
+                    Random().nextInt(widget.item.categoryNm.length)],
                 isWhite: widget.isVertical,
               ),
               const SizedBox(width: 4),
               if (widget.item.categoryNm.length > 1)
                 CategoryWidget(
-                  title: widget.item.categoryNm[Random().nextInt(widget.item.categoryNm.length - 1) + 1],
+                  title: widget.item.categoryNm[
+                      Random().nextInt(widget.item.categoryNm.length - 1) + 1],
                   isWhite: widget.isVertical,
                 ),
             ],
@@ -154,14 +164,24 @@ class _ItemWidgetState extends State<ItemWidget> {
       others,
     ];
 
-    return widget.isVertical
-        ? Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: children,
-          )
-        : Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: children,
-          );
+    return BlocListener<MyPickCubit, MyPickState>(
+      listener: (context, state) {
+        if (state.items.any((item) {
+          return item.productId == widget.item.productId;
+        })) {
+          _isLike = true;
+          setState(() {});
+        }
+      },
+      child: widget.isVertical
+          ? Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: children,
+            )
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: children,
+            ),
+    );
   }
 }
