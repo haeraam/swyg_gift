@@ -43,7 +43,9 @@ class CreateListCubit extends Cubit<CreateListState> {
       categoryNm: categoryNm,
       memberNm: memberNm,
     );
+    print('listIdlistIdlistIdlistIdlistIdlistId');
     print(listId);
+    print('listIdlistIdlistIdlistIdlistIdlistId');
 
     emit(state.copyWith(createListId: listId));
   }

@@ -46,17 +46,7 @@ class _ListDetailPageState extends State<ListDetailPage> {
               color: Colors.black,
             )),
         actions: [
-          IconButton(
-              onPressed: () {
-                Api().createList(
-                  productListNm: '들어가나보자3',
-                  productListCmt: '들어가나테스트3',
-                  productListPd: [10,11,12,13,14,15,16,17,18,19,20],
-                  categoryNm: ['직장인'],
-                  memberNm: '서지훈3',
-                );
-              },
-              icon: const Icon(Icons.close, color: Colors.red)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.close, color: Colors.red)),
           IconButton(onPressed: () {}, icon: const Icon(Icons.close, color: Colors.black)),
         ],
       ),
@@ -78,21 +68,28 @@ class _ListDetailPageState extends State<ListDetailPage> {
                                 imageUrl: itemList.products[randomList[0]].productImg,
                               )),
                               Expanded(
-                                  child: CachedNetworkImage(
-                                imageUrl: itemList.products[randomList[1]].productImg,
-                              )),
+                                child: randomList.length > 1
+                                    ? CachedNetworkImage(
+                                        imageUrl: itemList.products[randomList[1]].productImg,
+                                      )
+                                    : Container(),
+                              ),
                             ],
                           ),
                           Row(
                             children: [
                               Expanded(
-                                  child: CachedNetworkImage(
-                                imageUrl: itemList.products[randomList[2]].productImg,
-                              )),
+                                child: randomList.length > 2
+                                    ? CachedNetworkImage(
+                                        imageUrl: itemList.products[randomList[2]].productImg,
+                                      )
+                                    : Container(),),
                               Expanded(
-                                  child: CachedNetworkImage(
-                                imageUrl: itemList.products[randomList[3]].productImg,
-                              )),
+                                child: randomList.length > 3
+                                    ? CachedNetworkImage(
+                                        imageUrl: itemList.products[randomList[3]].productImg,
+                                      )
+                                    : Container(),),
                             ],
                           ),
                         ],

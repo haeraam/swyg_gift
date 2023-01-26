@@ -117,7 +117,7 @@ class _CreateListChoiceItemState extends State<CreateListChoiceItem> {
                       CreateListItemPicker(
                         selected: selectedProdectId.contains(items[index].productId),
                         onTap: () {
-                          if (selectedProdectId.contains(index)) {
+                          if (selectedProdectId.contains(items[index].productId)) {
                             selectedProdectId = selectedProdectId.where((id) => id != items[index].productId).toList();
                           } else {
                             selectedProdectId.add(items[index].productId);
