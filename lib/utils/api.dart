@@ -28,8 +28,7 @@ class Api {
   getWeeklyBestItem() async {
     var res = await http.get(Uri.parse('$host/likeProductList/selectWeek'));
     List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
-    List<Category> categorys =
-        jsonResponse.map((data) => Category.fromJson(data)).toList();
+    List<Category> categorys = jsonResponse.map((data) => Category.fromJson(data)).toList();
     return categorys;
   }
 
@@ -49,70 +48,63 @@ class Api {
   getBestKeyWord() async {
     var res = await http.get(Uri.parse('$host/category/selectBest'));
     List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
-    List<Category> categorys =
-        jsonResponse.map((data) => Category.fromJson(data)).toList();
+    List<Category> categorys = jsonResponse.map((data) => Category.fromJson(data)).toList();
     return categorys;
   }
 
   getAllCategories() async {
     var res = await http.get(Uri.parse('$host/category/select'));
     List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
-    List<Category> categorys =
-        jsonResponse.map((data) => Category.fromJson(data)).toList();
+    List<Category> categorys = jsonResponse.map((data) => Category.fromJson(data)).toList();
     return categorys;
   }
 
   getListByCategoryName(String categoryName) async {
-    var res = await http.get(
-        Uri.parse('$host/productList/categorySelect?categoryNm=$categoryName'));
+    var res = await http.get(Uri.parse('$host/productList/categorySelect?categoryNm=$categoryName'));
     List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
-    List<ItemList> itemLists =
-        jsonResponse.map((data) => ItemList.fromJson(data)).toList();
+    List<ItemList> itemLists = jsonResponse.map((data) => ItemList.fromJson(data)).toList();
     return itemLists;
   }
 
   getItemByCategoryName(String categoryName) async {
-    var res = await http.get(
-        Uri.parse('$host/product/selectCategory?categoryNm=$categoryName'));
+    var res = await http.get(Uri.parse('$host/product/selectCategory?categoryNm=$categoryName'));
     List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
     List<Item> item = jsonResponse.map((data) => Item.fromJson(data)).toList();
     return item;
   }
 
-  getItem(String itemId) async {
-    var res =
-        await http.get(Uri.parse('$host/product/select?productId=$itemId'));
+  Future<Item> getItem(String itemId) async {
+    var res = await http.get(Uri.parse('$host/product/select?productId=$itemId'));
     List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
     Item item = Item.fromJson(jsonResponse[0]);
     return item;
   }
 
   getList(String itemId) async {
-    var res = await http.get(
-        Uri.parse('$host/productList/productListSelect?productListId=$itemId'));
+    var res = await http.get(Uri.parse('$host/productList/productListSelect?productListId=$itemId'));
     List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
     ItemList itemLists = ItemList.fromJson(jsonResponse[0]);
     return itemLists;
   }
 
   getLikeItems() async {
-    var res = await http.get(
-        Uri.parse('$host/member/mypick?memberNm=${Auth().memberNm}&likeCd=1'));
+    var res = await http.get(Uri.parse('$host/member/mypick?memberNm=${Auth().memberNm}&likeCd=1'));
     List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
-    List<Item> items =
-        jsonResponse.map((data) => Item.fromJson(data['product'][0])).toList();
+    List<Item> items = jsonResponse.map((data) => Item.fromJson(data['product'][0])).toList();
     return items;
   }
 
   getLikeLists() async {
-    var res = await http.get(
-        Uri.parse('$host/member/mypick?memberNm=${Auth().memberNm}&likeCd=2'));
+    var res = await http.get(Uri.parse('$host/member/mypick?memberNm=${Auth().memberNm}&likeCd=2'));
     List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
-    List<ItemList> items = jsonResponse
-        .map((data) => ItemList.fromJson(data['product'][0]))
+    List<ItemList> itemLists = jsonResponse
+        .map((data) => ItemList.fromJson({
+              ...data['productlist'],
+              "products": [],
+            }))
         .toList();
 
-    return items;
+    return itemLists;
   }
 
   checkIsLikedItem(int productId) async {
@@ -164,6 +156,8 @@ class Api {
         }));
     // var jsonResponse = json.decode(utf8.decode(res.bodyBytes));
     // return jsonResponse;
+    print(utf8.decode(res.bodyBytes));
+    return utf8.decode(res.bodyBytes);
   }
 
   createList({
@@ -197,8 +191,7 @@ class Api {
     required catrgoryNm,
     required memberNm,
   }) async {
-    var request =
-        http.MultipartRequest("POST", Uri.parse('$host/product/insert'));
+    var request = http.MultipartRequest("POST", Uri.parse('$host/product/insert'));
 
     request.headers.addAll({
       "Content-Type": "application/json; charset=utf-8",
