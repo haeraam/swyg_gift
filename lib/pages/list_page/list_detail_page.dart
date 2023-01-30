@@ -9,7 +9,6 @@ import 'package:swyg/models/item_list_model.dart';
 import 'package:swyg/models/item_model.dart';
 import 'package:swyg/pages/page.dart';
 import 'package:swyg/theme/color.dart';
-import 'package:swyg/utils/api.dart';
 import 'package:swyg/widgets/category_widget.dart';
 import 'package:swyg/widgets/item_widget.dart';
 
@@ -59,40 +58,58 @@ class _ListDetailPageState extends State<ListDetailPage> {
                 aspectRatio: 1,
                 child: itemList.products.isEmpty
                     ? Container()
-                    : Column(
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                  child: CachedNetworkImage(
-                                imageUrl: itemList.products[randomList[0]].productImg,
-                              )),
-                              Expanded(
-                                child: randomList.length > 1
-                                    ? CachedNetworkImage(
-                                        imageUrl: itemList.products[randomList[1]].productImg,
-                                      )
-                                    : Container(),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: randomList.length > 2
-                                    ? CachedNetworkImage(
-                                        imageUrl: itemList.products[randomList[2]].productImg,
-                                      )
-                                    : Container(),),
-                              Expanded(
-                                child: randomList.length > 3
-                                    ? CachedNetworkImage(
-                                        imageUrl: itemList.products[randomList[3]].productImg,
-                                      )
-                                    : Container(),),
-                            ],
-                          ),
-                        ],
+                    : Container(
+                        color: Colors.transparent,
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: AspectRatio(
+                                    aspectRatio: 1,
+                                    child: CachedNetworkImage(
+                                      imageUrl: itemList.products[randomList[0]].productImg,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: randomList.length > 1
+                                      ? AspectRatio(
+                                          aspectRatio: 1,
+                                          child: CachedNetworkImage(
+                                            imageUrl: itemList.products[randomList[1]].productImg,
+                                          ),
+                                        )
+                                      : Container(),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: randomList.length > 2
+                                      ? AspectRatio(
+                                          aspectRatio: 1,
+                                          child: CachedNetworkImage(
+                                            imageUrl: itemList.products[randomList[2]].productImg,
+                                          ),
+                                        )
+                                      : Container(),
+                                ),
+                                Expanded(
+                                  child: randomList.length > 3
+                                      ? AspectRatio(
+                                          aspectRatio: 1,
+                                          child: CachedNetworkImage(
+                                            imageUrl: itemList.products[randomList[3]].productImg,
+                                          ),
+                                        )
+                                      : Container(),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
               ),
               Padding(

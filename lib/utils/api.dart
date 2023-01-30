@@ -97,12 +97,8 @@ class Api {
   getLikeLists() async {
     var res = await http.get(Uri.parse('$host/member/mypick?memberNm=${Auth().memberNm}&likeCd=2'));
     List jsonResponse = json.decode(utf8.decode(res.bodyBytes));
-    List<ItemList> itemLists = jsonResponse
-        .map((data) => ItemList.fromJson({
-              ...data['productlist'],
-              "products": [],
-            }))
-        .toList();
+    print(jsonResponse);
+    List<ItemList> itemLists = jsonResponse.map((data) => ItemList.fromJson({...data['productList'][0]})).toList();
 
     return itemLists;
   }
