@@ -228,7 +228,7 @@ final _router = GoRouter(
       ),
     ),
     GoRoute(
-      path: '/singIn',
+      path: '/signIn',
       redirect: (context, state) async {
         var res = await Api().getUser(id: state.queryParams['memberId'] ?? '');
         Hive.box('auth').put('memberNm', res[0]['memberNm']);
