@@ -93,24 +93,28 @@ class HomeCrouselCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                  height: 24,
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                   decoration: BoxDecoration(color: primaryC, borderRadius: BorderRadius.circular(20)),
                   child: Text(
                     title,
                     style: const TextStyle(
                       fontSize: 12,
                       color: blackB1C,
-                      fontWeight: FontWeight.w900,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ),
                 const SizedBox(height: 16),
-                Text(
-                  coment,
-                  style: const TextStyle(
-                    fontSize: 22,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
+                SizedBox(
+                  width: 200,
+                  child: Text(
+                    coment,
+                    style: const TextStyle(
+                      fontSize: 22,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 )
               ],

@@ -14,38 +14,35 @@ class HomeNewItemArea extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Item> items = context.watch<NewItemCubit>().state.itemList;
 
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const HomeTitle(title: 'NEW 선물 아이템'),
-          const SizedBox(height: 16),
-          SizedBox(
-            height: 262,
-            child: NotificationListener<OverscrollIndicatorNotification>(
-              onNotification: (overScroll) {
-                overScroll.disallowIndicator();
-                return true;
-              },
-              child: ListView.builder(
-                primary: false,
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: items.length,
-                itemBuilder: (context, index) => Row(
-                  children: [
-                    ItemWidget(
-                      item: items[index],
-                    ),
-                    const SizedBox(width: 10),
-                  ],
-                ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const HomeTitle(title: 'NEW 선물 아이템'),
+        const SizedBox(height: 16),
+        SizedBox(
+          height: 262,
+          child: NotificationListener<OverscrollIndicatorNotification>(
+            onNotification: (overScroll) {
+              overScroll.disallowIndicator();
+              return true;
+            },
+            child: ListView.builder(
+              primary: false,
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: items.length,
+              itemBuilder: (context, index) => Row(
+                children: [
+                  ItemWidget(
+                    item: items[index],
+                  ),
+                  const SizedBox(width: 10),
+                ],
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

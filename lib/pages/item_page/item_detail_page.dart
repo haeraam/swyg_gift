@@ -41,8 +41,8 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
               color: Colors.black,
             )),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.close, color: Colors.black)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.close, color: Colors.black)),
+          // IconButton(onPressed: () {}, icon: const Icon(Icons.close, color: Colors.black)),
+          // IconButton(onPressed: () {}, icon: const Icon(Icons.close, color: Colors.black)),
         ],
       ),
       body: PageWrap(

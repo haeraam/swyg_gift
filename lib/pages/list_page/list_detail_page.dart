@@ -45,8 +45,8 @@ class _ListDetailPageState extends State<ListDetailPage> {
               color: Colors.black,
             )),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.close, color: Colors.red)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.close, color: Colors.black)),
+          // IconButton(onPressed: () {}, icon: const Icon(Icons.close, color: Colors.red)),
+          // IconButton(onPressed: () {}, icon: const Icon(Icons.close, color: Colors.black)),
         ],
       ),
       body: PageWrap(

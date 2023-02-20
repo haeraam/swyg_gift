@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
 
     _pageList = [
       const HomeContent(),
-      const CategoryPage(),
+      // const CategoryPage(),
       const MyPick(),
       const MyPage(),
     ];
@@ -56,6 +56,7 @@ class _HomePageState extends State<HomePage> {
     int pageIndex = context.watch<HomeMenuCubit>().state.pageIndex;
 
     return Scaffold(
+      drawerEdgeDragWidth: 200,
       backgroundColor: pageIndex != 0 ? const Color(0xFFF4F4F4) : Colors.white,
       body: Center(
         child: Container(
@@ -70,33 +71,30 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: pageIndex == 0 ? const CustomActionButton() : null,
-      bottomNavigationBar: Container(
-        constraints: const BoxConstraints(maxWidth: 420),
-        child: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Image.asset('assets/images/nav_icon_home.png', width: 32),
-              label: '홈',
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset('assets/images/nav_icon_category.png', width: 32),
-              label: '카테고리',
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset('assets/images/nav_icon_favorit.png', width: 32),
-              label: 'My pick',
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset('assets/images/nav_icon_my_page.png', width: 32),
-              label: '내정보',
-            ),
-          ],
-          currentIndex: pageIndex,
-          selectedItemColor: Colors.black,
-          unselectedItemColor: Colors.black,
-          type: BottomNavigationBarType.fixed,
-          onTap: _onItemTapped,
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Image.asset('assets/images/nav_icon_home.png', width: 32),
+            label: '홈',
+          ),
+          // BottomNavigationBarItem(
+          //   icon: Image.asset('assets/images/nav_icon_category.png', width: 32),
+          //   label: '카테고리',
+          // ),
+          BottomNavigationBarItem(
+            icon: Image.asset('assets/images/nav_icon_favorit.png', width: 32),
+            label: 'My pick',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset('assets/images/nav_icon_my_page.png', width: 32),
+            label: '내정보',
+          ),
+        ],
+        currentIndex: pageIndex,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.black,
+        type: BottomNavigationBarType.fixed,
+        onTap: _onItemTapped,
       ),
     );
   }
@@ -132,14 +130,60 @@ class _HomeContentState extends State<HomeContent> {
       Container(height: 1, width: double.infinity, color: blackB5C),
       const SizedBox(height: 28),
       const HomeWeeklyItemRankArea(),
+      // const SizedBox(height: 50),
+      // Container(height: 1, width: double.infinity, color: blackB5C),
+      // const SizedBox(height: 28),
+      // const HomeMemberRankArea(),
       const SizedBox(height: 50),
       Container(height: 1, width: double.infinity, color: blackB5C),
       const SizedBox(height: 28),
-      const HomeMemberRankArea(),
+      const HomeNewItemArea(),
       const SizedBox(height: 50),
-      Container(height: 1, width: double.infinity, color: blackB5C),
-      const SizedBox(height: 28),
-      const HomeNewItemArea()
+      Container(
+        padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 20),
+        color: const Color(0xFFEEEEEE),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'MY PICK',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: blackB3C),
+            ),
+            const SizedBox(height: 8),
+            Row(children: const [
+              Text(
+                '개인정보처리방침',
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: blackB3C),
+              ),
+              SizedBox(width: 4),
+              Text(
+                '|',
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: blackB3C),
+              ),
+              SizedBox(width: 4),
+              Text(
+                '개인정보처리방침',
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: blackB3C),
+              ),
+              SizedBox(width: 4),
+              Text(
+                '|',
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: blackB3C),
+              ),
+              SizedBox(width: 4),
+              Text(
+                '개인정보처리방침',
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: blackB3C),
+              ),
+            ]),
+            const SizedBox(height: 16),
+            const Text(
+              'Powered by HY, Zion Lee, Sharkpia Copyright © SWYG. All rights reserved.',
+              style: TextStyle(fontSize: 8, fontWeight: FontWeight.w400),
+            ),
+          ],
+        ),
+      )
     ];
     return MultiBlocListener(
       listeners: [
